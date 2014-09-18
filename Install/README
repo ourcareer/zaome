@@ -1,0 +1,21 @@
+1，安装web服务器，这里先使用apache服务器。
+
+2，配置服务器，这里配置apache服务器
+#zaome
+NameVirtualHost 127.0.0.26:80
+<VirtualHost 127.0.0.26:80>
+ ServerName www.zao.me
+ DocumentRoot "E:/xampp/htdocs/zaome"
+<Directory "E:/xampp/htdocs/zaome"> 
+ Options FollowSymLinks IncludesNOEXEC Indexes
+ DirectoryIndex index.html index.htm default.htm index.php default.php index.cgi default.cgi index.pl default.pl index.shtml
+ AllowOverride None 
+ Order Deny,Allow 
+ Allow from all 
+</Directory>
+</VirtualHost>
+
+3，在host写入
+127.0.0.26 www.zao.me
+
+如此在电脑上就可以玩耍了。
