@@ -37,7 +37,7 @@ return array(
     'DEFAULT_FILTER'        =>  'htmlspecialchars', // 默认参数过滤方法 用于I函数...
 
 	/* 数据库设置 */
-    'DB_TYPE'               =>  'mysql',     // 数据库类型
+    'DB_TYPE'               =>  'mysqli',     // 数据库类型
     'DB_HOST'               =>  'localhost', // 服务器地址
     'DB_NAME'               =>  'zaome',     // 数据库名
     'DB_USER'               =>  'ancon',    // 用户名
@@ -75,7 +75,7 @@ return array(
     'SHOW_PAGE_TRACE'       =>  true,
 
     /* 日志设置 */
-    'LOG_RECORD'            =>  false,   // 默认不记录日志
+    'LOG_RECORD'            =>  true,   // 默认不记录日志
     'LOG_TYPE'              =>  'File', // 日志记录类型 默认为文件方式
     'LOG_LEVEL'             =>  'EMERG,ALERT,CRIT,ERR',// 允许记录的日志级别
     'LOG_FILE_SIZE'         =>  2097152,    // 日志文件大小限制
@@ -85,7 +85,7 @@ return array(
     'SESSION_AUTO_START'    =>  true,    // 是否自动开启Session
     'SESSION_OPTIONS'       =>  array(), // session 配置数组 支持type name id path expire domain 等参数
     'SESSION_TYPE'          =>  'Db', // session hander类型 默认无需设置 除非扩展了session hander驱动
-    'SESSION_PREFIX'        =>  'zaome.session', // session 前缀
+    'SESSION_PREFIX'        =>  'sess', // session 前缀
     //'VAR_SESSION_ID'      =>  'session_id',     //sessionID的提交变量
 
     /* 模板引擎设置 */
@@ -161,7 +161,6 @@ return array(
         // '__BOOTSTRAPCSS__'   =>  '/Src/bootstrap/css/bootstrap.css',
         // '__BOOTSTRAPCJS__'   =>  '/Src/bootstrap/js/bootstrap.js',
         '__BSIE__'          =>  __ROOT__.'/Src/ie678html5',
-
     ),//模板替换规则
 
     /* 管理员配置 */

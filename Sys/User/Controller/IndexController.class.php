@@ -6,6 +6,7 @@
  */
 
 namespace User\Controller;
+use User\Api\UserApi;
 use Think\Controller;
 /**
  * 用户模块
@@ -17,7 +18,19 @@ use Think\Controller;
  * 6,用户锁定.
  */
 class IndexController extends Controller {
+
+	/* 空操作，用于输出404页面 */
+	public function _empty(){
+		$this->redirect('index');
+	}
+
+
     public function index(){
+    	dump(session());
+    	dump('test');
+    	dump(NOW_TIME);
+
+    	$this->display();
     }
 
 	/**
@@ -25,35 +38,50 @@ class IndexController extends Controller {
 	 * @author ancon
 	 */
 	public function register(){
+		/*
         if(!C('USER_ALLOW_REGISTER')){
             $this->error('注册已关闭');
         }
-		if(IS_POST){
+        */
+		// if(IS_POST){
 			$mobile = I('post.mobile');
 			$smscode = I('post.smscode');
 			/* 调用注册接口注册用户 */
             $User = new UserApi;
             /* 验证码是否正确 */
             $res = $User->checkSmscode($mobile, $smscode);
+            dump('1');
+            dump($res);
+            // exit();
             if ($res<1) {
+            	// exit('a');
             	$this->error($this->showRegError($res));
             }
             /* 验证码是否过期 */
             $res = $User->expireSmscode($mobile, $smscode, 1800);
-            if ($res<1) {
-            	$this->error($this->showRegError($res));
-            }
-            /* 注册开始 */
+            // echo $User->getDbError();
+            dump('2');
+            dump($res);
+            // exit();
+            // if ($res<1) {
+            // 	$this->error($this->showRegError($res));
+            // }
+            // /* 注册开始 */
+            $mobile = '15010438587';
 			$uid = $User->register($mobile);
+			dump('bug');
+			dump($uid);
+			exit();
+
 			if($uid > 0){ //注册成功
 				$this->success('注册成功！',U('login'));
 			} else { //注册失败，显示错误信息
 				$this->error($this->showRegError($uid));
 			}
 
-		} else { //显示注册表单
-			$this->display();
-		}
+		// } else { //显示注册表单
+		// 	$this->display();
+		// }
 	}
 
 	/**
@@ -87,7 +115,7 @@ class IndexController extends Controller {
 	 */
 	public function addPassword(){
 		if (!is_login()) {
-			$this->error('您还没有登陆',U('User/login'));
+			$this->error('您还没有登陆',U('login'));
 		}
 		if (IS_POST) {
 			$uid = is_login();
@@ -115,7 +143,7 @@ class IndexController extends Controller {
      */
     public function password(){
 		if ( !is_login() ) {
-			$this->error( '您还没有登陆',U('User/login') );
+			$this->error( '您还没有登陆',U('login') );
 		}
         if ( IS_POST ) {
             //获取参数
@@ -178,7 +206,7 @@ class IndexController extends Controller {
 			if ($user) {
 				$this->autoSession($user);
 				action_log('user_login', 'user', $uid, $uid);
-				$this->success('登录成功！', U('Topic/topic'));
+				$this->success('登录成功！', U('Topic/index/topic'));
 			} else {
 				$this->error('失败！');
 			}
@@ -214,6 +242,26 @@ class IndexController extends Controller {
 
     }
 
+    /**
+     * 发送短信
+     * 手机号码，替换内容数组，模板ID
+     */
+    public function sendSMScode($mobile){
+    	//TODO只有post方法才能认，并且，需要带该app的验证码才行。
+    	//现在阶段，先这么上吧
+    	//TODO每天只能发5条
+    	//TODO，每个ip只能发3条，半小时之内。
+    	$Api = new UserApi();
+    	$res = $Api->checkMobile($mobile);
+    	if (!$res) {
+    		echo('mobile is false')."<br/>";
+    	}
+    	$smscode = random();
+    	echo($mobile).'<br/>';
+    	echo($smscode).'<br/>';
+    	sendTemplateSMS("$mobile",array($smscode,'5'),"1");
+    	// sendTemplateSMS("15010438587",array($smscode,'5'),"1");
+    }
 
 
 
