@@ -1,0 +1,110 @@
+body{
+	margin: 0;
+	padding: 0;
+}
+#main{
+	width: 100%;
+	height: 611px;
+	position: relative;
+	background: url(../Image/background.png);
+	background-attachment: fixed;
+	background-size:100% 100%;
+	text-align: center;
+}
+#main .word{
+	position: absolute;
+	width: 253px;
+	height: 74px;
+	right: 1030px;
+	bottom:270px;
+}
+.word img{
+	width: 253px;
+	height: 74px;
+}
+.phone{
+	position: absolute;
+	width: 275px;
+	height: 520px;
+	right: 708px;
+	bottom:-1px;
+}
+.phone img{
+	display: block;
+	width: 275px;
+	height: 520px;
+}
+.logo{
+	height: 112px;
+	width: 112px;
+	position: absolute;
+	right: 392px;
+	top: 170px;
+}
+.logo img{
+	height: 112px;
+	width: 112px;
+}
+.logo_word{
+	height: 64px;
+	width: 131px;
+	position: absolute;
+	right: 211px;
+	top: 195px;
+}
+.logo_word img{
+	height: 64px;
+	width: 131px;
+}
+.content{
+	width: 416px;
+	height: 101px;
+	position: absolute;
+	right: 148px;
+	bottom: 200px;
+}
+.content img{
+	width: 416px;
+	height: 101px;
+}
+.Qr_ode{
+	height: 115px;
+	width: 115px;
+	position: absolute;
+	right: 152px;
+	bottom: 50px;
+}
+.Qr_ode img{
+	height: 115px;
+	width: 115px;
+}
+.btn{
+	height: 50px;
+	width: 228px;
+	position: absolute;
+	right: 166px;
+	bottom: 40px;
+	padding-top:14px;
+}
+.btn a{
+	text-align: center;
+	height: 50px;
+	width: 228px;
+	border-radius: 15px;
+}
+.footer{
+	text-align: center;
+	background-color: #ffffff;
+	line-height: 25px;
+	padding:20px 0;
+}
+.footer i{
+	font-style:normal;
+	margin:0 5px;
+}
+.footer a{
+	color:#000;
+}
+.footer a:hover{
+	color:#F60;
+}
