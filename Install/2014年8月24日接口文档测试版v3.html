@@ -5,7 +5,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>测试接口文件</title>
-<!-- CSS goes in the document HEAD or added to your external stylesheet -->
 <style type="text/css">
 table.hovertable {
 	font-family: verdana,arial,sans-serif;
@@ -32,27 +31,56 @@ table.hovertable td {
 	border-color: #a9c6c9;
 }
 </style>
-<!-- CSS goes in the document HEAD or added to your external stylesheet -->
 </head>
 
 <body>
+
 <table class="hovertable" width="100%" border=1 cellpadding="0" cellspacing="0">
+
+<!-- ######################################################################### -->
+<!-- 这是模板 开始 -->
+
 <tr>
 	  <td width="4%">1</td>
 		<td width="15%">
-        用户登录
-		
+      用户登录		
 		</td>
 		<td colspan="2">
-		<form method=post action="http://www.zao.me/api/login.php" >
-用户：<input name=username value='ancon' />
-</br>
+		  <form method="post" action="http://www.zaome.com.cn/api/login.php" >
+        用户：<input name="username" value='ancon' />
+        </br>
+        密码：<input name="password" value='ancon19890115' />
+        <input type=submit value=submit  />
+      </form>
+    </td>
+</tr>
 
-密码：<input name=password value='zaom19890115' />
+<!-- 这是模板 结束 -->
+<!-- ######################################################################## -->
+<tr>
+    <td width="4%">2</td>
+    <td width="15%">
+      用户注册    
+    </td>
+    <td colspan="2">
+      <form method="post" action="http://www.zaome.com.cn/index.php/User/Index/register" >
+        手机号：<input name="mobile" value='15010438587' />
+        </br>
+        密码：<input name="smscode" value='1122' />
+        <input type=submit value=submit  />
+      </form>
+    </td>
+</tr>
 
-<input type=submit value=submit  />
-</form>
-	</td>
+
+
+
+
+
+
+
+
+
 	<tr>
 				<td>1</td>
 				<td>
@@ -70,7 +98,6 @@ table.hovertable td {
 	</td>
 	</tr>
 
-<!-- ###################################################################################### -->
   <form method=post action="http://202.112.128.166/plugin/mobile/do_getselectphotoalbum.php" >
 
  <input type=hidden name=sess_sessionid value="qvavkgdb6o8i0un5lhrih385a4" />
