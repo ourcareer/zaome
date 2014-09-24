@@ -25,6 +25,8 @@ class IndexController extends HomeController {
     	//判断是否登录
     	dump(session());
 
+        dump('aa');
+
     	$this->display();
     }
 
