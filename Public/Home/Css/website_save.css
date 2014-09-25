@@ -1,0 +1,63 @@
+body{
+	margin: 0;
+	padding: 0;
+}
+#main{
+	width: 100%;
+	height: 610px;
+	position: relative;
+	background: url(../Image/mainbg.jpg);
+	background-attachment: fixed;
+	background-size:100% 100%;
+	text-align: center;
+}
+.word{
+	position: absolute;
+	width: 253px;
+	height: 74px;
+	left: 15px;
+	bottom:270px;
+}
+.word img{
+	width: 253px;
+	height: 74px;
+}
+.phone{
+	position: absolute;
+	width: 275px;
+	height: 538px;
+	left: 300px;
+	bottom:-1px;
+}
+.phone img{
+	display: block;
+	width: 275px;
+	height: 538px;
+}
+.logo{
+	height: 100px;
+	width: 100px;
+	position: absolute;
+	left: 869px;
+	top: 170px;
+}
+.logo img{
+	height: 100px;
+	width: 100px;
+}
+.Qr_ode{
+	height: 110px;
+	width: 110px;
+	position: absolute;
+	right: 155px;
+	bottom: 50px;
+}
+.Qr_ode img{
+	height: 110px;
+	width: 110px;
+}
+#footer{
+	height: 90px;
+	width: 100%;
+	background-color: #ffffff;
+}
