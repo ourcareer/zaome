@@ -72,7 +72,7 @@ return array(
     'ERROR_PAGE'            =>  '', // 错误定向页面
     'SHOW_ERROR_MSG'        =>  false,    // 显示错误信息
     'TRACE_MAX_RECORD'      =>  100,    // 每个级别的错误信息 最大记录数
-    'SHOW_PAGE_TRACE'       =>  true,
+    // 'SHOW_PAGE_TRACE'       =>  true,
 
     /* 日志设置 */
     'LOG_RECORD'            =>  true,   // 默认不记录日志
