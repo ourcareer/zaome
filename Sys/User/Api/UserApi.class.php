@@ -1,22 +1,16 @@
 <?php
-// +----------------------------------------------------------------------
-// | OneThink [ WE CAN DO IT JUST THINK IT ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2013 http://www.onethink.cn All rights reserved.
-// +----------------------------------------------------------------------
-// | Author: 麦当苗儿 <zuojiazi@vip.qq.com> <http://www.zjzit.cn>
-// +----------------------------------------------------------------------
 
 namespace User\Api;
 use User\Api\Api;
-use User\Model\UcenterMemberModel;
+use User\Model\UserModel;
 
 class UserApi extends Api{
     /**
      * 构造方法，实例化操作模型
      */
     protected function _init(){
-        $this->model = new UcenterMemberModel();
+        // parent::__init();
+        $this->model = new UserModel();
     }
 
     /**
@@ -31,6 +25,14 @@ class UserApi extends Api{
         return $this->model->register($mobile);
     }
 
+    public function checkSmscode($mobile, $smscode){
+        // return true;
+        return $this->model->checkSmscode($mobile, $smscode);
+    }
+
+    public function expireSmscode($mobile, $smscode, $expire){
+        return $this->model->expireSmscode($mobile, $smscode,$expire);
+    }
     /**
      * 用户登录认证
      * @param  string  $username 用户名
@@ -45,7 +47,6 @@ class UserApi extends Api{
     public function logout(){
         return $this->model->logout();
     }
-
     /**
      * 获取用户信息
      * @param  string  $uid         用户ID或用户名
@@ -80,7 +81,9 @@ class UserApi extends Api{
      * @return integer         错误编号
      */
     public function checkMobile($mobile){
-        return $this->model->checkField($mobile, 3);
+        // $this->model = new UcenterMemberModel();
+        return $this->model->checkMobile($mobile);
+        // return true;
     }
 
     /**
@@ -109,7 +112,7 @@ class UserApi extends Api{
      */
     public function addPassword($uid, $password){
         if($this->model->addPassword($uid, $password)){
-            $return = ture;
+            $return = true;
         }else{
             $return = $this->model->getError();
         }

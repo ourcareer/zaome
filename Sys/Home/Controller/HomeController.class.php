@@ -26,8 +26,8 @@ class HomeController extends Controller {
         // 读取站点配置
         $config = api('Config/lists');
         // 添加配置
-        C($config); 
-
+        C($config);
+        // dump(C());
     }
 
 }
