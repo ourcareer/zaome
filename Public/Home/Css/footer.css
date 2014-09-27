@@ -1,0 +1,26 @@
+/*页面底部开始*/
+#footer{
+	text-align: center;
+	background-color: #3F4349;
+	line-height: 35px;
+	padding-top:20px;
+}
+#footer .footertop{
+	margin-top: 5px;
+	font-weight: bold;
+
+}
+#footer i{
+	font-style:normal;
+	margin:0 10px;
+}
+#footer a{
+	color:#000000;
+}
+#footer a:hover{
+	color:#202020;
+}
+.text-muted{
+	font-weight: bold;
+}
+/*页面底部结束*/
