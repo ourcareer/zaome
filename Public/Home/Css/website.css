@@ -2,109 +2,119 @@ body{
 	margin: 0;
 	padding: 0;
 }
-#main{
+.zmcon{
 	width: 100%;
-	height: 611px;
+	height: auto;
 	position: relative;
-	background: url(../Image/background.png);
+	background: url(../Image/background.png) left top no-repeat;
 	background-attachment: fixed;
 	background-size:100% 100%;
 	text-align: center;
+	margin:0 auto;
+	overflow: hidden;
 }
-#main .word{
-	position: absolute;
-	width: 253px;
-	height: 74px;
-	right: 1030px;
-	bottom:270px;
+.alignment .col-lg-4{
+  text-align: center;
+}
+.left{
+	height: 600px;
+	width: 445px;
+	float:left;
+	text-align: center;
+}
+.middle{
+	height: 600px;
+	width: 445px;
+	float:left;
+	text-align: center;
+}
+.right{
+	height: 600px;
+	width: 445px;
+	float:left;
+	text-align: center;
+}
+
+/*左边的图像开始*/
+.word{
+	position: relative;
+	width: 300px;
+	height: 520px;
+	float:left;
+	margin-left:60px;
+	margin-top:300px;
+
 }
 .word img{
-	width: 253px;
-	height: 74px;
+	width: 300px;
+	height: auto;
+	margin-left:-45px;
 }
+/*左边的图像结束*/
+/*中间的图像开始*/
 .phone{
-	position: absolute;
+	position: relative;
 	width: 275px;
 	height: 520px;
-	right: 708px;
-	bottom:-1px;
+	float:left;
+	margin-left:45px;
+	margin-top:85px;
+	vertical-align: center;
 }
 .phone img{
-	display: block;
 	width: 275px;
 	height: 520px;
 }
-.logo{
+/*中间的图像结束*/
+/*右边的图像开始*/
+
+.right .logo{
 	height: 112px;
 	width: 112px;
-	position: absolute;
-	right: 392px;
-	top: 170px;
+	float: left;
+	margin-left: 50px;
+	margin-top: 160px;
 }
-.logo img{
-	height: 112px;
-	width: 112px;
-}
-.logo_word{
+.right .logo_word{
+	display: inline-block;
 	height: 64px;
 	width: 131px;
-	position: absolute;
-	right: 211px;
-	top: 195px;
+	float: right;
+	margin-right: 145px;
+	margin-top: 192px;
 }
-.logo_word img{
-	height: 64px;
-	width: 131px;
-}
-.content{
+.right .content{
+	position: relative;
 	width: 416px;
-	height: 101px;
-	position: absolute;
-	right: 148px;
-	bottom: 200px;
+	height: auto;
+	float: left;
+	margin-left: 2px;
+	margin-top: 30px;
 }
-.content img{
-	width: 416px;
+.right .content{
+	width: 350px;
 	height: 101px;
 }
-.Qr_ode{
-	height: 115px;
-	width: 115px;
-	position: absolute;
-	right: 152px;
-	bottom: 50px;
+.right .qr_ode{
+	position: relative;
+	height: 100px;
+	width: 100px;
+	float: right;
+	margin-right: 92px;
+	margin-top: 35px;
 }
-.Qr_ode img{
-	height: 115px;
-	width: 115px;
-}
-.btn{
-	height: 50px;
-	width: 228px;
-	position: absolute;
-	right: 166px;
-	bottom: 40px;
-	padding-top:14px;
-}
-.btn a{
+.right a{
+	float:left;
+	vertical-align: center;
 	text-align: center;
-	height: 50px;
-	width: 228px;
+	width: 215px;
+	margin-left: 6px;
+	margin-top:70px;
 	border-radius: 15px;
+
 }
-.footer{
-	text-align: center;
-	background-color: #ffffff;
-	line-height: 25px;
-	padding:20px 0;
+.right .download{
+	margin-left: -5px;
+	width:200px;
 }
-.footer i{
-	font-style:normal;
-	margin:0 5px;
-}
-.footer a{
-	color:#000;
-}
-.footer a:hover{
-	color:#F60;
-}
+/*右边的图像结束*/
