@@ -29,18 +29,4 @@ class IndexController extends HomeController {
 
     	$this->display();
     }
-/*
-    /**
-     * 登录，显示
-     */
-    public function login() {
-        if (IS_POST) {
-            //处理
-        }
-        else {
-            $this->display(index/login);
-        }
-
-    }
-*/
 }
