@@ -34,7 +34,46 @@ body{
 	float:left;
 	text-align: center;
 }
+/*登陆注册部分开始*/
+/*.login{
+	height: 60px;
+	width: 100%;
+	text-align: center;
+	margin: 0 auto;
+	background-color: #4F5B83;
+}*/
+.login li{
+	margin-top: 5px;
+}
+/* .loginstyle{
+	width: 1000px;
+	height: 60px;
+	margin: 0 auto;
+	display: block;
+	position: relative;
 
+}
+.loginstyle ul{
+	float: right;
+}
+.loginstyle li{
+	height: 25px;
+	line-height: 25px;
+	width: 80px;
+	display: inline-block;
+	padding:0 10px;
+	margin: 0 10px;
+}
+.loginstyle a{
+	display: inline-block;
+	text-align: center;
+	width: 100px;
+	margin:0 5px;
+	font-weight: 50px;
+	font-style: bold;
+	font-family: "微软雅黑";
+} */
+/*登陆注册部分结束*/
 /*左边的图像开始*/
 .word{
 	position: relative;
