@@ -72,7 +72,7 @@ class IndexController extends Controller {
 			}
 
 		} else { //显示注册表单
-			$this->display();
+			$this->display('register');
 		}
 	}
 
@@ -203,7 +203,7 @@ class IndexController extends Controller {
 				$this->error('失败！');
 			}
 		} else {
-			$this->display();
+			$this->display('login');
 		}
 	}
 
