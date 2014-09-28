@@ -1,0 +1,17 @@
+body{
+	background-color: #EEEEEE;
+}
+.regicon{
+	width: 500px;
+	margin: 0 auto;
+}
+.center-block{
+	text-align: center;
+	font-family: "微软雅黑";
+}
+.input-group-lg{
+	margin: 10px 0;
+}
+.agreement{
+	margin-top: 10px;
+}
