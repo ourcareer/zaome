@@ -1,17 +1,60 @@
-	<div class="col-lg-5">
-      <form class="form-signin" role="form">
-        <h2 class="form-signin-heading">快速注册</h2>
-        <input type="text" class="form-control" placeholder="Email地址" required="" autofocus=""><br>
-        <input type="text" class="form-control" placeholder="昵称" required="" autofocus=""><br>
-        <input type="password" class="form-control" placeholder="密码" required=""><br>
-        <input type="password" class="form-control" placeholder="确认密码" required=""><br>
-        <p>你是否愿意加入巴斯大家庭？</p>
-        <label class="checkbox">
-          <input type="checkbox" value="ido"> 我愿意
-        </label>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">立即注册</button><br>
-
-
-
-      </form>
+<load href="__PUBLIC__/Home/Css/register.css" />
+  <div id="register-modal" class="modal fade in regicon" tabindex="-1" role="dialog" aria-labelledby="register-label" aria-hidden="false" style="display: block;">
+  
+  <div class="register-main center-block">
+    <div class="modal-header center-block">
+      <button type="button" class="close" id="reg_mod_close" data-dismiss="modal" aria-hidden="true"></button>
+      <h2>注册</h2>
+    </div>
+    <form name="regForm" id="regForm" method="post"> 
+    <div class="modal-body center-block" id="register-step1">
+      <div class="input-group input-group-lg">
+        
+        <input type="text" class="form-control" placeholder="用户名" id="id-reg-username" name="username">
+        <!-- <span class="tips" id="id-reg-username-error" style="left: -218px; top: 9px;">用户名长度在5-20个字符之间</span> -->
+        <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
       </div>
+      <div class="input-group input-group-lg">
+        
+        <input type="password" class="form-control" placeholder="设置密码" id="id-reg-password" name="password">
+        <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+      </div>
+      <div class="input-group input-group-lg">
+      
+        <input type="password" class="form-control" placeholder="确认密码" id="id-reg-confirmPassword" name="confirmPassword">
+        <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+      </div>
+      <div class="input-group input-group-lg">
+        <input type="text" class="form-control" maxlength="4" placeholder="验证码" id="id-reg-captcha" name="captcha" data-name="captcha">
+        <a class="input-group-addon input-captcha" href="javascript:void(0)" id="reg_ref_img"><img src="/common/captcha/register/57.ign" alt="验证码" title="点击更新" id="reg_captcha_img"><span class="glyphicon glyphicon-refresh"></span></a>
+      </div>  
+      <button type="button" class="btn btn-primary btn-lg btn-block" id="register-button-1">我同意，现在注册</button>
+      <p class="agreement">注册需同意<a href="#" target="_blank">造么协议</a></p>
+    </div>
+    <!-- <div class="modal-body center-block" id="register-step2">
+      <div class="input-group input-group-lg">
+        <input type="text" class="form-control" placeholder="真实姓名" id="id-reg-contacter" name="contacter">
+        <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+      </div>
+      <div class="input-group input-group-lg">
+        <input type="text" class="form-control" placeholder="公司名称" id="id-reg-companyName" name="companyName">
+        <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span></span>
+      </div>
+      <div class="input-group input-group-lg">
+        <input type="email" class="form-control" placeholder="联系邮箱" id="id-reg-email" name="email">
+        <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+      </div>
+      <div class="input-group input-group-lg">
+        <input type="text" class="form-control" placeholder="联系方式" id="id-reg-mobile" name="mobile">
+        <span class="input-group-addon input-captcha"><span class="glyphicon glyphicon-earphone"></span></span>
+      </div>  
+      <div class="input-group input-group-lg">
+        <input type="text" class="form-control" placeholder="联系QQ" id="id-reg-qq" name="qq">
+        <span class="input-group-addon input-captcha"><span class="glyphicon glyphicon-comment"></span></span>
+      </div>
+      <button type="button" class="btn btn-primary btn-lg btn-block" id="register-button-2">完成注册</button>
+      <p><span class="glyphicon glyphicon-heart"></span>温馨提示：为了保障您的账号安全，建议填写真实的信息，以方便我司在紧急时可以联系到您！</p>
+    </div> -->
+    </form>
+  </div>
+</div>
