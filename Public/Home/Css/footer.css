@@ -1,9 +1,10 @@
 /*页面底部开始*/
 #footer{
 	text-align: center;
-	background-color: #3F4349;
+	background-color: #ffffff;
 	line-height: 35px;
 	padding-top:20px;
+	font-family: "微软雅黑";
 }
 #footer .footertop{
 	margin-top: 5px;
@@ -15,10 +16,10 @@
 	margin:0 10px;
 }
 #footer a{
-	color:#000000;
+	color:#383838;
 }
 #footer a:hover{
-	color:#202020;
+	color:#000000;
 }
 .text-muted{
 	font-weight: bold;
