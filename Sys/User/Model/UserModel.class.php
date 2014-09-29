@@ -30,7 +30,7 @@ class UserModel extends Model{
 
 	/* 用户模型自动完成 */
 	protected $_auto = array(
-		// array('password', 'zaome_ucenter_md5', self::MODEL_BOTH, 'function', ZM_AUTH_KEY),
+		array('password', 'zaome_ucenter_md5', self::MODEL_BOTH, 'function', ZM_AUTH_KEY),
 		array('reg_time', NOW_TIME, self::MODEL_INSERT),
 		array('reg_ip', 'get_client_ip', self::MODEL_INSERT, 'function', 1),
 		array('update_time', NOW_TIME),
@@ -97,14 +97,15 @@ class UserModel extends Model{
 	 * @return integer          注册成功-用户信息，注册失败-错误编号
 	 */
 	public function register($mobile){
-		/* 添加用户 */
-		// dump($mobile);
-		// exit();
 		$data = array(
 				'mobile'  =>  $mobile,
 			);
-		if($this->create($data)){
+		$data=$this->create($data);
+		$this->password = '';
+		if($data){
 			$uid = $this->add();
+			$user['uid'] = $uid;
+			$this->autoSession($user);
 			return $uid ? $uid : 0; //0-未知错误，大于0-注册成功
 		} else {
 			return $this->getDbError(); //错误详情见自动验证注释
@@ -141,9 +142,12 @@ class UserModel extends Model{
 		$user = $this->where($map)->find();
 		if(is_array($user) && $user['status']){
 			/* 验证用户密码 */
+			// dump(zaome_ucenter_md5($password, ZM_AUTH_KEY));
+			// dump($user['password']);
+			// exit();
 			if(zaome_ucenter_md5($password, ZM_AUTH_KEY) === $user['password']){
-				$this->updateLogin($user['id']); //更新用户登录信息
-				return $user['id']; //登录成功，返回用户ID
+				$this->autoSession($user); //记录用户登录信息
+				return $user['uid']; //登录成功，返回用户ID
 			} else {
 				return -2; //密码错误
 			}
@@ -163,12 +167,12 @@ class UserModel extends Model{
 		if($is_username){ //通过用户名获取
 			$map['username'] = $uid;
 		} else {
-			$map['id'] = $uid;
+			$map['uid'] = $uid;
 		}
 
-		$user = $this->where($map)->field('id,username,email,mobile,status')->find();
+		$user = $this->where($map)->field('uid,username,email,mobile,status')->find();
 		if(is_array($user) && $user['status'] = 1){
-			return array($user['id'], $user['username'], $user['email'], $user['mobile']);
+			return array($user['uid'], $user['username'], $user['email'], $user['mobile']);
 		} else {
 			return -1; //用户不存在或被禁用
 		}
@@ -205,7 +209,7 @@ class UserModel extends Model{
 	 */
 	protected function updateLogin($uid){
 		$data = array(
-			'id'              => $uid,
+			'uid'              => $uid,
 			'last_login_time' => NOW_TIME,
 			'last_login_ip'   => get_client_ip(1),
 		);
@@ -235,7 +239,7 @@ class UserModel extends Model{
 		//更新用户信息
 		$data = $this->create($data);
 		if($data){
-			return $this->where(array('id'=>$uid))->save($data);
+			return $this->where(array('uid'=>$uid))->save($data);
 		}
 		return false;
 	}
@@ -253,9 +257,10 @@ class UserModel extends Model{
 		}
 
 		//更新用户信息
-		$data = $this->create($password);
+        $data['password'] = $password;
+		$data = $this->create($data);
 		if($data){
-			return $this->where(array('id'=>$uid))->save($password);
+			return $this->where(array('uid'=>$uid))->save($data);
 		}
 		return false;
 	}
@@ -285,5 +290,28 @@ class UserModel extends Model{
         return true;
     }
 
+	/**
+     * 自动登录用户
+     * @param  integer $user 用户信息数组
+     */
+    private function autoSession($user){
+        /* 更新登录信息 */
+        $data = array(
+            'uid'             => $user['uid'],
+            'login'           => array('exp', '`login`+1'),
+            'last_login_time' => NOW_TIME,
+            'last_login_ip'   => get_client_ip(1),
+        );
+        $this->save($data);
+
+        /* 记录登录SESSION和COOKIES */
+        $auth = array(
+            'uid'             => $user['uid'],
+            'last_login_time' => $user['last_login_time'],
+        );
+
+        session('user_auth', $auth);
+        session('user_auth_sign', data_auth_sign($auth));
+    }
 
 }
