@@ -28,4 +28,7 @@
 	font-size: 12px;
 	margin-top: -5px;
 }
+.text-muted span{
+	padding:0 3px 0 5px;
+}
 /*页面底部结束*/
