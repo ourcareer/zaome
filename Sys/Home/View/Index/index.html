@@ -1,19 +1,18 @@
   <load href="__PUBLIC__/Home/Css/website.css" />
 	 <header class="navbar navbar-static-top jpush-nav" role="banner" id="header-common" class="login"
-	  style="background-color: #EB4340;margin-bottom:0px;filter:alpha(opacity=50);  
-      -moz-opacity:0.5;-khtml-opacity: 0.5;opacity: 0.5;">
+	  style="background-color: #C83937;margin-bottom:0px;filter:alpha(opacity=50);-moz-opacity:0.2;-khtml-opacity: 0.2;opacity: 0.2;z-index:10;position: relative;">
 		<div class="container">
-			<div class="navbar-header">
-				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+			<div class="navbar-header navcon">
+				<button class="navbar-toggle" type="button btn-default" data-toggle="collapse" data-target=".navbar-collapse">
 					<span class="sr-only">Toggle navigation</span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
 			</div>
-			<nav class="navbar-collapse collapse navbar-right nav-index-jpush">
-				<ul class="nav navbar-nav" style="position:relative;margin: 10px 0 0;padding: 0 10px;">
-					<li><a href="{:U('user/index/login')}" style="height: 22px; width:50px;display: inline-block;"><button type="button" class="btn btn-default btn-header" data-toggle="modal" style="margin-left: -16px;margin-top:-20px;">登录</button></a></li>
+			<nav class="navbar-collapse collapse navbar-right nav-index-jpush navstyle">
+				<ul class="nav navbar-nav" style="position:relative;margin: 10px 0 0;padding: 0 10px;z-index:1000;">
+					<li style="position:relative;"><a href="{:U('user/index/login')}" style="height: 22px; width:50px;display: inline-block;z-index:1000;position: relative;"><button type="button" class="btn btn-default btn-header" data-toggle="modal" style="margin-left: -16px;margin-top:-20px;">登录</button></a></li>
 					<li><a href="{:U('user/index/register')}" style="height: 22px; width:50px;display: inline-block;"><button type="button" class="btn btn-primary btn-header" data-toggle="modal" style="margin-left: -16px;margin-top:-20px;">注册</button></a></li>
 				</ul>
 			</nav>
@@ -21,28 +20,26 @@
 	</header>
     <div class="zmcon">
 		<div class="container-fluid">
-		    <div class="row">
-			    <div class="col-ld-4 alignment">
-				    <div class="left">
-					    <div class="word">
-					    	<img src="__PUBLIC__/Home/Image/word.png" alt="word">
-					    </div>
-					 </div>
+		    <div class="row alignment">
+			    <div class="col-sm-12 col-md-3 col-lg-3 col-ld-3 lf">
+				    <div class="word">
+				    	<img src="__PUBLIC__/Home/Image/word.png" alt="word">
+				    </div>
 			    </div>
-				<div class="col-ld-4">
-					<div class="middle">
-						<div class="phone">
-							<img src="__PUBLIC__/Home/Image/phone.png" alt="phone" />
-						</div>
-					</div>
+				<div class="col-sm-12 col-md-4 col-lg-4 col-ld-4 md">
+						<img src="__PUBLIC__/Home/Image/phone.png" alt="phone" />
 				</div>
-				<div class="col-ld-4">
-					<div class="right">
-							<img class="logo" src="__PUBLIC__/Home/Image/logo.png" alt="logo" />
-							<img class="logo_word" src="__PUBLIC__/Home/Image/logo_word.png" alt="logo_word">
+				<div class="col-sm-12 col-md-5 col-lg-5 col-ld-5 ri">
+					<div class="right-top">
+						<img class="logo" src="__PUBLIC__/Home/Image/logo.png" alt="logo" />
+						<img class="logo_word" src="__PUBLIC__/Home/Image/logo_word.png" alt="logo_word">
+					</div>
+					<div class="right-md">
 							<img class="content" src="__PUBLIC__/Home/Image/content.png" alt="content">
-							<a href="#" type="button" class="btn btn-default"><img class="download" src="__PUBLIC__/Home/Image/download.png" alt="download"></a>
-							<img class="qr_ode" src="__PUBLIC__/Home/Image/qr_code.png" alt="Qr_ode" />
+					</div>
+					<div class="right-btm">
+						<a href="#" type="button" class="btn btn-default"><img class="download" src="__PUBLIC__/Home/Image/download.png" alt="download"></a>
+						<img class="qr_ode" src="__PUBLIC__/Home/Image/qr_code.png" alt="qr_ode" />
 					</div>
 				</div>
 			</div>
