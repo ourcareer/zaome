@@ -1,9 +1,10 @@
 body{
-	background-color: #EEEEEE;
+	background-color: #D0D8E1;
 }
-.regicon{
+.register-main{
+	position: relative;
 	width: 500px;
-	margin: 0 auto;
+	margin: 100px auto;
 }
 .center-block{
 	text-align: center;

@@ -10,7 +10,7 @@ body{
 	background-attachment: fixed;
 	background-size:100% 100%;
 	text-align: center;
-	margin:0 auto;
+	margin:-51px auto 0;
 	overflow: hidden;
 }
 .alignment .col-lg-4{
@@ -35,8 +35,8 @@ body{
 	text-align: center;
 }
 /*登陆注册部分开始*/
-.login li{
-	margin-top: 5px;
+.navbar-nav li{
+	margin:0 5px;
 }
 /*登陆注册部分结束*/
 /*左边的图像开始*/
