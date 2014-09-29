@@ -273,7 +273,7 @@ class UserModel extends Model{
 	 * @author huajie <banhuajie@163.com>
 	 */
 	protected function verifyUser($uid, $password_in){
-		$password = $this->getFieldById($uid, 'password');
+		$password = $this->getFieldByUid($uid, 'password');
 		if(zaome_ucenter_md5($password_in, ZM_AUTH_KEY) === $password){
 			return true;
 		}

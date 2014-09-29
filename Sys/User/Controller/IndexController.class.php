@@ -15,8 +15,9 @@ use Sms\Api\SmsApi;
  * 2,登录;
  * 3,登出;
  * 4,修改密码;
- * 5,注册验证码;
+ * 5,验证码; TODO!
  * 6,用户锁定.
+ * 7，上传头像.TODO!
  */
 class IndexController extends Controller {
 
@@ -150,10 +151,10 @@ class IndexController extends Controller {
             $data['password'] = I('post.password');
             empty($password) && $this->error('请输入原密码');
             empty($data['password']) && $this->error('请输入新密码');
-            empty($repassword) && $this->error('请输入确认密码');
+            empty($repassword) && $this->error('请再次输入密码');
 
             if($data['password'] !== $repassword){
-                $this->error('您输入的新密码与确认密码不一致');
+                $this->error('您输入的新密码与再次密码不一致');
             }
 
             $Api = new UserApi();
@@ -175,7 +176,7 @@ class IndexController extends Controller {
 		if(is_login()){
 			$Api = new UserApi();
 			$Api->logout();
-			$this->success('退出成功！', U('login'));
+			$this->success('退出成功！', U('index'));
 		} else {
 			$this->redirect('login');
 		}
