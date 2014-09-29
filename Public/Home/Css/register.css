@@ -16,3 +16,14 @@ body{
 .agreement{
 	margin-top: 10px;
 }
+.mobinput{
+	display: inline-block;
+	float: left;
+	width: 100px;
+}
+.mobilecode{
+	position: absolute;
+	display: inline-block;
+	float: left;
+	margin-left: 68px;
+}
