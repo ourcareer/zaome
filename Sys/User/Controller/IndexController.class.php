@@ -235,6 +235,12 @@ class IndexController extends Controller {
     }
 
 
+	/* 验证码，用于登录和注册 */
+	public function verify(){
+		$verify = new \Think\Verify();
+		$verify->entry(1);
+	}
+
 
 
 
