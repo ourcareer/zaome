@@ -15,8 +15,9 @@ use Sms\Api\SmsApi;
  * 2,登录;
  * 3,登出;
  * 4,修改密码;
- * 5,注册验证码;
+ * 5,验证码; TODO!
  * 6,用户锁定.
+ * 7，上传头像.TODO!
  */
 class IndexController extends Controller {
 
@@ -66,8 +67,12 @@ class IndexController extends Controller {
             /* 注册开始 */
             $uid = $User->register($mobile);
 			if($uid > 0){ //注册成功
-				$this->success('注册成功！',U('login'));
+				// API返回一串数值！
+				// TODO
+				$this->success('注册成功！',U('index'));
 			} else { //注册失败，显示错误信息
+				// API返回错误信息，直接显示的信息
+				// TODO
 				$this->error($this->showRegError($uid));
 			}
 
@@ -121,6 +126,7 @@ class IndexController extends Controller {
             $res = $Api->addPassword($uid, $password);
             if($res){
                 $this->success('添加密码成功！');
+                // $this->success('添加密码成功！',U('index'));
             }else{
                 $this->error($res);
             }
@@ -145,10 +151,10 @@ class IndexController extends Controller {
             $data['password'] = I('post.password');
             empty($password) && $this->error('请输入原密码');
             empty($data['password']) && $this->error('请输入新密码');
-            empty($repassword) && $this->error('请输入确认密码');
+            empty($repassword) && $this->error('请再次输入密码');
 
             if($data['password'] !== $repassword){
-                $this->error('您输入的新密码与确认密码不一致');
+                $this->error('您输入的新密码与再次密码不一致');
             }
 
             $Api = new UserApi();
@@ -170,7 +176,7 @@ class IndexController extends Controller {
 		if(is_login()){
 			$Api = new UserApi();
 			$Api->logout();
-			$this->success('退出成功！', U('login'));
+			$this->success('退出成功！', U('index'));
 		} else {
 			$this->redirect('login');
 		}
@@ -182,9 +188,11 @@ class IndexController extends Controller {
 	public function login(){
 		if(IS_POST){
 			$username = I('post.username');
-			$password = I('post.password');
+			$password = I('post.password');			
 			$Api = new UserApi();
-			$uid = $this->login($username, $password);
+			// dump(I());
+			// exit();
+			$uid = $Api->login($username, $password,3);
 			if ($uid<0) { //登录失败！
 				switch($uid) {
 					case -1: $error = '用户不存在或被禁用！'; break; //系统级别禁用
@@ -193,12 +201,10 @@ class IndexController extends Controller {
 				}
 				$this->error($error);
 			}
-
-			$user = $this->field(true)->find($uid);
-			if ($user) {
-				$this->autoSession($user);
+			elseif ($uid>0) {
 				action_log('user_login', 'user', $uid, $uid);
-				$this->success('登录成功！', U('Topic/index/topic'));
+				// $this->success('登录成功！', U('Topic/index/topic'));
+				$this->success('登录成功！', U('index'));
 			} else {
 				$this->error('失败！');
 			}
@@ -206,33 +212,6 @@ class IndexController extends Controller {
 			$this->display('login');
 		}
 	}
-
-	/**
-     * 自动登录用户
-     * @param  integer $user 用户信息数组
-     */
-    private function autoSession($user){
-        /* 更新登录信息 */
-        $user = array();
-        $data = array(
-            'uid'             => $user['uid'],
-            'login'           => array('exp', '`login`+1'),
-            'last_login_time' => NOW_TIME,
-            'last_login_ip'   => get_client_ip(1),
-        );
-        $this->save($data);
-
-        /* 记录登录SESSION和COOKIES */
-        $auth = array(
-            'uid'             => $user['uid'],
-            'username'        => get_username($user['uid']),
-            'last_login_time' => $user['last_login_time'],
-        );
-
-        session('user_auth', $auth);
-        session('user_auth_sign', data_auth_sign($auth));
-
-    }
 
     /**
      * 发送短信
@@ -255,6 +234,12 @@ class IndexController extends Controller {
     	// sendTemplateSMS("15010438587",array($smscode,'5'),"1");
     }
 
+
+	/* 验证码，用于登录和注册 */
+	public function verify(){
+		$verify = new \Think\Verify();
+		$verify->entry(1);
+	}
 
 
 

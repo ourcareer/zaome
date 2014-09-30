@@ -70,9 +70,9 @@ return array(
     /* 错误设置 */
     'ERROR_MESSAGE'         =>  '页面错误！请稍后再试～',//错误显示信息,非调试模式有效
     'ERROR_PAGE'            =>  '', // 错误定向页面
-    'SHOW_ERROR_MSG'        =>  false,    // 显示错误信息
+    'SHOW_ERROR_MSG'        =>  true,    // 显示错误信息
     'TRACE_MAX_RECORD'      =>  100,    // 每个级别的错误信息 最大记录数
-    // 'SHOW_PAGE_TRACE'       =>  true,
+    'SHOW_PAGE_TRACE'       =>  true,
 
     /* 日志设置 */
     'LOG_RECORD'            =>  true,   // 默认不记录日志
@@ -134,7 +134,7 @@ return array(
     'URL_PARAMS_FILTER'     =>  false, // URL变量绑定过滤
     'URL_PARAMS_FILTER_TYPE'=>  '', // URL变量绑定过滤方法 如果为空 调用DEFAULT_FILTER
     'URL_404_REDIRECT'      =>  '', // 404 跳转页面 部署模式有效
-    'URL_ROUTER_ON'         =>  ture,   // 是否开启URL路由
+    'URL_ROUTER_ON'         =>  true,   // 是否开启URL路由
     'URL_ROUTE_RULES'       =>  array(), // 默认路由规则 针对模块
     'URL_MAP_RULES'         =>  array(), // URL映射定义规则
 

@@ -99,6 +99,8 @@ function random($length = 4 , $numeric = 0) {
  * @return string 
  */
 function zaome_ucenter_md5($str, $key = 'ZM_AUTH_KEY'){
+	// dump($str);
+	// exit('ab');
 	return '' === $str ? '' : md5(sha1($str) . $key);
 }
 

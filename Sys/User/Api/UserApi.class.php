@@ -33,6 +33,7 @@ class UserApi extends Api{
     public function expireSmscode($mobile, $smscode, $expire){
         return $this->model->expireSmscode($mobile, $smscode,$expire);
     }
+
     /**
      * 用户登录认证
      * @param  string  $username 用户名
@@ -40,7 +41,7 @@ class UserApi extends Api{
      * @param  integer $type     用户名类型 （1-用户名，2-邮箱，3-手机，4-UID）
      * @return integer           登录成功-用户ID，登录失败-错误编号
      */
-    public function login($username, $password, $type = 1){
+    public function login($username, $password, $type = 3){
         return $this->model->login($username, $password, $type);
     }
 
