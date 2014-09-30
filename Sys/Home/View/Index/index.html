@@ -1,8 +1,8 @@
   <load href="__PUBLIC__/Home/Css/index.css" />
-	 <header class="navbar navbar-static-top jpush-nav" role="banner" id="header-common" class="login"
-	  style="background-color: #C83937;margin-bottom:0px;filter:alpha(opacity=20);-moz-opacity:0.2;-khtml-opacity: 0.2;opacity: 0.2;z-index:10;position: relative;">
-		<div class="container">
-			<div class="navbar-header navcon">
+	 <!-- <header class="navbar navbar-static-top navbase" role="banner" id="header-common" 
+	  >
+		<div class="container navcon">
+			<div class="navbar-header">
 				<button class="navbar-toggle" type="button btn-default" data-toggle="collapse" data-target=".navbar-collapse">
 					<span class="sr-only">Toggle navigation</span>
 					<span class="icon-bar"></span>
@@ -11,13 +11,26 @@
 				</button>
 			</div>
 			<nav class="navbar-collapse collapse navbar-right nav-index-jpush navstyle">
-				<ul class="nav navbar-nav" style="position:relative;margin: 10px 0 0;padding: 0 10px;z-index:1000;">
-					<li style="position:relative;"><a href="{:U('user/index/login')}" style="height: 22px; width:50px;display: inline-block;z-index:1000;position: relative;"><button type="button" class="btn btn-default btn-header" data-toggle="modal" style="margin-left: -16px;margin-top:-20px;">登录</button></a></li>
-					<li><a href="{:U('user/index/register')}" style="height: 22px; width:50px;display: inline-block;"><button type="button" class="btn btn-primary btn-header" data-toggle="modal" style="margin-left: -16px;margin-top:-20px;">注册</button></a></li>
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="{:U('user/index/login')}">
+							<button type="button" class="btn btn-default btn-header btnstyle" data-toggle="modal" >登录</button>
+						</a>
+					</li>
+					<li>
+						<a href="{:U('user/index/register')}">
+							<button type="button" class="btn btn-primary btn-header btnstyle" data-toggle="modal">注册
+							</button>
+						</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
-	</header>
+	</header> -->
+	<button type="button" class="btn btn-default loginbtn"><a href="{:U('user/index/login')}">登录</a></button>
+    <button type="button" class="btn btn-primary regbtn"><a href="{:U('user/index/register')}">注册</a></button>
+	<div class="navbar navbar-default navcon">
+    </div>
     <div class="zmcon">
 		<div class="container-fluid">
 		    <div class="row alignment">

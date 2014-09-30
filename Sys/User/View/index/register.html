@@ -14,25 +14,17 @@
         <!-- <span class="tips" id="id-reg-username-error" style="left: -218px; top: 9px;">用户名长度在5-20个字符之间</span> -->
         <span class="input-group-addon"><span class="glyphicon glyphicon-earphone"></span></span>
       </div>
-
-<!--       <div class="input-group input-group-lg">
-        <input type="text" class="form-control" maxlength="4" placeholder="验证码" id="id-reg-captcha">
-        <a class="input-group-addon input-captcha" href="javascript:void(0)" id="reg_ref_img"><img src="__PUBLIC__/Home/Image/" alt="验证码" title="点击更新" id="reg_captcha_img"><span class="glyphicon glyphicon-refresh"></span></a>
-      </div> -->
-
-      <div class="control-group">
-            <label class="control-label" for="inputPassword">验证码</label>
-            <div class="controls">
-              <input type="text" id="inputPassword" class="span3" placeholder="请输入验证码"  errormsg="请填写5位验证码" nullmsg="请填写验证码" datatype="*5-5" name="verify">
+      <div class="input-group input-group-lg control-group">
+            <!-- <label class="control-label" for="inputPassword">验证码</label> -->
+            <input type="text" id="inputPassword" class="span3 form-control" placeholder="请输入验证码"  errormsg="请填写5位验证码" nullmsg="请填写验证码" datatype="*5-5" name="verify">
+            <div class="control-group groupstyle">
+                <div class="controls verifyimg">
+                    <img class="verifyimg reloadverify" alt="点击切换" src="{:U('verify')}" style="cursor:pointer;">
+                </div>
+                <label class="control-label labelstyle"></label>
+              <div class="controls Validform_checktip text-warning"></div>
             </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label"></label>
-            <div class="controls">
-                <img class="verifyimg reloadverify" alt="点击切换" src="{:U('verify')}" style="cursor:pointer;">
-            </div>
-            <div class="controls Validform_checktip text-warning"></div>
-          </div>
+        </div>
 
 
       <button id="mobilecode" class="btn btn-primary btn-lg btn-block" type="button">免费获取短信验证码</button>
