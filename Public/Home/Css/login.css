@@ -9,3 +9,42 @@ body{
 	text-align: center;
 	font-family: "微软雅黑";
 }
+.verifyimg{
+	display: inline-block;
+	float: left;
+	position: relative;
+}
+.groupstyle{
+	display: inline-block;
+	float: left;
+}
+#inputPassword{
+	display: inline-block;
+	float: left;
+	width: 	308px;
+}
+/*.labelstyle{
+	display: block;
+	height: 10px;
+	width: 100%;
+	border:1px solid green;
+	float: left;
+}*/
+.reloadverify{
+	width: 150px;
+	height: 46px;
+	position: relative;
+	float: right;
+	margin-left: 309px;
+	margin-top: -46px;
+	border:1px solid #ccc;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;	
+}
+/*.text-warning{
+	float: left;
+	display: block;
+	height:10px;
+	width: 100%;
+	border:1px solid red;
+}*/
