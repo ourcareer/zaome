@@ -1,0 +1,218 @@
+@media only screen and (max-width: 300px){
+body,
+.container-fluid,
+.row-fluid{
+  margin: 0;
+  padding: 0;
+}
+.clear{
+  clear: both;
+}
+.zmcon{
+    width: 100%;
+    height: auto;
+    position: relative;
+    background: url(../Image/background.png) left top no-repeat;
+    /*background-attachment: fixed;*/
+    background-size:100% 100%;
+    text-align: center;
+    margin:-61px auto 0;
+    overflow: hidden;
+    z-index:1;
+  }
+  .col-xs-12,
+  .col-sm-3,
+  .col-md-3,
+  .col-lg-3,
+  .col-sm-4,
+  .col-md-4,
+  .col-lg-4,
+  .col-sm-5,
+  .col-md-5,
+  .col-lg-5,{
+    text-align: center;
+  }
+
+  /*登陆注册部分开始*/
+  .navcon{
+    margin:0;
+    padding: 0;
+    height: 50px;
+    width: 100%;
+    position: relative;
+    background-color: #C83937;
+    filter:alpha(opacity=20);
+    -moz-opacity:0.2;
+    -khtml-opacity: 0.2;
+    opacity: 0.2;
+    z-index:10;
+  }
+  .loginbtn{
+    position: absolute;
+    z-index:9999;
+    right: 140px;
+    top: 7px;
+    width: 80px;
+    height: 35px;
+    text-align: center;
+  }
+  .loginbtn a{
+    color: #000;
+    font-size: 18px;
+    font-family: "微软雅黑";
+  }
+  .loginbtn a:hover{
+    text-decoration: none;
+  }
+  .regbtn{
+    position: absolute;
+    z-index:9999;
+    right: 50px;
+    top: 7px;
+    height: 35px;
+    width: 80px;
+    text-align: center;
+  }
+  .regbtn a{
+    color:#fff;
+    font-size: 18px;
+    font-family: "微软雅黑";
+  }
+  .regbtn a:hover{
+    text-decoration: none;
+  }
+/*登陆注册部分结束*/
+/*左边的图像开始*/
+.lt-img{
+  display: block;
+  text-align: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /*border:1px solid green;*/
+}
+.word{
+  display: inline-block;
+  position: absolute;
+  width: 80%;
+  height: auto;
+  top: 58%;
+  left: 10%;
+  /*border:1px solid yellow;*/
+}
+/*左边的图像结束*/
+/*中间的图像开始*/
+.md-img{
+  display: block;
+  text-align: center;
+  position: relative;
+  width: 100%;
+  height: 300px;
+}
+.phone{
+  display: inline-block;
+  position: absolute;
+  height: 80%;
+  width: 70%;
+  top: 10%;
+  left:15%;
+  /*border:1px solid yellow;*/
+}
+/*中间的图像结束*/
+/*右边的图像开始*/
+.lf{
+  width: 100%;
+  height: 300px;
+  position: relative;
+  text-align: center;
+  /*border:1px solid yellow;*/
+}
+.md{
+  width: 100%;
+  height: 300px;
+  position: relative;
+  text-align: center;
+  /*border:1px solid yellow;*/
+}
+.ri{
+  width: 100%;
+  height: 300px;
+  position: relative;
+  text-align: center;
+  /*border:1px solid yellow;*/
+}
+.ri-top{
+  display: block;
+  text-align: center;
+  position: relative;
+  margin-top: 25%;
+  width: 100%;
+  height: 23%;
+}
+.ri-mid{
+  display: block;
+  text-align: center;
+  position: relative;
+  width: 100%;
+  height: 23%;
+}
+.ri-btm{
+  display: block;
+  text-align: center;
+  position: relative;
+  width: 100%;
+  height: 23%;
+}
+.logo{
+  display: inline-block;
+  position: absolute;
+  top: 15%;
+  left:14%;
+  width: 33%;
+  height: auto;
+}
+.logo_word{
+  display: inline-block;
+  position: absolute;
+  top: 34%;
+  right:15%;
+  width: 35%;
+  height: auto;
+}
+.content{
+  display:inline-block;
+  position: absolute;
+  top: 25%;
+  left:0px;
+  width: 100%;
+  height: auto;
+  
+}
+.downbtn{
+  display:inline-block;
+  position: absolute;
+  text-align: center;
+  width: 55%;
+  height: 20%;
+  top:48%;
+  left:0px;
+  border-radius: 8px;
+}
+.download{
+  display:inline-block;
+  position: absolute;
+  width: 94%;
+  height: 80%;
+  top: 10%;
+  left:3%;
+}
+.qr_ode{
+  display:inline-block;
+  position: absolute;
+  width: 30%;
+  height: auto;
+  top:18%;
+  right:0px;
+}
+/*右边的图像结束*/
+}
