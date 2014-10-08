@@ -164,6 +164,11 @@ return array(
     ),//模板替换规则
 
     /* 管理员配置 */
-    'USER_ADMINISTRATOR' => 1, //管理员用户ID
+    'USER_ADMINISTRATOR'    =>  1, //管理员用户ID
+    
+    /* 短信配置 */
+    //TODO 配置好短信平台
+    'TEMPLATEID'           =>  '',
+    'TIME_LIMIT'            => '5',
 
 );

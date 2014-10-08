@@ -155,12 +155,20 @@ class App {
                     $method->invoke($module);
                 }
                 // 后置操作
+                if($class->hasMethod('after__')) {
+                    $after =   $class->getMethod('after__');
+                    if($after->isPublic()) {
+                        $after->invoke($module);
+                    }
+                }
+                /*
                 if($class->hasMethod('_after_'.$action)) {
                     $after =   $class->getMethod('_after_'.$action);
                     if($after->isPublic()) {
                         $after->invoke($module);
                     }
                 }
+                */
             }else{
                 // 操作方法不是Public 抛出异常
                 throw new \ReflectionException();

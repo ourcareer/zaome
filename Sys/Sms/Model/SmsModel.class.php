@@ -23,8 +23,7 @@ class SmsModel extends Model{
 	/* 用户模型自动完成 */
 	protected $_auto = array(
 		array('sendtime', NOW_TIME, self::MODEL_INSERT),
-		array('reg_ip', 'get_client_ip', self::MODEL_INSERT, 'function', 1),
-		array('status', 'getStatus', self::MODEL_BOTH, 'callback'),
+		array('ip', 'get_client_ip', self::MODEL_INSERT, 'function', 1),
 	);
 
 	/**
@@ -98,13 +97,21 @@ class SmsModel extends Model{
 		}
 	}
 
-	/**
-	 * 根据配置指定用户状态
-	 * @return integer 用户状态
-	 */
-	protected function getStatus(){
-		return true; //TODO: 暂不限制，下一个版本完善
+	public function sendSMS($mobile){
+		$TemplateId = C("TEMPLATEID")?C("TEMPLATEID"):1;
+		$smscode = random();
+		$res = sendTemplateSMS($mobile,array($smscode,'5'),$TemplateId);
+		if ($res=1) {
+			$data=array(
+				'mobile'	=>	$mobile,
+				'smscode'	=>	$smscode,
+				);
+			$data = $this->create($data);
+			if ($data) {
+				return $this->save($data);
+			}
+		}
+		return false;
 	}
-
 
 }
