@@ -4,44 +4,33 @@
   <load href="__PUBLIC__/Home/Css/index4.css" />
   <load href="__PUBLIC__/Home/Css/index5.css" />
   <load href="__PUBLIC__/Home/Css/index6.css" />
-	 <!-- <header class="navbar navbar-static-top navbase" role="banner" id="header-common" 
-	  >
-		<div class="container navcon">
-			<div class="navbar-header">
-				<button class="navbar-toggle" type="button btn-default" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-			</div>
-			<nav class="navbar-collapse collapse navbar-right nav-index-jpush navstyle">
-				<ul class="nav navbar-nav">
-					<li>
-						<a href="{:U('user/index/login')}">
-							<button type="button" class="btn btn-default btn-header btnstyle" data-toggle="modal" >登录</button>
-						</a>
-					</li>
-					<li>
-						<a href="{:U('user/index/register')}">
-							<button type="button" class="btn btn-primary btn-header btnstyle" data-toggle="modal">注册
-							</button>
-						</a>
-					</li>
-				</ul>
-			</nav>
+  <!-- <img src="__PUBLIC__/Home/Image/background.png" alt="background" id="background"> -->
+  <header class="navbar navbar-inverse navbar-static-top zaome-nav" role="banner">
+	<div class="container">
+		<div class="navbar-header">
+			<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
 		</div>
-	</header> -->
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<button type="button" class="btn btn-default loginbtn"><a href="{:U('user/index/login')}">登录</a></button>
-			    <button type="button" class="btn btn-primary regbtn"><a href="{:U('user/index/register')}">注册</a></button>
-				<div class="navbar navbar-default navcon">
-			    </div>
-		    </div>
-	    </div>
-    </div>
+		<nav class="navbar-collapse collapse navbar-right nav-index-zaome">
+			<ul class="nav navbar-nav" style="position:relative;margin:4px 0;">
+				<li>
+					<button type="button" class="btn btn-default loginbtn">
+						<a href="{:U('user/index/login')}">登录</a>
+					</button>
+				</li>
+        		<li>
+        			<button type="button" class="btn btn-primary regbtn">
+	    				<a href="{:U('user/index/register')}">注册</a>
+	    			</button>
+	    		</li>
+			</ul>
+		</nav>
+	</div>
+</header>
     <div class="zmcon">
 		<div class="container-fluid">
 		    <div class="row-fluid">

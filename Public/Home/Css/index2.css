@@ -1,23 +1,17 @@
 @media only screen and (min-width: 301px) and (max-width: 768px){
 body,
-.container-fluid,
-.row-fluid{
-  margin: 0;
-  padding: 0;
-}
-.clear{
-  clear: both;
-}
-.zmcon{
+  .container-fluid{
+    margin: 0;
+    padding: 0;
+  }
+  .clear{
+    clear: both;
+  }
+  #background{
     width: 100%;
-    height: auto;
-    position: relative;
-    background: url(../Image/background.png) left top no-repeat;
-    background-size:100% 100%;
-    text-align: center;
-    margin:-61px auto 0;
-    overflow: hidden;
-    z-index:1;
+    height: 100%;
+    position: absolute;
+    z-index:-1;
   }
   .col-xs-12,
   .col-sm-12,
@@ -34,52 +28,64 @@ body,
   .col-lg-5,{
     text-align: center;
   }
-
+.zmcon{
+  width: 100%;
+  height: auto;
+  position: relative;
+  background: url(../Image/background.png) left top no-repeat;
+  background-size:100% 100%;
+  text-align: center;
+  z-index:-1;
+}
   /*登陆注册部分开始*/
-  .navcon{
-    margin:0;
-    padding: 0;
+  .zaome-nav {
     height: 50px;
-    width: 100%;
-    position: relative;
-    background-color: #C83937;
-    filter:alpha(opacity=20);
-    -moz-opacity:0.2;
-    -khtml-opacity: 0.2;
-    opacity: 0.2;
-    z-index:10;
-  }
-  .loginbtn{
+    font-size: 15px;
     position: absolute;
-    z-index:9999;
-    right: 50%;
-    top: 15%;
-    width: 25%;
-    height: 70%;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    background: url(../Image/zaome_top_bg.png) repeat-x;
+    filter:alpha(opacity=95);
+    -moz-opacity:0.95;
+    -khtml-opacity: 0.95;
+    opacity: 0.95;
+  }
+  .zaome-nav .nav-index-zaome{
+    margin-top: 7px;
+  }
+  .zaome-nav .btn-header{ 
+    line-height: 9px;
+    margin-left: 5px;
+    margin-top: 14px;
+  }
+  .navbar-inverse{
+   border: none;
+  }
+  .nav-index-zaome li{
+    margin-right: 5px;
+  }
+  .loginbtn,
+  .regbtn{
+    position: relative;
+    padding-top: 3px;
+    z-index:50;
+    width: 70px;
+    height: 28px;
     text-align: center;
   }
   .loginbtn a{
     color: #000;
-    font-size: 18px;
-    font-family: "微软雅黑";
-  }
-  .loginbtn a:hover{
-    text-decoration: none;
-  }
-  .regbtn{
-    position: absolute;
-    z-index:9999;
-    right: 23%;
-    top: 15%;
-    height: 70%;
-    width: 25%;
-    text-align: center;
   }
   .regbtn a{
-    color:#fff;
-    font-size: 18px;
+    color: #fff;
+  }
+  .loginbtn a,
+  .regbtn a{
+    font-size: 15px;
     font-family: "微软雅黑";
   }
+  .loginbtn a:hover,
   .regbtn a:hover{
     text-decoration: none;
   }
