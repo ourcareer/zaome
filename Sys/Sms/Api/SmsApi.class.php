@@ -30,4 +30,13 @@ class SmsApi extends Api{
         return $this->model->checkMobile($mobile);
     }
 
+    /**
+     * 发送短信，接下来就是网关的事情了
+     * @param string $mobile    手机
+     * @return integer          错误代码
+     */
+    public function sendSMS($mobile){
+        return $this->model->sendTemplateSMS();
+    }
+
 }
