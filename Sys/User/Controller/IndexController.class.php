@@ -204,7 +204,7 @@ class IndexController extends Controller {
 			elseif ($uid>0) {
 				action_log('user_login', 'user', $uid, $uid);
 				// $this->success('登录成功！', U('Topic/index/topic'));
-				$this->success('登录成功！', U('index'));
+				$this->success('登录成功！', U('User/Index/index'));
 			} else {
 				$this->error('失败！');
 			}
@@ -217,7 +217,7 @@ class IndexController extends Controller {
      * 发送短信
      * 手机号码，替换内容数组，模板ID
      */
-    public function sendSMScode(){
+    public function smscode(){
     	//TODO只有post方法才能认，并且，需要带该app的验证码才行。
     	//现在阶段，先这么上吧
     	//TODO每天只能发5条

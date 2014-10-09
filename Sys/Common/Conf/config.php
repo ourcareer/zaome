@@ -84,7 +84,7 @@ return array(
     /* SESSION设置 */
     'SESSION_AUTO_START'    =>  true,    // 是否自动开启Session
     'SESSION_OPTIONS'       =>  array(), // session 配置数组 支持type name id path expire domain 等参数
-    'SESSION_TYPE'          =>  'Db', // session hander类型 默认无需设置 除非扩展了session hander驱动
+    'SESSION_TYPE'          =>  '', // session hander类型 默认无需设置 除非扩展了session hander驱动
     'SESSION_PREFIX'        =>  'sess', // session 前缀
     //'VAR_SESSION_ID'      =>  'session_id',     //sessionID的提交变量
 
@@ -122,7 +122,7 @@ return array(
  
     /* URL设置 */
     'URL_CASE_INSENSITIVE'  =>  true,   // 默认false 表示URL区分大小写 true则表示不区分大小写
-    'URL_MODEL'             =>  1,       // URL访问模式,可选参数0、1、2、3,代表以下四种模式：
+    'URL_MODEL'             =>  2,       // URL访问模式,可选参数0、1、2、3,代表以下四种模式：
     // 0 (普通模式); 1 (PATHINFO 模式); 2 (REWRITE  模式); 3 (兼容模式)  默认为PATHINFO 模式
     'URL_PATHINFO_DEPR'     =>  '/',    // PATHINFO模式下，各参数之间的分割符号
     'URL_PATHINFO_FETCH'    =>  'ORIG_PATH_INFO,REDIRECT_PATH_INFO,REDIRECT_URL', // 用于兼容判断PATH_INFO 参数的SERVER替代变量列表
