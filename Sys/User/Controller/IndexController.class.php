@@ -50,10 +50,16 @@ class IndexController extends Controller {
 			$mobile = I('mobile');
 			$smscode = I('smscode');
 
+
+			/**
+			 * 测试的时候关闭
+			 */
+			/*
 			$verify = I('verify');
 			if(!check_verify($verify)){
 				$this->error('验证码输入错误！');
 			}
+			*/
 			/* 调用注册接口注册用户 */
             $User = new UserApi;
             /* 调用短信接口验证 */
@@ -74,7 +80,7 @@ class IndexController extends Controller {
 			if($uid > 0){ //注册成功
 				// API返回一串数值！
 				// TODO
-				$this->success('注册成功！',U('index'));
+				$this->success('注册成功！',U('User/Index/index'));
 			} else { //注册失败，显示错误信息
 				// API返回错误信息，直接显示的信息
 				// TODO
@@ -82,7 +88,7 @@ class IndexController extends Controller {
 			}
 
 		} else { //显示注册表单
-			$this->display('register');
+			$this->display('User/Index/register');
 		}
 	}
 
@@ -137,7 +143,7 @@ class IndexController extends Controller {
                 $this->error($this->showRegError($res));
             }
         }else{
-            $this->display();        
+            $this->display('User/Index/login');        
 		}
 	}
 
@@ -147,7 +153,7 @@ class IndexController extends Controller {
      */
     public function password(){
 		if ( !is_login() ) {
-			$this->error( '您还没有登陆',U('login') );
+			$this->error( '您还没有登陆',U('User/Index/login') );
 		}
         if ( IS_POST ) {
             //获取参数
@@ -171,7 +177,7 @@ class IndexController extends Controller {
                 $this->error($res['info']);
             }
         }else{
-            $this->display();
+            $this->display('User/Index/login');
         }
     }
 
@@ -184,7 +190,7 @@ class IndexController extends Controller {
 			$Api->logout();
 			$this->success('退出成功！', U('index'));
 		} else {
-			$this->redirect('login');
+			$this->display('login');
 		}
 	}
 
@@ -195,10 +201,16 @@ class IndexController extends Controller {
 		if(IS_POST){
 			$username = I('post.username');
 			$password = I('post.password');
+
+			/**
+			 * 测试的时候关闭
+			 */
+			/*
 			$verify = I('verify');
 			if(!check_verify($verify)){
 				$this->error('验证码输入错误！');
 			}
+			*/
 			$Api = new UserApi();
 			// dump(I());
 			// exit();
@@ -219,7 +231,7 @@ class IndexController extends Controller {
 				$this->error('失败！');
 			}
 		} else {
-			$this->display('login');
+			$this->display('User/Index/login');
 		}
 	}
 
