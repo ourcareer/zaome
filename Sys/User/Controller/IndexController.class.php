@@ -80,15 +80,25 @@ class IndexController extends Controller {
 			if($uid > 0){ //注册成功
 				// API返回一串数值！
 				// TODO
-				$this->success('注册成功！',U('User/Index/index'));
+				$rt['code'] = '200211805';
+			    $rt['msg'] = 'succeed';
+			    $rt['result'] = session('user_auth_sign');
+			    $this->ajaxReturn($rt);
+
 			} else { //注册失败，显示错误信息
 				// API返回错误信息，直接显示的信息
 				// TODO
-				$this->error($this->showRegError($uid));
+				$rt['code'] = '-200211805';
+				$rt['msg'] = $this->showRegError($uid);
+				$this->ajaxReturn($rt);
+				// $this->error($this->showRegError($uid));
 			}
 
 		} else { //显示注册表单
-			$this->display('User/Index/register');
+			$rt['code'] = '-200211805';
+			$rt['msg'] = 'the method error';
+			$this->ajaxReturn($rt);
+			// $this->display('User/Index/register');
 		}
 	}
 
@@ -124,20 +134,29 @@ class IndexController extends Controller {
 	 */
 	public function addPassword(){
 		if (!is_login()) {
-			$this->error('您还没有登陆',U('login'));
+			$rt['code'] = '-1';
+		    $rt['msg'] = '您还没有登陆！';
+		    $this->ajaxReturn($rt);
+			// $this->error('您还没有登陆',U('login'));
 		}
 		if (IS_POST) {
 			$uid = is_login();
 			$password = I('post.password');
 			$repassword = I('post.repassword');
 			if ($password !== $repassword) {
-				$this->error('您输入的两次密码不一致');
+				$rt['code'] = '-200210104';
+				$rt['msg'] = '您输入的两次密码不一致';
+				$this->ajaxReturn($rt);
+				// $this->error('您输入的两次密码不一致');
 			}
 			/* 调用用户API */
 			$Api = new UserApi();
             $res = $Api->addPassword($uid, $password);
             if($res>0){
-                $this->success('添加密码成功！');
+            	$rt['code'] = '200210104';
+            	$rt['msg'] = 'succeed';
+            	$rt['result'] = session('user_auth_sign');
+            	$ajaxReturn($rt);
                 // $this->success('添加密码成功！',U('index'));
             }else{
                 $this->error($this->showRegError($res));
@@ -221,14 +240,23 @@ class IndexController extends Controller {
 					case -2: $error = '密码错误！'; break;
 					default: $error = '未知错误！'; break; // 0-接口参数错误（调试阶段使用）
 				}
-				$this->error($error);
+				// $this->error($error);
+				$rt['code'] = '-200211215';
+				$rt['msg'] = $error;
+				$this->ajaxReturn($rt);
 			}
 			elseif ($uid>0) {
 				action_log('user_login', 'user', $uid, $uid);
 				// $this->success('登录成功！', U('Topic/index/topic'));
-				$this->success('登录成功！', U('User/Index/index'));
+				// $this->success('登录成功！', U('User/Index/index'));
+				$rt['code'] = '20021115';
+			    $rt['msg'] = 'succeed';
+			    $rt['result'] = session('user_auth_sign');
+				$this->ajaxReturn($rt);			    				
 			} else {
-				$this->error('失败！');
+				$rt['code'] = '-20021115';
+			    $rt['msg'] = 'fail';
+			    $this->ajaxReturn($rt);
 			}
 		} else {
 			$this->display('User/Index/login');
@@ -242,6 +270,36 @@ class IndexController extends Controller {
 	}
 
 
+
+    public function done($data='',$rt=''){
+       
+       $User = D('user');
+
+        // AJAX调用返回
+    	if (IS_AJAX) {
+    		$this->ajaxReturn($data);
+    	}
+    	// 直接输出模板
+        // 不过先做app吧
+        if (IS_GET) {
+            $this->ajaxReturn($data);
+            // $this->assign('data',$data);
+            // $this->display();
+        }
+        if (IS_POST) {
+            if ($data = $User->create($data)) {
+                $insertid = $User->add($data);
+                if($insertid){
+                    $this->ajaxReturn($rt);
+                }
+            }
+        }
+        else {
+            $rt['code'] = -$rt['code'];
+            $rt['msg'] = 'fail';
+            $this->ajaxReturn($rt);
+        }
+    }
 
 
 }
