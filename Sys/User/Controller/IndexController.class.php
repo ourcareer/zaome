@@ -47,8 +47,13 @@ class IndexController extends Controller {
         }
         */
 		if(IS_POST){
-			$mobile = I('post.mobile');
-			$smscode = I('post.smscode');
+			$mobile = I('mobile');
+			$smscode = I('smscode');
+
+			$verify = I('verify');
+			if(!check_verify($verify)){
+				$this->error('验证码输入错误！');
+			}
 			/* 调用注册接口注册用户 */
             $User = new UserApi;
             /* 调用短信接口验证 */
@@ -101,6 +106,7 @@ class IndexController extends Controller {
 			case -11:  $error = '密码长度必须在6-30个字符之间！'; break;
 			case -12:  $error = '验证码错误！'; break;
 			case -13:  $error = '验证码过期！'; break;
+			case -14:  $error = '已经添加过密码！'; break;
 			default:  $error = '未知错误！';
 		}
 		return $error;
@@ -124,11 +130,11 @@ class IndexController extends Controller {
 			/* 调用用户API */
 			$Api = new UserApi();
             $res = $Api->addPassword($uid, $password);
-            if($res){
+            if($res>0){
                 $this->success('添加密码成功！');
                 // $this->success('添加密码成功！',U('index'));
             }else{
-                $this->error($res);
+                $this->error($this->showRegError($res));
             }
         }else{
             $this->display();        
@@ -188,7 +194,11 @@ class IndexController extends Controller {
 	public function login(){
 		if(IS_POST){
 			$username = I('post.username');
-			$password = I('post.password');			
+			$password = I('post.password');
+			$verify = I('verify');
+			if(!check_verify($verify)){
+				$this->error('验证码输入错误！');
+			}
 			$Api = new UserApi();
 			// dump(I());
 			// exit();
@@ -212,41 +222,6 @@ class IndexController extends Controller {
 			$this->display('login');
 		}
 	}
-
-    /**
-     * 发送短信
-     * 手机号码，替换内容数组，模板ID
-     */
-    public function smscode(){
-    	//TODO只有post方法才能认，并且，需要带该app的验证码才行。
-    	//现在阶段，先这么上吧
-    	//TODO每天只能发5条
-    	//TODO，每个ip只能发3条，半小时之内。
-
-		/* 检测验证码 */
-		// if(!check_verify($verify)){
-		// 	$this->error('验证码输入错误！');
-		// }
-		$mobile = I('mobile');
-    	$Sms = new SmsApi();
-    	$res = $Sms->checkMobile($mobile);
-    	if (!$res) {
-    		$this->error('手机号错误啊！');
-    	}
-    	// $smscode = random();
-    	// echo($mobile).'<br/>';
-    	// echo($smscode).'<br/>';
- 		$res = $Sms->sendSMS($mobile);
- 		if (!$res) {
- 				$this->success('已经成功发送！');
- 		   	}
- 		elseif ($res) {
- 		   		$this->error('发送失败！');
- 		}
-    	// sendTemplateSMS("$mobile",array($smscode,'5'),"1");
-    	// sendTemplateSMS("15010438587",array($smscode,'5'),"1");
-    }
-
 
 	/* 验证码，用于登录和注册 */
 	public function verify(){

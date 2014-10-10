@@ -256,6 +256,11 @@ class UserModel extends Model{
 			return false;
 		}
 
+		$oldpassword = $this->getFieldByUid($uid, 'password');
+		if($oldpassword) {
+			return -14;
+		}
+
 		//更新用户信息
         $data['password'] = $password;
 		$data = $this->create($data);
