@@ -113,7 +113,7 @@ class UserApi extends Api{
      */
     public function addPassword($uid, $password){
         if($this->model->addPassword($uid, $password)){
-            $return = true;
+            $return = $this->model->addPassword($uid, $password);
         }else{
             $return = $this->model->getError();
         }
