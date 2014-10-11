@@ -159,7 +159,10 @@ class IndexController extends Controller {
             	$ajaxReturn($rt);
                 // $this->success('添加密码成功！',U('index'));
             }else{
-                $this->error($this->showRegError($res));
+            	$rt['code'] = '-200210104';
+            	$rt['msg'] = $this->showRegError($res);
+            	$this->ajaxReturn($rt);
+                // $this->error($this->showRegError($res));
             }
         }else{
             $this->display('User/Index/login');        
@@ -172,28 +175,60 @@ class IndexController extends Controller {
      */
     public function password(){
 		if ( !is_login() ) {
-			$this->error( '您还没有登陆',U('User/Index/login') );
+			$rt['code'] = '-1';
+		    $rt['msg'] = '您还没有登陆！';
+		    $this->ajaxReturn($rt);			
+			// $this->error( '您还没有登陆',U('User/Index/login') );
 		}
         if ( IS_POST ) {
             //获取参数
+            $rt['code'] = '200211601';
             $uid        =   is_login();
             $password   =   I('post.oldpassword');
             $repassword = I('post.repassword');
             $data['password'] = I('post.password');
-            empty($password) && $this->error('请输入原密码');
-            empty($data['password']) && $this->error('请输入新密码');
-            empty($repassword) && $this->error('请再次输入密码');
+            if(empty($password)){
+            	$rt['code'] = -$rt['code'];
+            	$rt['msg'] = '请输入原密码';
+            	$this->ajaxReturn($rt);
 
-            if($data['password'] !== $repassword){
-                $this->error('您输入的新密码与再次密码不一致');
             }
+            if(empty($data['password'])){
+            	$rt['code'] = -$rt['code'];
+            	$rt['msg'] = '请输入新密码';
+            	$this->ajaxReturn($rt);
+
+            }
+            if(empty($repassword)){
+            	$rt['code'] = -$rt['code'];
+            	$rt['msg'] = '请再次输入新密码';
+            	$this->ajaxReturn($rt);
+
+            }
+            if($data['password'] !== $repassword){
+            	$rt['code'] = -$rt['code'];
+            	$rt['msg'] = '您输入的新密码与再次密码不一致';
+            	$this->ajaxReturn($rt);
+
+            }
+            // empty($password) && $this->error('请输入原密码');
+            // empty($data['password']) && $this->error('请输入新密码');
+            // empty($repassword) && $this->error('请再次输入密码');
+            // if($data['password'] !== $repassword){
+            //     $this->error('您输入的新密码与再次密码不一致');
+            // }
 
             $Api = new UserApi();
             $res = $Api->updateInfo($uid, $password, $data);
             if($res['status']){
-                $this->success('修改密码成功！');
+            	$rt['msg'] = 'succeed';
+            	$this->ajaxReturn($rt);
+                // $this->success('修改密码成功！');
             }else{
-                $this->error($res['info']);
+            	$rt['code'] = -$rt['code'];
+            	$rt['msg'] = $this->showRegError($res['info']);
+            	$this->ajaxReturn($rt);
+                // $this->error($res['info']);
             }
         }else{
             $this->display('User/Index/login');
@@ -207,9 +242,15 @@ class IndexController extends Controller {
 		if(is_login()){
 			$Api = new UserApi();
 			$Api->logout();
-			$this->success('退出成功！', U('index'));
+			$rt['code'] = '200211215';
+			$rt['msg'] = 'succeed';
+			$this->ajaxReturn($rt);
+			// $this->success('退出成功！', U('index'));
 		} else {
-			$this->display('login');
+			$rt['code'] = '-200211215';
+			$rt['msg'] = '您还没登录呢！';
+			$this->ajaxReturn($rt);
+			// $this->display();
 		}
 	}
 
@@ -241,7 +282,7 @@ class IndexController extends Controller {
 					default: $error = '未知错误！'; break; // 0-接口参数错误（调试阶段使用）
 				}
 				// $this->error($error);
-				$rt['code'] = '-200211215';
+				$rt['code'] = '-1';
 				$rt['msg'] = $error;
 				$this->ajaxReturn($rt);
 			}
@@ -255,7 +296,7 @@ class IndexController extends Controller {
 				$this->ajaxReturn($rt);			    				
 			} else {
 				$rt['code'] = '-20021115';
-			    $rt['msg'] = 'fail';
+			    $rt['msg'] = '未知错误！';
 			    $this->ajaxReturn($rt);
 			}
 		} else {
