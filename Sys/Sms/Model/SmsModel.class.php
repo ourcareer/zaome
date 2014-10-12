@@ -90,9 +90,9 @@ class SmsModel extends Model{
 
 		$res = $this->sendTemplateSMS($mobile,array($smscode,'5'),$TemplateId);
 		// $res = 200191913;
-		// dump($res);
-		// exit();
-		if ($res=200191913) {
+		dump($res);
+		exit();
+		if ($res = '200191913') {
 			$data=array(
 				'mobile'	=>	$mobile,
 				'smscode'	=>	$smscode,
@@ -161,12 +161,18 @@ class SmsModel extends Model{
 	         echo "Sendind TemplateSMS success!<br/>";
 	         // 获取返回信息
 	         $smsmessage = $result->TemplateSMS;
-	         echo "dateCreated:".$smsmessage->dateCreated."<br/>";
-	         echo "smsMessageSid:".$smsmessage->smsMessageSid."<br/>";
+	         // echo "dateCreated:".$smsmessage->dateCreated."<br/>";
+	         // echo "smsMessageSid:".$smsmessage->smsMessageSid."<br/>";
 	         //TODO 添加成功处理逻辑
 	         //TODO加入数据库
 	         //返回值
-	         return 200191913;
+	         if ($smsmessage) {
+	         	 echo $smsmessage;exit();
+		         echo "dateCreated:".$smsmessage->dateCreated."<br/>";
+		         echo "smsMessageSid:".$smsmessage->smsMessageSid."<br/>";
+		         return 200191913;
+	         }
+	         return false;
 	     }
 	}
 

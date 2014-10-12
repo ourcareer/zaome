@@ -23,7 +23,10 @@ class IndexController extends Controller {
     	$Sms = new SmsApi();
     	$res = $Sms->checkMobile($mobile);
     	if (!$res) {
-    		$this->error('手机号错误！');
+            $rt['code'] = '-200191905';
+            $rt['msg'] = '手机号错误！';
+            $this->ajaxReturn($rt);
+    		// $this->error('手机号错误！');
     	}
     	// dump(I());
     	// exit();
@@ -31,12 +34,21 @@ class IndexController extends Controller {
     	// echo($mobile).'<br/>';
     	// echo($smscode).'<br/>';
  		$res = $Sms->sendSMS($mobile);
- 		if (!$res) {
- 		   		$this->error('发送失败！');
- 		   	}
- 		elseif ($res) {
- 				$this->success('已经成功发送！');
+ 		if ($res = '200191913') {
+                $rt['code'] = '200191905';
+                $rt['msg'] = '已经成功发送！';
+ 				$this->ajaxReturn($rt);
  		}
+        elseif (!$res) {
+                $rt['code'] = '-200191905';
+                $rt['msg'] = '发送失败！';
+                $this->ajaxReturn($rt);
+            }
+        else {
+            $rt['code'] = '-200191905';
+            $rt['msg'] = $res;
+            $this->ajaxReturn($rt);
+        }
     	// sendTemplateSMS("$mobile",array($smscode,'5'),"1");
     	// sendTemplateSMS("15010438587",array($smscode,'5'),"1");
     }

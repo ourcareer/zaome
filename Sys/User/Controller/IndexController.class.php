@@ -174,6 +174,8 @@ class IndexController extends Controller {
      * @author ancon
      */
     public function password(){
+    	// dump(I());
+    	// exit();
 		if ( !is_login() ) {
 			$rt['code'] = '-1';
 		    $rt['msg'] = '您还没有登陆！';

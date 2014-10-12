@@ -51,25 +51,32 @@ class IndexController extends Controller {
     }
 
     public function add(){
+        if ( !is_login() ) {
+            $rt['code'] = '-1';
+            $rt['msg'] = '请先登录！';
+            $this->ajaxReturn($rt);         
+        }
 
-        $Topic = D('topic');
+        if (IS_POST) {
+            $Topic = D('topic');
+            // $author = I('author');
+            $author = is_login();
+            
+            $content = I('content');
+            $time = NOW_TIME;
+            $ip = get_client_ip(1);
+            $bg = I('bg');
+            
+            $data['author'] = $author;
+            $data['content'] = $content;
+            $data['time'] = $time;
+            $data['ip'] = $ip;
+            $data['bg'] = $bg;
 
-        $author = I('author');
-        $content = I('content');
-        $time = NOW_TIME;
-        $ip = get_client_ip(1);
-        $bg = I('bg');
-        
-        $data['author'] = $author;
-        $data['content'] = $content;
-        $data['time'] = $time;
-        $data['ip'] = $ip;
-        $data['bg'] = $bg;
-
-        $rt['code'] = '200200104';
-        $rt['msg'] = 'succeed';
-        $this->done($data,$rt);
-
+            $rt['code'] = '200200104';
+            $rt['msg'] = 'succeed';
+            $this->done($data,$rt);            
+        }
     }
 
     public function del(){
