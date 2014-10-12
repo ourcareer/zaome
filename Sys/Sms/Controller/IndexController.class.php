@@ -33,20 +33,20 @@ class IndexController extends Controller {
     	// $smscode = random();
     	// echo($mobile).'<br/>';
     	// echo($smscode).'<br/>';
- 		$res = $Sms->sendSMS($mobile);
- 		if ($res = '200191913') {
+ 		$result = $Sms->sendSMS($mobile);
+ 		if ($result == '200191913') {
                 $rt['code'] = '200191905';
-                $rt['msg'] = '已经成功发送！';
+                $rt['msg'] = '已经成功发送了！';
  				$this->ajaxReturn($rt);
  		}
-        elseif (!$res) {
+        elseif (!$result) {
                 $rt['code'] = '-200191905';
                 $rt['msg'] = '发送失败！';
                 $this->ajaxReturn($rt);
             }
         else {
             $rt['code'] = '-200191905';
-            $rt['msg'] = $res;
+            $rt['msg'] = $result;
             $this->ajaxReturn($rt);
         }
     	// sendTemplateSMS("$mobile",array($smscode,'5'),"1");
