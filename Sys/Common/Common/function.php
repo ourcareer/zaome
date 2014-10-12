@@ -10,7 +10,7 @@
  * @return integer 0-未登录，大于0-当前登录用户ID
  * @author 麦当苗儿 <zuojiazi@vip.qq.com>
  */
-function is_login(){
+function is_login_default(){
     $user = session('user_auth');
     if (empty($user)) {
         return 0;
@@ -18,6 +18,31 @@ function is_login(){
         return session('user_auth_sign') == data_auth_sign($user) ? $user['uid'] : 0;
     }
 }
+
+
+/**
+ * 检测用户是否登录
+ * @return integer 0-未登录，大于0-当前登录用户ID
+ * @author ancon <zhongyu@buaa.edu.cn>
+ */
+function is_login(){
+    $token_access = I('token_access');
+    // $user = session('user_auth');
+    // dump($token_access);
+    // dump(session('user_auth_sign'));
+    // exit();
+    if ($token_access == session('user_auth_sign')) {
+        $auth = session('user_auth');
+        $uid = $auth['uid'];
+        return $uid;
+    } elseif (session('user_auth_sign') == data_auth_sign($user)) {
+        return $user['uid'];
+    } else {
+        return 0;
+    }
+}
+
+
 
 /**
  * 数据签名认证
@@ -941,4 +966,15 @@ function get_stemma($pids,Model &$model, $field='id'){
         $child_ids  = array_column((array)$result,'id');
     }
     return $collection;
+}
+
+
+/**
+ * 检测验证码
+ * @param  integer $id 验证码ID
+ * @return boolean     检测结果
+ */
+function check_verify($code, $id = 1){
+    $verify = new \Think\Verify();
+    return $verify->check($code, $id);
 }

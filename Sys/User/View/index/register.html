@@ -6,7 +6,11 @@
     <div class="modal-header center-block">
       <h2>注册</h2>
     </div>
+<<<<<<< HEAD
     <form id="regForm" method="post" action="{:U('user/index/register')}"> 
+=======
+    <form id="regForm" name="regForm" method="post"> 
+>>>>>>> e29c12773b74c1efe1ba5d17bb0866f1b222ccc7
     <div class="modal-body center-block" id="register">
       <div class="input-group input-group-lg">
         
@@ -32,7 +36,7 @@
         <input type="password" class="form-control" placeholder="短信验证码" id="smcode" name="password">
         <span class="input-group-addon"><span class="glyphicon glyphicon-comment"></span></span>
       </div>
-      <button type="button" class="btn btn-primary btn-lg btn-block" id="registeragree">我同意，现在注册</button>
+      <button type="submit" class="btn btn-primary btn-lg btn-block" id="registeragree">我同意，现在注册</button>
       <p class="agreement">注册需同意<a href="#" target="_blank">造么协议</a></p>
     </div>
     <!-- <div class="modal-body center-block" id="register-step2">

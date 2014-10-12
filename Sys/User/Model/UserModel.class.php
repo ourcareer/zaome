@@ -132,7 +132,7 @@ class UserModel extends Model{
 				$map['mobile'] = $username;
 				break;
 			case 4:
-				$map['id'] = $username;
+				$map['uid'] = $username;
 				break;
 			default:
 				return 0; //参数错误
@@ -256,11 +256,20 @@ class UserModel extends Model{
 			return false;
 		}
 
+		$oldpassword = $this->getFieldByUid($uid, 'password');
+		if($oldpassword) {
+			return -14;
+		}
+
 		//更新用户信息
         $data['password'] = $password;
 		$data = $this->create($data);
 		if($data){
-			return $this->where(array('uid'=>$uid))->save($data);
+			if($return = $this->where(array('uid'=>$uid))->save($data)){
+				$this->logout();
+				$this->login($uid, $password, $type = 4);
+			}
+			return  $return;
 		}
 		return false;
 	}

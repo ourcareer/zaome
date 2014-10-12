@@ -2,29 +2,18 @@
 
 namespace Sms\Model;
 use Think\Model;
+
+//把之前的那个放到第三方类库去了
+
 /**
- * 会员模型
+ * 短信模型
  */
 class SmsModel extends Model{
-	/* 用户模型自动验证 */
-	protected $_validate = array(
-		/* 验证手机号码 */
-		array('mobile', 'checkMobile', -8, self::EXISTS_VALIDATE, 'callback'), //手机格式不正确
-		array('mobile', 'checkDenyMobile', -9, self::EXISTS_VALIDATE, 'callback'), //手机禁止注册
-		array('mobile', '', -10, self::EXISTS_VALIDATE, 'unique'), //手机号被占用
-
-		/* 验证sms验证码 */
-		array('smscode', 'checkSmscode', -12, self::EXISTS_VALIDATE, 'callback'), //验证码是否正确
-		// array('smscode', 'smscode', -12, self::EXISTS_VALIDATE, 'confirm'), //验证码是否正确
-		array('smscode', 'expireSmscode', -13, self::EXISTS_VALIDATE, 'callback'), //验证短信的有效期
-		// array('smscode', array(sendtime,sendtime+1800), -13, self::EXISTS_VALIDATE, 'between'),
-	);
 
 	/* 用户模型自动完成 */
 	protected $_auto = array(
 		array('sendtime', NOW_TIME, self::MODEL_INSERT),
-		array('reg_ip', 'get_client_ip', self::MODEL_INSERT, 'function', 1),
-		array('status', 'getStatus', self::MODEL_BOTH, 'callback'),
+		array('ip', 'get_client_ip', self::MODEL_INSERT, 'function', 1),
 	);
 
 	/**
@@ -69,14 +58,11 @@ class SmsModel extends Model{
 	 * @return boolean		true - 验证码正确, false - 验证码错误
 	 */
 	public function checkSmscode($mobile, $smscode){
-		// $dbsmscode = $this->where($mobile)->field('smscode')->find();
-		$dbsmscode = $this->getFieldByMobile($mobile,'smscode');
-		// dump($mobile);
-		// dump($smscode);
-		// dump($dbsmscode);
-		// dump('haocan');
-		// exit();
-		if($smscode == $dbsmscode){
+		$dbsmscodes = $this->where(array('mobile'=>$mobile))->field('smscode')->select();
+		foreach ($dbsmscodes as $key => $value) {
+			$dbsmscode[]=$value['smscode'];
+		}
+		if(in_array($smscode, $dbsmscode)){
 			return true;
 		} else {
 			return $this->getError();
@@ -89,7 +75,7 @@ class SmsModel extends Model{
 	 * @return boolean		true - 验证码有效, false - 验证码过期
 	 */
 	public function expireSmscode($mobile, $smscode, $expire = 1800){
-		// $sendtime = $this->where($mobile)->field('sendtime')->find();
+		// $sendtime = $this->where(array('mobile'=>$mobile))->limit(1)->order('sendtime desc')->field('sendtime')->find();
 		$sendtime = $this->getFieldByMobile($mobile,'sendtime');
 		if($sendtime + $expire > NOW_TIME){
 			return true;
@@ -98,12 +84,117 @@ class SmsModel extends Model{
 		}
 	}
 
+	public function sendSMS($mobile){
+		$TemplateId = C("TEMPLATEID")?C("TEMPLATEID"):1;
+		$smscode = $this->random();
+
+		$res = $this->sendTemplateSMS($mobile,array($smscode,'5'),$TemplateId);
+		// $res = 200191913;
+		dump($res);
+		exit();
+		if ($res = '200191913') {
+			$data=array(
+				'mobile'	=>	$mobile,
+				'smscode'	=>	$smscode,
+				);
+			$data = $this->create($data);
+			if ($data) {
+				return $this->add($data);
+			}
+		}
+		return false;
+	}
+
+
 	/**
-	 * 根据配置指定用户状态
-	 * @return integer 用户状态
+	  * 发送模板短信
+	  * @param to 手机号码集合,用英文逗号分开
+	  * @param datas 内容数据 格式为数组 例如：array('Marry','Alon')，如不需替换请填 null
+	  * @param $tempId 模板Id,测试应用和未上线应用使用测试模板请填写1，正式应用上线后填写已申请审核通过的模板ID
+	  */       
+	public function sendTemplateSMS($to,$datas,$tempId)
+	{
+
+		//主帐号,对应开官网发者主账号下的 ACCOUNT SID
+		$accountSid= '8a48b551488d07a801489aab991e03b4';
+
+		//主帐号令牌,对应官网开发者主账号下的 AUTH TOKEN
+		$accountToken= 'e7ac190c7575499c9d23b71920860d60';
+
+		//应用Id，在官网应用列表中点击应用，对应应用详情中的APP ID
+		//在开发调试的时候，可以使用官网自动为您分配的测试Demo的APP ID
+		$appId='aaf98f8948f34b1b0148f64a204f02ac';
+
+		//请求地址
+		//沙盒环境（用于应用开发调试）：sandboxapp.cloopen.com
+		//生产环境（用户应用上线使用）：app.cloopen.com
+		$serverIP='sandboxapp.cloopen.com';
+
+
+		//请求端口，生产环境和沙盒环境一致
+		$serverPort='8883';
+
+		//REST版本号，在官网文档REST介绍中获得。
+		$softVersion='2013-12-26';
+
+
+	     // 初始化REST SDK
+	     // global $accountSid,$accountToken,$appId,$serverIP,$serverPort,$softVersion;
+	     $rest = new \Org\Util\CCPRestSmsSDK($serverIP,$serverPort,$softVersion);
+	     $rest->setAccount($accountSid,$accountToken);
+	     $rest->setAppId($appId);
+	    
+	     // 发送模板短信
+	     echo "Sending TemplateSMS to $to <br/>";
+	     $result = $rest->sendTemplateSMS($to,$datas,$tempId);
+
+	     if($result == NULL ) {
+	         echo "result error!";
+	         break;
+	     }
+	     if($result->statusCode!=0) {
+	         echo "error code :" . $result->statusCode . "<br>";
+	         echo "error msg :" . $result->statusMsg . "<br>";
+	         //TODO 添加错误处理逻辑
+	         return $result->statusCode;
+	     }else{
+	         echo "Sendind TemplateSMS success!<br/>";
+	         // 获取返回信息
+	         $smsmessage = $result->TemplateSMS;
+	         // echo "dateCreated:".$smsmessage->dateCreated."<br/>";
+	         // echo "smsMessageSid:".$smsmessage->smsMessageSid."<br/>";
+	         //TODO 添加成功处理逻辑
+	         //TODO加入数据库
+	         //返回值
+	         if ($smsmessage) {
+	         	 echo $smsmessage;exit();
+		         echo "dateCreated:".$smsmessage->dateCreated."<br/>";
+		         echo "smsMessageSid:".$smsmessage->smsMessageSid."<br/>";
+		         return 200191913;
+	         }
+	         return false;
+	     }
+	}
+
+	/**
+	 * 这个函数是自己写的。
+	 * @param string $length 长度，可以自己定义长度
+	 * @param int 0 这表示不使用纯数字 1表示使用纯数字
 	 */
-	protected function getStatus(){
-		return true; //TODO: 暂不限制，下一个版本完善
+	public function random($length = 4 , $numeric = 0) {
+	    PHP_VERSION < '4.2.0' && mt_srand((double)microtime() * 1000000);
+	    if($numeric) {
+	        $hash = sprintf('%0'.$length.'d', mt_rand(0, pow(10, $length) - 1));
+	    } else {
+	        $hash = '';
+	        // $chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789abcdefghjkmnpqrstuvwxyz';
+	        $chars = '23456789';
+	        $max = strlen($chars) - 1;
+	        for($i = 0; $i < $length; $i++) {
+	            $hash .= $chars[mt_rand(0, $max)];
+	        }
+	    }
+	    return $hash;
 	}
 
 

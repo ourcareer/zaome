@@ -1,6 +1,6 @@
 <load href="__PUBLIC__/Home/Css/login.css" />
     <div class="modal-content logincon">
-    <form name="loginForm" id="id_login_form">
+    <form name="loginForm" id="id_login_form" method="post">
       <div class="modal-header">
          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
          <h4 class="modal-title" id="login-label">登录</h4>
@@ -55,7 +55,7 @@
           </label>
           <a href="javascript:void(0)" class="pull-right" id="forget-password">忘记了密码？</a>
         </div>
-        <button type="button" id="login-button" data-loading-text="正在登录..." class="btn btn-primary btn-lg btn-block">登录</button>
+        <button type="submit" id="login-button" data-loading-text="正在登录..." class="btn btn-primary btn-lg btn-block">登录</button>
       </div>
       </form>
     </div>
