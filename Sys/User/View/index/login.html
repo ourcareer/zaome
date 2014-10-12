@@ -1,0 +1,61 @@
+<load href="__PUBLIC__/Home/Css/login.css" />
+    <div class="modal-content logincon">
+    <form name="loginForm" id="id_login_form" method="post">
+      <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+         <h4 class="modal-title" id="login-label">登录</h4>
+      </div>
+      
+      <div class="modal-body">
+        <div class="input-group input-group-lg">
+          <input id="login-username" type="text" name="username" class="form-control" placeholder="手机号" data-name="userName">
+          <span class="input-group-addon"><span class="glyphicon glyphicon-earphone"></span></span>         
+        </div>
+
+        <p class="error" id="login-username-error"></p> 
+        
+
+        <div class="input-group input-group-lg">
+          <input id="login-password" type="password" name="password" class="form-control" placeholder="登录密码" data-name="password">
+          <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+        </div>
+
+        <p class="error" id="login-password-error"></p>
+        
+<!--         <div class="input-group input-group-lg">
+          <input id="login-captcha" name="captcha" type="text" maxlength="4" class="form-control" placeholder="验证码" data-name="captcha">
+          <a class="input-group-addon input-captcha" href="javascript:void(0)" id="ref-img">
+          <img src="/common/captcha/signin/9.ign" alt="验证码" title="点击更新" id="captcha-img">
+          <span class="glyphicon glyphicon-refresh"></span></a>
+        </div>  --> 
+        <div class="input-group input-group-lg control-group">
+            <!-- <label class="control-label" for="inputPassword">验证码</label> -->
+            <input type="text" id="inputPassword" class="span3 form-control" placeholder="请输入验证码"  errormsg="请填写5位验证码" nullmsg="请填写验证码" datatype="*5-5" name="verify">
+            <div class="control-group groupstyle">
+                <div class="controls verifyimg">
+                    <img class="verifyimg reloadverify" alt="点击切换" src="{:U('verify')}" style="cursor:pointer;">
+                </div>
+                <label class="control-label labelstyle"></label>
+              <div class="controls Validform_checktip text-warning"></div>
+            </div>
+        </div>
+          <!-- <div class="control-group">
+            <label class="control-label"></label>
+            <div class="controls">
+                <img class="verifyimg reloadverify" alt="点击切换" src="{:U('verify')}" style="cursor:pointer;">
+            </div>
+            <div class="controls Validform_checktip text-warning"></div>
+          </div> -->
+
+        <p class="error" id="login-captcha-error"></p>
+
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="remember" checked="checked" id="id-remember">下次自动登录
+          </label>
+          <a href="javascript:void(0)" class="pull-right" id="forget-password">忘记了密码？</a>
+        </div>
+        <button type="submit" id="login-button" data-loading-text="正在登录..." class="btn btn-primary btn-lg btn-block">登录</button>
+      </div>
+      </form>
+    </div>

@@ -1,0 +1,189 @@
+/*清零*/
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+img,input{
+	border: none;
+	border: 1px solid none;
+}
+li{
+	list-style: none;
+}
+
+.try-red{border: 1px solid red;}
+.try-black{border: 1px solid black;}
+.try-blue{border: 1px solid blue;}
+.try-green{border: 1px solid green;}
+/*头部开始*/
+.header-content{
+	width: 100%;
+	height: auto;
+	background: #3971a5;
+}
+
+.top-con{
+	width: 960px;
+	height: 50px;
+	margin: 0px auto;
+}
+.logo-con{
+	height: 50px;
+	margin-left: 5px;
+}
+.top-func-con{
+	height: 50px;
+	width: 276px;
+	margin-left: 480px;
+	padding: 0px;
+}
+.top-func-con ul li{
+	overflow: hidden;
+	font-family: 黑体;
+	font-size: 20px;
+	color: #ffffff;
+	float: left;
+	padding-top: 10px;
+}
+.top-func-con ul li.mid{   
+	/*菜单栏的字之间的距离*/
+	padding-right: 37px;
+	padding-left: 37px;
+}
+/*头部结束*/
+
+/*中间开始*/
+.body-content{
+	height: auto;
+	width: 100%;
+	background-position: center;
+	background: url(../image/background1.jpg) no-repeat;
+	padding-top: 50px
+}
+.mid-con{
+	position:relative;
+	width: 960px;
+	height: 500px;
+	margin: 0px auto;
+	/*background: url(../image/background.jpg) no-repeat;*/
+}
+/*告示栏开始*/
+.mid-state{
+	width: 624px;
+	height: 416px;
+	top: 0px;
+	left: 20px;
+}
+
+/*告示栏结束*/
+
+/*右边登录选项开始*/
+.index-login{
+	position: absolute;
+	width: 276px;
+	height: 416px;
+	right: 20px;
+	top:0px;
+	background: #ffffff;
+	border-radius: 5px;
+}
+.index-login h4{
+	text-align: left;
+	font-family: 黑体;
+}
+.index-login ul{
+	padding: 0px;
+}
+.index-login ul li{
+	padding: 15px;
+	float:bottom;
+}
+.index-login ul li a{
+	font-family: 黑体;
+	text-decoration: none;
+	color: #9facab;
+	font-size: 17px;
+	float: right;
+}
+.index-login .btn{
+	  background: #3ec4ea;
+	  font-family: 黑体;
+}
+
+.index-login .varify{
+	left: 0px;
+	width: 80px;
+}
+.varify-img{
+	margin-top:-34px;
+	margin-left:80px; 
+	width: 50px;
+	height: 34px;
+}
+#btnLogin{
+	float: left;
+}
+#btnRegist{
+	float: right;
+}
+
+#regist-pop .regist-con{
+	width: 300px;
+	height: 480px;
+	margin: 0px auto;
+	top:50px;
+	overflow: visible;
+}
+.regist-info ul li{
+	float: bottom;
+	padding-bottom: 20px;
+}
+.regist-info ul li a{
+	font-size: 14px;
+	text-decoration: underline;
+}
+.regist-info ul li span{
+	font-size: 14px;
+	color: #9b9b9b;
+	padding-bottom: 5px;
+}
+.btn-quit{
+	  background: #3ec4ea;
+	  font-family: 黑体;
+	  float: right;
+}
+.btn-sub{
+	  background: #3ec4ea;
+	  font-family: 黑体;
+	  float: left;
+}
+.regist-ad{
+	/*top: 500px;*/
+}
+.regist-ad p{
+	color: #ffffff;
+}
+/*右边登录选项结束*/
+
+/*中间结束*/
+
+/*网站底部开始*/
+.footer-content{
+	position: relative;
+	top: 0px;
+	width: 100%;
+}
+.index-footer{
+	background:  #1661b2;
+	height: 200px;
+}
+.index-bott{
+	background:#134e90; 
+	height:50px;
+}
+
+
+
+
+ /*网站底部结束*/

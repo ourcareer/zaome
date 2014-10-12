@@ -1,8 +1,121 @@
 <?php
+
 namespace Topic\Controller;
 use Think\Controller;
 class IndexController extends Controller {
+ 
+    public function _initialize(){
+        // 验证他是否是这个人即OK.
+        // 检查权限问题
+    }
+
     public function index(){
-        $this->show('<style type="text/css">*{ padding: 0; margin: 0; } div{ padding: 4px 48px;} body{ background: #fff; font-family: "微软雅黑"; color: #333;font-size:24px} h1{ font-size: 100px; font-weight: normal; margin-bottom: 12px; } p{ line-height: 1.8em; font-size: 36px }</style><div style="padding: 24px 48px;"> <h1>:)</h1><p>欢迎使用 <b>ThinkPHP</b>！</p><br/>[ 您现在访问的是Topic模块的Index控制器 ]</div><script type="text/javascript" src="http://tajs.qq.com/stats?sId=9347272" charset="UTF-8"></script>','utf-8');
+        $this->ls();
+    }
+
+    /**
+     * 输出话题列表
+     * @param int $page
+     */
+    public function ls($page='1',$uid=''){
+        $Topic = D('topic');
+
+        $page = I('page');
+        $author = I('uid');
+
+        // $map['pass'] = 1;
+        // $map['delete'] = 0;
+        // $map['report'] < 500;
+        $map = array(
+            'pass'      =>  1,
+            'delete'    =>  0,
+            'report'    =>  0,         
+            );
+
+
+        // 200是OK,20是模块,1219是方法
+        $data['code'] = 200201219;
+        $data['msg'] = 'succeed';
+     
+
+        // TODO
+        /* 首先检查这个用户是否被关闭 */
+        if ($author) {
+            $map['author'] = $author;
+            $data['result'] = $Topic->order('time desc')->page($page,15)->where($map)->select();
+        }
+
+    	$data['result'] = $Topic->order('time desc')->page($page,15)->where($map)->select();
+        $this->done($data);
+
+    }
+
+    public function add(){
+        if ( !is_login() ) {
+            $rt['code'] = '-1';
+            $rt['msg'] = '请先登录！';
+            $this->ajaxReturn($rt);         
+        }
+
+        if (IS_POST) {
+            $Topic = D('topic');
+            // $author = I('author');
+            $author = is_login();
+            
+            $content = I('content');
+            $time = NOW_TIME;
+            $ip = get_client_ip(1);
+            $bg = I('bg');
+            
+            $data['author'] = $author;
+            $data['content'] = $content;
+            $data['time'] = $time;
+            $data['ip'] = $ip;
+            $data['bg'] = $bg;
+
+            $rt['code'] = '200200104';
+            $rt['msg'] = 'succeed';
+            $this->done($data,$rt);            
+        }
+    }
+
+    public function del(){
+
+    }
+
+    public function mod(){
+
+    }
+
+    public function done($data='',$rt=''){
+       
+       $Topic = D('topic');
+
+        // AJAX调用返回
+    	if (IS_AJAX) {
+    		$this->ajaxReturn($data);
+    	}
+    	// 直接输出模板
+        // 不过先做app吧
+        if (IS_GET) {
+            $this->ajaxReturn($data);
+            // $this->assign('data',$data);
+            // $this->display();
+        }
+        if (IS_POST) {
+            if ($data = $Topic->create($data)) {
+                $insertid = $Topic->add($data);
+                if($insertid){
+                    $this->ajaxReturn($rt);
+                }
+            }
+        }
+        else {
+            $rt['code'] = -$rt['code'];
+            $rt['msg'] = 'fail';
+            $this->ajaxReturn($rt);
+        }
     }
 }
+
+?>

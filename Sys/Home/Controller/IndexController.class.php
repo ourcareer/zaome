@@ -23,11 +23,10 @@ class IndexController extends HomeController {
     	//预留统计模块,挺难的,接下来再做
 
     	//判断是否登录
-    	dump(session());
+    	// dump(session());
 
-        dump('aa');
+        // dump('aa');
 
     	$this->display();
     }
-
 }

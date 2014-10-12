@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>测试接口文件</title>
+<style type="text/css">
+table.hovertable {
+	font-family: verdana,arial,sans-serif;
+	font-size:12px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #999999;
+	border-collapse: collapse;
+}
+table.hovertable th {
+	background-color:#c3dde0;
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #a9c6c9;
+}
+table.hovertable tr {
+	background-color:#d4e3e5;
+}
+table.hovertable td {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #a9c6c9;
+}
+</style>
+</head>
+
+<body>
+
+<table class="hovertable" width="100%" border=1 cellpadding="0" cellspacing="0">
+
+<!-- ######################################################################### -->
+<!-- 这是模板 开始 -->
+
+<tr>
+    <td width="4%">1</td>
+    <td width="15%">
+      用户登录    
+    </td>
+    <td colspan="2">
+      <form method="post" action="http://localhost/zaome/api/login" >
+        <p>http://localhost/zaome/api/login</p>
+        用户：<input name="username" value='15010438587' />
+        </br>
+        密码：<input name="password" value='112233' />
+        <input type=submit value=submit  />
+      </form>
+    </td>
+</tr>
+
+<!-- 这是模板 结束 -->
+<!-- ######################################################################## -->
+<tr>
+    <td width="4%">2</td>
+    <td width="15%">
+      用户注册    
+    </td>
+    <td colspan="2">
+      <form method="post" action="http://localhost/zaome/api/register" >
+        <p>http://localhost/zaome/api/register</p>
+        手机号：<input name="mobile" value='18510519417' />
+        </br>
+        短信验证码：<input name="smscode" value='1122' />
+        <input type=submit value=submit  />
+      </form>
+    </td>
+</tr>
+
+<tr>
+    <td width="4%">3</td>
+    <td width="15%">
+      添加密码    
+    </td>
+    <td colspan="2">
+      <form method="post" action="http://localhost/zaome/api/addpassword" >
+        <p>http://localhost/zaome/api/addpassword</p>
+        密码：<input name="password" value='112233' />
+        </br>
+        再次密码：<input name="repassword" value='112233' />
+        <br />
+        先登录获取token_acess：<input name="token_access" value="" />
+        <input type=submit value=submit  />
+      </form>
+    </td>
+</tr>
+
+<tr>
+    <td width="4%">4</td>
+    <td width="15%">
+      退出    
+    </td>
+    <td colspan="2">
+      <form method="post" action="http://localhost/zaome/api/logout" >
+        <p>http://localhost/zaome/api/logout</p>
+        <p>先请求服务器，返回-1的时候注销。
+        <p>只要注销本地就OK了</p>
+        <br />
+        先登录获取token_acess：<input name="token_access" value="" />
+        <br />
+        <input type=submit value=submit  />
+      </form>
+    </td>
+</tr>
+
+<tr>
+    <td width="4%">5</td>
+    <td width="15%">
+      修改密码    
+    </td>
+    <td colspan="2">
+      <form method="post" action="http://localhost/zaome/api/password" >
+        <p>http://localhost/zaome/api/password</p>
+        旧密码：<input name="oldpassword" value='112233' />
+        <br />
+        新密码：<input name="password" value='aabbcc' />
+        <br />
+        再次密码：<input name="repassword" value='aabbcc' />
+        <br />
+        先登录获取token_acess：<input name="token_access" value="" /> 
+        <br />
+        <input type=submit value=submit  />
+      </form>
+    </td>
+</tr>
+
+<tr>
+    <td width="4%">6</td>
+    <td width="15%">
+      获取短信验证码    
+    </td>
+    <td colspan="2">
+      <form method="post" action="http://localhost/zaome/api/smscode" >
+        <p>http://localhost/zaome/api/smscode</p>
+        手机号：<input name="mobile" value='15010438587' />
+        <br />
+        验证码：<input name="verify" value='aabbcc' />
+        <br />
+        <input type=submit value=submit  />
+      </form>
+    </td>
+</tr>
+
+<tr>
+    <td width="4%">7</td>
+    <td width="15%">
+      获取话题列表
+    </td>
+    <td colspan="2">
+      <form method="get" action="http://localhost/zaome/api/topic" >
+        <p>http://localhost/zaome/api/topic</p>
+        每页15条：<input name="page" value='1' />
+        <br />
+        用户id: <input name="uid" value='1' />
+        <br />
+        <input type=submit value=submit  />
+      </form>
+    </td>
+</tr>
+
+<tr>
+    <td width="4%">8</td>
+    <td width="15%">
+      发布话题
+    </td>
+    <td colspan="2">
+      <form method="post" action="http://localhost/zaome/api/topic" >
+        <p>http://localhost/zaome/api/topic</p>
+        内容:<textarea name="content">这是内容,不错啊</textarea>
+        <br />
+        图片:<input type="file" name='bg' />
+        <br />
+        先登录获取token_acess：<input name="token_access" value="" /> 
+        <br />        
+        <input type=submit value=submit  />
+      </form>
+    </td>
+</tr>
+
+
+</table>
+</body>
+</html>
