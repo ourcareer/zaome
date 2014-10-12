@@ -85,6 +85,8 @@ table.hovertable td {
         密码：<input name="password" value='112233' />
         </br>
         再次密码：<input name="repassword" value='112233' />
+        <br />
+        先登录获取token_acess：<input name="token_access" value="" />
         <input type=submit value=submit  />
       </form>
     </td>
@@ -100,6 +102,9 @@ table.hovertable td {
         <p>http://test.zaome.com.cn/api/logout</p>
         <p>先请求服务器，返回-1的时候注销。
         <p>只要注销本地就OK了</p>
+        <br />
+        先登录获取token_acess：<input name="token_access" value="" />
+        <br />
         <input type=submit value=submit  />
       </form>
     </td>
@@ -118,6 +123,9 @@ table.hovertable td {
         新密码：<input name="password" value='aabbcc' />
         <br />
         再次密码：<input name="repassword" value='aabbcc' />
+        <br />
+        先登录获取token_acess：<input name="token_access" value="" /> 
+        <br />
         <input type=submit value=submit  />
       </form>
     </td>
@@ -163,13 +171,14 @@ table.hovertable td {
       发布话题
     </td>
     <td colspan="2">
-      <form method="post" action="http://test.zaome.com.cn/api/topic" >
-        <p>http://test.zaome.com.cn/api/topic</p>
-        作者id：<input name="author" value='1' />
-        <br />
+      <form method="post" action="http://test.zaome.com.cn/api/topicadd" >
+        <p>http://test.zaome.com.cn/api/topicadd</p>
         内容:<textarea name="content">这是内容,不错啊</textarea>
         <br />
         图片:<input type="file" name='bg' />
+        <br />
+        先登录获取token_acess：<input name="token_access" value="" /> 
+        <br />        
         <input type=submit value=submit  />
       </form>
     </td>
