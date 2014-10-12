@@ -90,19 +90,23 @@ class SmsModel extends Model{
 
 		$res = $this->sendTemplateSMS($mobile,array($smscode,'5'),$TemplateId);
 		// $res = 200191913;
-		dump($res);
-		exit();
-		if ($res = '200191913') {
+		// dump($res);
+		// exit();
+		if ($res == '200191913') {
 			$data=array(
 				'mobile'	=>	$mobile,
 				'smscode'	=>	$smscode,
 				);
+
 			$data = $this->create($data);
 			if ($data) {
-				return $this->add($data);
+				if($res = $this->add($data)) return '200191913';
 			}
 		}
-		return false;
+			// dump($data);
+			// dump('a');
+			// exit();
+		return $res;
 	}
 
 
@@ -145,20 +149,20 @@ class SmsModel extends Model{
 	     $rest->setAppId($appId);
 	    
 	     // 发送模板短信
-	     echo "Sending TemplateSMS to $to <br/>";
+	     // echo "Sending TemplateSMS to $to <br/>";
 	     $result = $rest->sendTemplateSMS($to,$datas,$tempId);
 
 	     if($result == NULL ) {
-	         echo "result error!";
+	         // echo "result error!";
 	         break;
 	     }
 	     if($result->statusCode!=0) {
-	         echo "error code :" . $result->statusCode . "<br>";
-	         echo "error msg :" . $result->statusMsg . "<br>";
+	         // echo "error code :" . $result->statusCode . "<br>";
+	         // echo "error msg :" . $result->statusMsg . "<br>";
 	         //TODO 添加错误处理逻辑
 	         return $result->statusCode;
 	     }else{
-	         echo "Sendind TemplateSMS success!<br/>";
+	         // echo "Sendind TemplateSMS success!<br/>";
 	         // 获取返回信息
 	         $smsmessage = $result->TemplateSMS;
 	         // echo "dateCreated:".$smsmessage->dateCreated."<br/>";
@@ -167,9 +171,9 @@ class SmsModel extends Model{
 	         //TODO加入数据库
 	         //返回值
 	         if ($smsmessage) {
-	         	 echo $smsmessage;exit();
-		         echo "dateCreated:".$smsmessage->dateCreated."<br/>";
-		         echo "smsMessageSid:".$smsmessage->smsMessageSid."<br/>";
+	         	 // echo $smsmessage;exit();
+		         // echo "dateCreated:".$smsmessage->dateCreated."<br/>";
+		         // echo "smsMessageSid:".$smsmessage->smsMessageSid."<br/>";
 		         return 200191913;
 	         }
 	         return false;

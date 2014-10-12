@@ -36,7 +36,10 @@ class SmsApi extends Api{
      * @return integer          错误代码
      */
     public function sendSMS($mobile){
-        return $this->model->sendSMS($mobile);
+        $return = $this->model->sendSMS($mobile);
+        // dump($return);
+        // exit();
+        return $return;
     }
 
 }
