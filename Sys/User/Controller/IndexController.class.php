@@ -82,7 +82,7 @@ class IndexController extends Controller {
 				// TODO
 				$rt['code'] = '200211805';
 			    $rt['msg'] = 'succeed';
-			    $rt['result'] = session('user_auth_sign');
+			    $rt['result']['token_access'] = session('user_auth_sign');
 			    $this->ajaxReturn($rt);
 
 			} else { //注册失败，显示错误信息
@@ -95,10 +95,10 @@ class IndexController extends Controller {
 			}
 
 		} else { //显示注册表单
+			$this->display('register');
 			$rt['code'] = '-200211805';
 			$rt['msg'] = 'the method error';
 			$this->ajaxReturn($rt);
-			// $this->display('User/Index/register');
 		}
 	}
 
@@ -155,7 +155,7 @@ class IndexController extends Controller {
             if($res>0){
             	$rt['code'] = '200210104';
             	$rt['msg'] = 'succeed';
-            	$rt['result'] = session('user_auth_sign');
+            	$rt['result']['token_access'] = session('user_auth_sign');
             	$ajaxReturn($rt);
                 // $this->success('添加密码成功！',U('index'));
             }else{
@@ -224,6 +224,7 @@ class IndexController extends Controller {
             $res = $Api->updateInfo($uid, $password, $data);
             if($res['status']){
             	$rt['msg'] = 'succeed';
+            	$rt['result']['token_access'] = session('user_auth_sign');
             	$this->ajaxReturn($rt);
                 // $this->success('修改密码成功！');
             }else{
@@ -294,7 +295,8 @@ class IndexController extends Controller {
 				// $this->success('登录成功！', U('User/Index/index'));
 				$rt['code'] = '20021115';
 			    $rt['msg'] = 'succeed';
-			    $rt['result'] = session('user_auth_sign');
+			    $rt['result']['token_access'] = session('user_auth_sign');
+			    // $rt['result']['token_access'] = session('user_auth_sign');
 				$this->ajaxReturn($rt);			    				
 			} else {
 				$rt['code'] = '-20021115';
@@ -311,38 +313,5 @@ class IndexController extends Controller {
 		$verify = new \Think\Verify();
 		$verify->entry(1);
 	}
-
-
-
-    public function done($data='',$rt=''){
-       
-       $User = D('user');
-
-        // AJAX调用返回
-    	if (IS_AJAX) {
-    		$this->ajaxReturn($data);
-    	}
-    	// 直接输出模板
-        // 不过先做app吧
-        if (IS_GET) {
-            $this->ajaxReturn($data);
-            // $this->assign('data',$data);
-            // $this->display();
-        }
-        if (IS_POST) {
-            if ($data = $User->create($data)) {
-                $insertid = $User->add($data);
-                if($insertid){
-                    $this->ajaxReturn($rt);
-                }
-            }
-        }
-        else {
-            $rt['code'] = -$rt['code'];
-            $rt['msg'] = 'fail';
-            $this->ajaxReturn($rt);
-        }
-    }
-
-
+	
 }
