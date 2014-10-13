@@ -87,6 +87,69 @@ class IndexController extends Controller {
 
     }
 
+
+    public function uploadPicture(){
+        $pictureconfig = C('PICTURE_UPLOAD');
+        // $upload->upload($pictureconfig);
+        $Api = new \Think\Upload($pictureconfig);// 实例化上传类
+        // $upload->maxSize   =     3145728 ;// 设置附件上传大小
+        // $upload->exts      =     array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
+        // $upload->rootPath  =     './Data/Face/'; // 设置附件上传根目录
+        // $upload->savePath  =     ''; // 设置附件上传（子）目录
+        // 上传文件 
+        $info   =   $Api->upload();
+        $info['topicbg']['url'] = $pictureconfig['rootPath'].$info['topicbg']['savepath'].$info['topicbg']['savename'];
+        if(!$info) {// 上传错误提示错误信息
+            $this->error($Api->getError());
+        }else{// 上传成功
+            $Picture = D('picture');
+            dump($pictureconfig);
+            dump($info);
+            exit();
+            $this->success('上传成功！');
+        }
+    }
+
+
+  /**
+     * 上传图片
+     * @author ancon <zhongyu@buaa.edu.cn>
+     */
+    public function uploadPicture2(){
+        //TODO: 用户登录检测
+
+        /* 返回标准数据 */
+        $return  = array('code' => 0, 'msg' => '上传成功', 'data' => '');
+
+        /* 调用文件上传组件上传文件 */
+        // $Picture = D('Picture');
+
+        $Picture = new \Think\Upload();
+        $pic_driver = C('PICTURE_UPLOAD_DRIVER');
+        dump('a');
+        // exit();
+        dump( C('PICTURE_UPLOAD'));
+        $info = $Picture->upload(
+            $_FILES,
+            C('PICTURE_UPLOAD'),
+            C('PICTURE_UPLOAD_DRIVER'),
+            C("UPLOAD_{$pic_driver}_CONFIG")
+        );
+
+        /* 记录图片信息 */
+        if($info){
+            $return['code'] = 200202120;
+            $return = array_merge($info['download'], $return);
+        } else {
+            $return['code'] = '-200202120';
+            $return['msg']   = $Picture->getError();
+        }
+
+        /* 返回JSON数据 */
+        $this->ajaxReturn($return);
+    }
+
+
     public function done($data='',$rt=''){
        
        $Topic = D('topic');
