@@ -10,13 +10,13 @@
     <div class="modal-body center-block" id="register">
       <div class="input-group input-group-lg">
         
-        <input type="text" class="form-control" placeholder="手机号码" id="mobile" value="15010438587">
+        <input type="text" class="form-control" placeholder="手机号码" id="mobile" value="15010442542">
         <!-- <span class="tips" id="id-reg-username-error" style="left: -218px; top: 9px;">用户名长度在5-20个字符之间</span> -->
         <span class="input-group-addon"><span class="glyphicon glyphicon-earphone"></span></span>
       </div>
       <div class="input-group input-group-lg control-group">
             <!-- <label class="control-label" for="inputPassword">验证码</label> -->
-            <input type="text" id="verifycode" name="verifycode" class="span3 form-control" placeholder="请输入验证码"  errormsg="请填写5位验证码" nullmsg="请填写验证码" datatype="*5-5" value="1122">
+            <input type="text" id="verifycode" name="verifycode" class="span3 form-control" placeholder="请输入验证码"  errormsg="请填写5位验证码" nullmsg="请填写验证码" datatype="*5-5">
             <div class="control-group groupstyle">
                 <div class="controls verifyimg">
                     <img class="verifyimg reloadverify" alt="点击切换" src="{:U('verify')}" style="cursor:pointer;">
@@ -27,7 +27,7 @@
         </div>
 
       <input type="hidden" id="getsmscode" value="{:U('sms/index/sendsmscode')}">
-      <button id="mobilecode" class="btn btn-primary btn-lg btn-block" type="button">免费获取短信验证码</button>
+      <input id="mobilecode" class="btn btn-primary btn-lg btn-block" type="button" value="免费获取短信验证码" />
       <div class="input-group input-group-lg">
         <input type="password" class="form-control" placeholder="短信验证码" id="smcode" name="password">
         <span class="input-group-addon"><span class="glyphicon glyphicon-comment"></span></span>
