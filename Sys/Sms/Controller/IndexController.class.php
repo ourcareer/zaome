@@ -16,9 +16,9 @@ class IndexController extends Controller {
     	//TODO，每个ip只能发3条，半小时之内。
 
 		/* 检测验证码 */
-		// if(!check_verify($verify)){
-		// 	$this->error('验证码输入错误！');
-		// }
+		if(!check_verify($verify)){
+			$this->error('验证码输入错误！');
+		}
 		$mobile = I('mobile');
     	$Sms = new SmsApi();
     	$res = $Sms->checkMobile($mobile);

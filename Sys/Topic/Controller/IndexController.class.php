@@ -13,6 +13,11 @@ class IndexController extends Controller {
         $this->ls();
     }
 
+
+    public function share(){
+        $this->display();
+    }
+
     /**
      * 输出话题列表
      * @param int $page
@@ -98,7 +103,7 @@ class IndexController extends Controller {
         // $upload->savePath  =     ''; // 设置附件上传（子）目录
         // 上传文件 
         $info   =   $Api->upload();
-        $info['topicbg']['url'] = $pictureconfig['rootPath'].$info['topicbg']['savepath'].$info['topicbg']['savename'];
+        $info[0]['url'] = $pictureconfig['rootPath'].$info[0]['savepath'].$info[0]['savename'];
         if(!$info) {// 上传错误提示错误信息
             $this->error($Api->getError());
         }else{// 上传成功
