@@ -40,8 +40,8 @@ return array(
     'DB_TYPE'               =>  'mysqli',     // 数据库类型
     'DB_HOST'               =>  'localhost', // 服务器地址
     'DB_NAME'               =>  'zaome',     // 数据库名
-    'DB_USER'               =>  'ancon',    // 用户名
-    'DB_PWD'                =>  'buaaancon3802',// 密码
+    'DB_USER'               =>  'zaome',    // 用户名
+    'DB_PWD'                =>  'zaome2014',// 密码
     'DB_PORT'               =>  '3306',       // 端口
     'DB_PREFIX'             =>  'zaome_',    // 数据库表前缀
     'DB_FIELDTYPE_CHECK'    =>  false,       // 是否进行字段类型检查

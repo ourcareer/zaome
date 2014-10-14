@@ -1,34 +1,107 @@
-<!--  <load href="__PUBLIC__/Home/css/index.css" /> -->
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>分享页</title>
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <link href="../../../../Src/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-  <link href="../../../../Public/Home/Css/share.css" rel="stylesheet" type="text/css">
-  </head>
-  <body>
+<load href="__PUBLIC__/Home/css/share.css" />
 <div class="wrapper">
-  <div id="phonepage">
-  	<img src="../../../../Public/Home/Image/02.png" width="391" height="913" />
-  </div>
-</div>
-<div class="footer">
-	<p>
-		<a href="#">造么简介</a><i>|</i>
-		<a href="#">造么公告</a><i>|</i>
-		<a href="#">联系我们</a><i>|</i>
-		<a href="#">客服热线：56875693</a><i>|</i>
-	</p>
-	<p>Copyright © 2014 造么版权所有&nbsp;&nbsp;&nbsp; 京ICP备09037834号&nbsp;&nbsp;&nbsp;京ICP证B1034-8373号&nbsp;&nbsp;&nbsp;北京市公安局海淀分局备案编号：123456789123</p>
-</div>
-  </body>
-</html>
+        <div class="main">
+            <div class="secret" style="height: 320px;">
+                <div class="bg"><img src="http://mimi.wumii.cn/resources/background/25.jpg"></div>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="content">记者采访一个漂亮女子：<br>1，你老公是做什么的呀？<br>答：我老公是程序员。<br>2，你担心你老公会乱花钱么？<br>答：不担心，他一有钱有钱就换新电脑。<br>3，你担心他找小三么？<br>答：不担心，因为他要一直调bug。😱😱😱
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="bottom">
+                    <div class="circle">朋友的秘密</div>
+                    <div class="relates">
+                        <div class="comment-count">
+                            <i class="i i-comment"></i>
+                            <span class="num">5</span>
+                        </div>
+                        <div class="liked-count">
+                            <i class="i i-like"></i>
+                            <span class="num">5</span>
+                                </div>
+                    </div>
+                </div>
+            </div>
+            <div class="comments">
+                <ul>
+                        <li class="author">
+                            <div class="container">
+                                <div class="portrait"><div class="head"><img src="http://mimi.wumii.cn/resources/avatar/0.png?v4"></div></div>
+                                <div class="content">
+                                    <p>谁能猜出我是谁？</p>
+                                    <div>
+                                        1楼 · 2014-08-01</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="container">
+                                <div class="portrait"><div class="head"><img src="http://mimi.wumii.cn/resources/avatar/69.png?v4"></div></div>
+                                <div class="content">
+                                    <p>明显假的，程序员还想有老婆？</p>
+                                    <div>
+                                        2楼 · 2014-08-01</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="container">
+                                <div class="portrait"><div class="head"><img src="http://mimi.wumii.cn/resources/avatar/45.png?v4"></div></div>
+                                <div class="content">
+                                    <p>zy</p>
+                                    <div>
+                                        3楼 · 2014-08-01</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="container">
+                                <div class="portrait"><div class="head"><img src="http://mimi.wumii.cn/resources/avatar/89.png?v4"></div></div>
+                                <div class="content">
+                                    <p>wx</p>
+                                    <div>
+                                        4楼 · 2014-08-01</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="container">
+                                <div class="portrait"><div class="head"><img src="http://mimi.wumii.cn/resources/avatar/89.png?v4"></div></div>
+                             <div class="content">
+                                    <p>或者wlq</p>
+                                    <div>
+                                        5楼 · 2014-08-01</div>
+                                </div>
+                            </div>
+                        </li>
+                        </ul>
+        </div>
+            <div class="app-download">
+                <a href="/download" id="appAd"><img class="text" src="http://mimi.wumii.cn/images/download_banner.png"><img class="app-logo" src="http://mimi.wumii.cn/images/download_btn.png"></a>
+            </div>
+        </div>
+    </div>
+    <script async="" src="//www.google-analytics.com/analytics.js"></script>
+    <script>
+        var isMobile = true;
+        if (isMobile) {
+            var secretEle = document.querySelector('.secret');
+            secretEle.style.height = document.documentElement.clientWidth + 'px';
+        }
+    </script>
+    <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-49515307-1', 'wumii.org');
+        ga('send', 'pageview');
+</script>
+<div><object id="ClCache" click="sendMsg" host="" width="0" height="0"></object></div>
+</body>
