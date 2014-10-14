@@ -57,8 +57,12 @@ abstract class Controller {
         switch (strtoupper($type)){
             case 'JSON' :
                 // 返回JSON数据格式到客户端 包含状态信息
+                /**
+                 * modify 2014-10-11 17:40:15 by ancon<zhongyu@buaa.edu.cn>
+                 */
                 header('Content-Type:application/json; charset=utf-8');
-                exit(json_encode($data));
+                echo(json_encode($data,JSON_UNESCAPED_UNICODE));
+                exit();
             case 'XML'  :
                 // 返回xml格式数据
                 header('Content-Type:text/xml; charset=utf-8');

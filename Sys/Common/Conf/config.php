@@ -40,8 +40,8 @@ return array(
     'DB_TYPE'               =>  'mysqli',     // 数据库类型
     'DB_HOST'               =>  'localhost', // 服务器地址
     'DB_NAME'               =>  'zaome',     // 数据库名
-    'DB_USER'               =>  'ancon',    // 用户名
-    'DB_PWD'                =>  'buaaancon3802',// 密码
+    'DB_USER'               =>  'zaome',    // 用户名
+    'DB_PWD'                =>  'zaome2014',// 密码
     'DB_PORT'               =>  '3306',       // 端口
     'DB_PREFIX'             =>  'zaome_',    // 数据库表前缀
     'DB_FIELDTYPE_CHECK'    =>  false,       // 是否进行字段类型检查
@@ -70,7 +70,7 @@ return array(
     /* 错误设置 */
     'ERROR_MESSAGE'         =>  '页面错误！请稍后再试～',//错误显示信息,非调试模式有效
     'ERROR_PAGE'            =>  '', // 错误定向页面
-    'SHOW_ERROR_MSG'        =>  false,    // 显示错误信息
+    'SHOW_ERROR_MSG'        =>  true,    // 显示错误信息
     'TRACE_MAX_RECORD'      =>  100,    // 每个级别的错误信息 最大记录数
     'SHOW_PAGE_TRACE'       =>  true,
 
@@ -82,9 +82,9 @@ return array(
     'LOG_EXCEPTION_RECORD'  =>  false,    // 是否记录异常信息日志
 
     /* SESSION设置 */
-    'SESSION_AUTO_START'    =>  true,    // 是否自动开启Session
+    'SESSION_AUTO_START'    =>  ture,    // 是否自动开启Session
     'SESSION_OPTIONS'       =>  array(), // session 配置数组 支持type name id path expire domain 等参数
-    'SESSION_TYPE'          =>  'Db', // session hander类型 默认无需设置 除非扩展了session hander驱动
+    'SESSION_TYPE'          =>  '', // session hander类型 默认无需设置 除非扩展了session hander驱动
     'SESSION_PREFIX'        =>  'sess', // session 前缀
     //'VAR_SESSION_ID'      =>  'session_id',     //sessionID的提交变量
 
@@ -122,7 +122,7 @@ return array(
  
     /* URL设置 */
     'URL_CASE_INSENSITIVE'  =>  true,   // 默认false 表示URL区分大小写 true则表示不区分大小写
-    'URL_MODEL'             =>  1,       // URL访问模式,可选参数0、1、2、3,代表以下四种模式：
+    'URL_MODEL'             =>  2,       // URL访问模式,可选参数0、1、2、3,代表以下四种模式：
     // 0 (普通模式); 1 (PATHINFO 模式); 2 (REWRITE  模式); 3 (兼容模式)  默认为PATHINFO 模式
     'URL_PATHINFO_DEPR'     =>  '/',    // PATHINFO模式下，各参数之间的分割符号
     'URL_PATHINFO_FETCH'    =>  'ORIG_PATH_INFO,REDIRECT_PATH_INFO,REDIRECT_URL', // 用于兼容判断PATH_INFO 参数的SERVER替代变量列表
@@ -134,7 +134,7 @@ return array(
     'URL_PARAMS_FILTER'     =>  false, // URL变量绑定过滤
     'URL_PARAMS_FILTER_TYPE'=>  '', // URL变量绑定过滤方法 如果为空 调用DEFAULT_FILTER
     'URL_404_REDIRECT'      =>  '', // 404 跳转页面 部署模式有效
-    'URL_ROUTER_ON'         =>  ture,   // 是否开启URL路由
+    'URL_ROUTER_ON'         =>  true,   // 是否开启URL路由
     'URL_ROUTE_RULES'       =>  array(), // 默认路由规则 针对模块
     'URL_MAP_RULES'         =>  array(), // URL映射定义规则
 
@@ -164,6 +164,40 @@ return array(
     ),//模板替换规则
 
     /* 管理员配置 */
-    'USER_ADMINISTRATOR' => 1, //管理员用户ID
+    'USER_ADMINISTRATOR'    =>  1, //管理员用户ID
+    
+    /* 短信配置 */
+    //TODO 配置好短信平台
+    'TEMPLATEID'           =>  '4736',
+    'TIME_LIMIT'            => '5',
+
+
+    'accountSid'=> '8a48b551488d07a801489aab991e03b4',//主帐号,对应开官网发者主账号下的 ACCOUNT SID
+    'accountToken'=> 'e7ac190c7575499c9d23b71920860d60',//主帐号令牌,对应官网开发者主账号下的 AUTH TOKEN
+    'appId'=>'aaf98f89488d0aad01489b0bbc100465',//应用Id，在官网应用列表中点击应用，对应应用详情中的APP ID
+    'serverIP'=>'app.cloopen.com',//请求地址
+    //沙盒环境（用于应用开发调试）：sandboxapp.cloopen.com
+    //生产环境（用户应用上线使用）：app.cloopen.com
+    'serverPort'=>'8883',//请求端口，生产环境和沙盒环境一致
+    'softVersion'=>'2013-12-26',//REST版本号，在官网文档REST介绍中获得。
+
+
+    /* 图片上传配置 */
+    /* 上传相关配置 */
+    'PICTURE_UPLOAD' => array(
+        'mimes'    => '', //允许上传的文件MiMe类型
+        'maxSize'  => 8*1024*1024, //上传的文件大小限制 (0-不做限制)
+        'exts'     => 'jpg,gif,png,jpeg', //允许上传的文件后缀
+        'autoSub'  => true, //自动子目录保存文件
+        'subName'  => array('date', 'Y-m-d'), //子目录创建方式，[0]-函数名，[1]-参数，多个参数使用数组
+        'rootPath' => './Data/Face/', //保存根路径
+        'savePath' => '', //保存路径
+        'saveName' => array('uniqid', ''), //上传文件命名规则，[0]-函数名，[1]-参数，多个参数使用数组
+        'saveExt'  => '', //文件保存后缀，空则使用原后缀
+        'replace'  => false, //存在同名是否覆盖
+        'hash'     => true, //是否生成hash编码
+        'callback' => false, //检测文件是否存在回调函数，如果存在返回文件信息数组
+    ), //图片上传相关配置（文件上传类配置）
+
 
 );

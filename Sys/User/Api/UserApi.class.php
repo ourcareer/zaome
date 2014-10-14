@@ -1,11 +1,4 @@
 <?php
-// +----------------------------------------------------------------------
-// | OneThink [ WE CAN DO IT JUST THINK IT ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2013 http://www.onethink.cn All rights reserved.
-// +----------------------------------------------------------------------
-// | Author: 麦当苗儿 <zuojiazi@vip.qq.com> <http://www.zjzit.cn>
-// +----------------------------------------------------------------------
 
 namespace User\Api;
 use User\Api\Api;
@@ -40,6 +33,7 @@ class UserApi extends Api{
     public function expireSmscode($mobile, $smscode, $expire){
         return $this->model->expireSmscode($mobile, $smscode,$expire);
     }
+
     /**
      * 用户登录认证
      * @param  string  $username 用户名
@@ -47,7 +41,7 @@ class UserApi extends Api{
      * @param  integer $type     用户名类型 （1-用户名，2-邮箱，3-手机，4-UID）
      * @return integer           登录成功-用户ID，登录失败-错误编号
      */
-    public function login($username, $password, $type = 1){
+    public function login($username, $password, $type = 3){
         return $this->model->login($username, $password, $type);
     }
 
@@ -119,7 +113,7 @@ class UserApi extends Api{
      */
     public function addPassword($uid, $password){
         if($this->model->addPassword($uid, $password)){
-            $return = true;
+            $return = $this->model->addPassword($uid, $password);
         }else{
             $return = $this->model->getError();
         }

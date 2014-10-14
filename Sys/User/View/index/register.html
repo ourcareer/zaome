@@ -1,0 +1,64 @@
+<load href="__PUBLIC__/Home/Css/register.css" />
+<load href="__PUBLIC__/Home/Js/register.js" />
+  <div id="register-modal" class=" fade in col-ld-4" tabindex="-1" role="dialog" aria-labelledby="register-label" aria-hidden="false" style="display: block;">
+  
+  <div class="register-main center-block">
+    <div class="modal-header center-block">
+      <h2>注册</h2>
+    </div>
+    <form id="regForm" method="post" action="{:U('user/index/register')}"> 
+    <div class="modal-body center-block" id="register">
+      <div class="input-group input-group-lg">
+        
+        <input type="text" class="form-control" placeholder="手机号码" id="mobile" value="15010442542">
+        <!-- <span class="tips" id="id-reg-username-error" style="left: -218px; top: 9px;">用户名长度在5-20个字符之间</span> -->
+        <span class="input-group-addon"><span class="glyphicon glyphicon-earphone"></span></span>
+      </div>
+      <div class="input-group input-group-lg control-group">
+            <!-- <label class="control-label" for="inputPassword">验证码</label> -->
+            <input type="text" id="verifycode" name="verifycode" class="span3 form-control" placeholder="请输入验证码"  errormsg="请填写5位验证码" nullmsg="请填写验证码" datatype="*5-5">
+            <div class="control-group groupstyle">
+                <div class="controls verifyimg">
+                    <img class="verifyimg reloadverify" alt="点击切换" src="{:U('verify')}" style="cursor:pointer;">
+                </div>
+                <label class="control-label labelstyle"></label>
+              <div class="controls Validform_checktip text-warning"></div>
+            </div>
+        </div>
+
+      <input type="hidden" id="getsmscode" value="{:U('sms/index/sendsmscode')}">
+      <input id="mobilecode" class="btn btn-primary btn-lg btn-block" type="button" value="免费获取短信验证码" />
+      <div class="input-group input-group-lg">
+        <input type="password" class="form-control" placeholder="短信验证码" id="smcode" name="password">
+        <span class="input-group-addon"><span class="glyphicon glyphicon-comment"></span></span>
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg btn-block" id="registeragree">我同意，现在注册</button>
+      <p class="agreement">注册需同意<a href="#" target="_blank">造么协议</a></p>
+    </div>
+    <!-- <div class="modal-body center-block" id="register-step2">
+      <div class="input-group input-group-lg">
+        <input type="text" class="form-control" placeholder="真实姓名" id="id-reg-contacter" name="contacter">
+        <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+      </div>
+      <div class="input-group input-group-lg">
+        <input type="text" class="form-control" placeholder="公司名称" id="id-reg-companyName" name="companyName">
+        <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span></span>
+      </div>
+      <div class="input-group input-group-lg">
+        <input type="email" class="form-control" placeholder="联系邮箱" id="id-reg-email" name="email">
+        <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+      </div>
+      <div class="input-group input-group-lg">
+        <input type="text" class="form-control" placeholder="联系方式" id="id-reg-mobile" name="mobile">
+        <span class="input-group-addon input-captcha"><span class="glyphicon glyphicon-earphone"></span></span>
+      </div>  
+      <div class="input-group input-group-lg">
+        <input type="text" class="form-control" placeholder="联系QQ" id="id-reg-qq" name="qq">
+        <span class="input-group-addon input-captcha"><span class="glyphicon glyphicon-comment"></span></span>
+      </div>
+      <button type="button" class="btn btn-primary btn-lg btn-block" id="register-button-2">完成注册</button>
+      <p><span class="glyphicon glyphicon-heart"></span>温馨提示：为了保障您的账号安全，建议填写真实的信息，以方便我司在紧急时可以联系到您！</p>
+    </div> -->
+    </form>
+  </div>
+</div>
