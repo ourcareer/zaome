@@ -304,7 +304,7 @@ class IndexController extends Controller {
 			    $this->ajaxReturn($rt);
 			}
 		} else {
-			$this->display('User/Index/login');
+			$this->display('login');
 		}
 	}
 
