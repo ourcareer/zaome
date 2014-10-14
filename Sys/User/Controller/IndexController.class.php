@@ -301,7 +301,9 @@ class IndexController extends Controller {
 			    $User = D('user');
 			    $map['uid'] = $uid;
 			    $userdata = $User->where($map)->find();
-			    $rt['result']['school'] = $userdata['school'];			    
+			    $rt['result']['school'] = $userdata['school'];
+			    $rt['result']['nikename'] = $userdata['nikename'];
+			    $rt['result']['username'] = $userdata['username'];
 			    $avatarid = $userdata['avatar'];
 			    $Picture = D('picture');
 			    $avatarurl = $Picture->getFieldByid($avatarid,'url');
@@ -329,7 +331,7 @@ class IndexController extends Controller {
      * 上传图片
      * @author ancon <zhongyu@buaa.edu.cn>
      */
-    public function uploadFace(){
+    public function uploadAvatar(){
 
         //测试阶段,先注释.
 
