@@ -171,11 +171,29 @@ table.hovertable td {
       发布话题
     </td>
     <td colspan="2">
-      <form method="post" action="http://localhost/zaome/api/topic" >
+      <form method="post" enctype="multipart/form-data" action="http://localhost/zaome/api/topic" >
         <p>http://localhost/zaome/api/topic</p>
         内容:<textarea name="content">这是内容,不错啊</textarea>
         <br />
-        图片:<input type="file" name='bg' />
+        图片:<input type="file" name='topicbg' />
+        <br />
+        先登录获取token_acess：<input name="token_access" value="" /> 
+        <br />        
+        <input type=submit value=submit  />
+      </form>
+    </td>
+</tr>
+
+<tr>
+    <td width="4%">8</td>
+    <td width="15%">
+      上传图片
+    </td>
+    <td colspan="2">
+      <form method="post" enctype="multipart/form-data" action="http://localhost/zaome/api/picture" >
+        <p>http://localhost/zaome/api/picture</p>
+        <br />
+        图片:<input type="file" name='topicbg[]' />
         <br />
         先登录获取token_acess：<input name="token_access" value="" /> 
         <br />        
