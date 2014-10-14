@@ -296,6 +296,16 @@ class IndexController extends Controller {
 				$rt['code'] = '20021115';
 			    $rt['msg'] = 'succeed';
 			    $rt['result']['token_access'] = session('user_auth_sign');
+			    $rt['result']['uid'] = $uid;
+
+			    $User = D('user');
+			    $map['uid'] = $uid;
+			    $userdata = $User->where($map)->find();
+			    $rt['result']['school'] = $userdata['school'];			    
+			    $avatarid = $userdata['avatar'];
+			    $Picture = D('picture');
+			    $avatarurl = $Picture->getFieldByid($avatarid,'url');
+			    $rt['result']['avatar'] = $avatarurl;
 			    // $rt['result']['token_access'] = session('user_auth_sign');
 				$this->ajaxReturn($rt);			    				
 			} else {
@@ -322,13 +332,13 @@ class IndexController extends Controller {
     public function uploadFace(){
 
         //测试阶段,先注释.
-/*
+
         if (!$uid = is_login()) {
             $rt['code'] = '-1';
             $rt['msg'] = '请先登录！';
             $this->ajaxReturn($rt); 
         }
-*/
+
 
         $pictureconfig = C('PICTURE_UPLOAD');
         $Api = new \Think\Upload($pictureconfig);// 实例化上传类
@@ -341,20 +351,22 @@ class IndexController extends Controller {
             $info[0]['create_time'] = NOW_TIME;
             $info[0]['author'] = $uid;
             $info[0]['ip'] = get_client_ip();
+
             $Picture = D('picture');
             $data = $Picture->create($info[0]);
-            $Picture->add($data);
+            $pictureid = $Picture->add($data);
 
-            $User = D('user');
-            $userdata['avatar'] = $info[0][url];
-            $avatar = $User->create($userdata);
-            $User->save($avatar);
+            if ($pictureid) {
+	            $User = D('user');
+	            $userdata['avatar'] = $pictureid;
+	            $userdata['uid'] = $uid;
+	            $userdata = $User->create($userdata);
+	            $avatar = $User->save();
 
-            // return $info[0]['url'];
-            dump($pictureconfig);
-            dump($info);
-            exit();
-            $this->success('上传成功！');
+	            $rt['code'] = '200212116';
+	            $rt['msg'] = 'succeed';
+	            $this->ajaxReturn($rt);		            
+            }
         }
     }
 
