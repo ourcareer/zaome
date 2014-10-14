@@ -92,50 +92,6 @@ class IndexController extends Controller {
 
     }
 
-    /**
-     * 上传图片
-     * @author ancon <zhongyu@buaa.edu.cn>
-     */
-    public function uploadPicture(){
-
-        //测试阶段,先注释.
-/*
-        if (!$uid = is_login()) {
-            $rt['code'] = '-1';
-            $rt['msg'] = '请先登录！';
-            $this->ajaxReturn($rt); 
-        }
-*/
-
-        $pictureconfig = C('PICTURE_UPLOAD');
-        // $upload->upload($pictureconfig);
-        $Api = new \Think\Upload($pictureconfig);// 实例化上传类
-        // $upload->maxSize   =     3145728 ;// 设置附件上传大小
-        // $upload->exts      =     array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
-        // $upload->rootPath  =     './Data/Face/'; // 设置附件上传根目录
-        // $upload->savePath  =     ''; // 设置附件上传（子）目录
-        // 上传文件 
-        $info   =   $Api->upload();
-        if(!$info) {// 上传错误提示错误信息
-            $this->error($Api->getError());
-        }else{// 上传成功
-            $info[0]['url'] = $pictureconfig['rootPath'].$info[0]['savepath'].$info[0]['savename'];
-            $info[0]['create_time'] = NOW_TIME;
-            $info[0]['author'] = $uid;
-            $info[0]['ip'] = get_client_ip();
-            $Picture = D('picture');
-            $data = $Picture->create($info[0]);
-            $Picture->add($data);
-
-            return $info[0]['url'];
-            dump($pictureconfig);
-            dump($info);
-            exit();
-            $this->success('上传成功！');
-        }
-    }
-
-
 
     public function done($data='',$rt=''){
        
