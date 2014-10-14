@@ -92,8 +92,21 @@ class IndexController extends Controller {
 
     }
 
-
+    /**
+     * 上传图片
+     * @author ancon <zhongyu@buaa.edu.cn>
+     */
     public function uploadPicture(){
+
+        //测试阶段,先注释.
+/*
+        if (!$uid = is_login()) {
+            $rt['code'] = '-1';
+            $rt['msg'] = '请先登录！';
+            $this->ajaxReturn($rt); 
+        }
+*/
+
         $pictureconfig = C('PICTURE_UPLOAD');
         // $upload->upload($pictureconfig);
         $Api = new \Think\Upload($pictureconfig);// 实例化上传类
@@ -103,11 +116,18 @@ class IndexController extends Controller {
         // $upload->savePath  =     ''; // 设置附件上传（子）目录
         // 上传文件 
         $info   =   $Api->upload();
-        $info[0]['url'] = $pictureconfig['rootPath'].$info[0]['savepath'].$info[0]['savename'];
         if(!$info) {// 上传错误提示错误信息
             $this->error($Api->getError());
         }else{// 上传成功
+            $info[0]['url'] = $pictureconfig['rootPath'].$info[0]['savepath'].$info[0]['savename'];
+            $info[0]['create_time'] = NOW_TIME;
+            $info[0]['author'] = $uid;
+            $info[0]['ip'] = get_client_ip();
             $Picture = D('picture');
+            $data = $Picture->create($info[0]);
+            $Picture->add($data);
+
+            return $info[0]['url'];
             dump($pictureconfig);
             dump($info);
             exit();
@@ -115,44 +135,6 @@ class IndexController extends Controller {
         }
     }
 
-
-  /**
-     * 上传图片
-     * @author ancon <zhongyu@buaa.edu.cn>
-     */
-    public function uploadPicture2(){
-        //TODO: 用户登录检测
-
-        /* 返回标准数据 */
-        $return  = array('code' => 0, 'msg' => '上传成功', 'data' => '');
-
-        /* 调用文件上传组件上传文件 */
-        // $Picture = D('Picture');
-
-        $Picture = new \Think\Upload();
-        $pic_driver = C('PICTURE_UPLOAD_DRIVER');
-        dump('a');
-        // exit();
-        dump( C('PICTURE_UPLOAD'));
-        $info = $Picture->upload(
-            $_FILES,
-            C('PICTURE_UPLOAD'),
-            C('PICTURE_UPLOAD_DRIVER'),
-            C("UPLOAD_{$pic_driver}_CONFIG")
-        );
-
-        /* 记录图片信息 */
-        if($info){
-            $return['code'] = 200202120;
-            $return = array_merge($info['download'], $return);
-        } else {
-            $return['code'] = '-200202120';
-            $return['msg']   = $Picture->getError();
-        }
-
-        /* 返回JSON数据 */
-        $this->ajaxReturn($return);
-    }
 
 
     public function done($data='',$rt=''){
