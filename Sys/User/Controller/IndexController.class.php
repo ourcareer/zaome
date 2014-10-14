@@ -54,12 +54,12 @@ class IndexController extends Controller {
 			/**
 			 * 测试的时候关闭
 			 */
-			/*
+			
 			$verify = I('verify');
 			if(!check_verify($verify)){
 				$this->error('验证码输入错误！');
 			}
-			*/
+			
 			/* 调用注册接口注册用户 */
             $User = new UserApi;
             /* 调用短信接口验证 */
@@ -313,5 +313,50 @@ class IndexController extends Controller {
 		$verify = new \Think\Verify();
 		$verify->entry(1);
 	}
+
+
+   /**
+     * 上传图片
+     * @author ancon <zhongyu@buaa.edu.cn>
+     */
+    public function uploadFace(){
+
+        //测试阶段,先注释.
+/*
+        if (!$uid = is_login()) {
+            $rt['code'] = '-1';
+            $rt['msg'] = '请先登录！';
+            $this->ajaxReturn($rt); 
+        }
+*/
+
+        $pictureconfig = C('PICTURE_UPLOAD');
+        $Api = new \Think\Upload($pictureconfig);// 实例化上传类
+        // 上传文件 
+        $info   =   $Api->upload();
+        if(!$info) {// 上传错误提示错误信息
+            $this->error($Api->getError());
+        }else{// 上传成功
+            $info[0]['url'] = $pictureconfig['rootPath'].$info[0]['savepath'].$info[0]['savename'];
+            $info[0]['create_time'] = NOW_TIME;
+            $info[0]['author'] = $uid;
+            $info[0]['ip'] = get_client_ip();
+            $Picture = D('picture');
+            $data = $Picture->create($info[0]);
+            $Picture->add($data);
+
+            $User = D('user');
+            $userdata['avatar'] = $info[0][url];
+            $avatar = $User->create($userdata);
+            $User->save($avatar);
+
+            // return $info[0]['url'];
+            dump($pictureconfig);
+            dump($info);
+            exit();
+            $this->success('上传成功！');
+        }
+    }
+
 	
 }

@@ -168,8 +168,19 @@ return array(
     
     /* 短信配置 */
     //TODO 配置好短信平台
-    'TEMPLATEID'           =>  '',
+    'TEMPLATEID'           =>  '4736',
     'TIME_LIMIT'            => '5',
+
+
+    'accountSid'=> '8a48b551488d07a801489aab991e03b4',//主帐号,对应开官网发者主账号下的 ACCOUNT SID
+    'accountToken'=> 'e7ac190c7575499c9d23b71920860d60',//主帐号令牌,对应官网开发者主账号下的 AUTH TOKEN
+    'appId'=>'aaf98f89488d0aad01489b0bbc100465',//应用Id，在官网应用列表中点击应用，对应应用详情中的APP ID
+    'serverIP'=>'app.cloopen.com',//请求地址
+    //沙盒环境（用于应用开发调试）：sandboxapp.cloopen.com
+    //生产环境（用户应用上线使用）：app.cloopen.com
+    'serverPort'=>'8883',//请求端口，生产环境和沙盒环境一致
+    'softVersion'=>'2013-12-26',//REST版本号，在官网文档REST介绍中获得。
+
 
     /* 图片上传配置 */
     /* 上传相关配置 */
@@ -187,11 +198,6 @@ return array(
         'hash'     => true, //是否生成hash编码
         'callback' => false, //检测文件是否存在回调函数，如果存在返回文件信息数组
     ), //图片上传相关配置（文件上传类配置）
-
-    'PICTURE_UPLOAD_DRIVER'=>'LOCAL',
-    //本地上传文件驱动配置
-    'UPLOAD_LOCAL_CONFIG'=>array(),
-
 
 
 );
