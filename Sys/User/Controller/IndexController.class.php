@@ -387,7 +387,7 @@ class IndexController extends Controller {
         	$data['username'] = I('username');
         	$data['uid'] = $uid;
         	$User = D('user');
-        	$User->create()
+        	$User->create();
         }
 
     }
