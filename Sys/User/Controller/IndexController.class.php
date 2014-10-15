@@ -55,10 +55,10 @@ class IndexController extends Controller {
 			 * 测试的时候关闭
 			 */
 			
-			$verify = I('verify');
-			if(!check_verify($verify)){
-				$this->error('验证码输入错误！');
-			}
+			// $verify = I('verify');
+			// if(!check_verify($verify)){
+			// 	$this->error('验证码输入错误！');
+			// }
 			
 			/* 调用注册接口注册用户 */
             $User = new UserApi;
@@ -372,5 +372,24 @@ class IndexController extends Controller {
         }
     }
 
+    /**
+     * 更新用户信息
+     */
+    public function userinfo(){
+        if (!$uid = is_login()) {
+            $rt['code'] = '-1';
+            $rt['msg'] = '请先登录！';
+            $this->ajaxReturn($rt); 
+        }
+        if (IS_POST) {
+        	$data['nikename'] = I('nikename');
+        	$data['school'] = I('school');
+        	$data['username'] = I('username');
+        	$data['uid'] = $uid;
+        	$User = D('user');
+        	$User->create()
+        }
+
+    }
 	
 }
