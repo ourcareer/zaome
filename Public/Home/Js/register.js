@@ -35,7 +35,39 @@ function SetRemainTime() {
                 $('#mobilecode').val("" + curCount + "秒后再次获取");
             }
         }
+var code ; //在全局定义验证码
+function createCode(){ 
+    code = "";
+    var codeLength = 5;//验证码的长度
+    var checkCode = document.getElementById("checkCode");
+    checkCode.value = "";
 
+    var selectChar = new Array(0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','J','K','L','M','N','P','Q','R','S','T','U','V','W','X','Y','Z');
+
+    for(var i=0;i<codeLength;i++) {
+       var charIndex = Math.floor(Math.random()*34);
+       code +=selectChar[charIndex];
+    }
+    if(code.length != codeLength){
+       createCode();
+    }
+    checkCode.value = code;
+}
+
+function validate () {//验证验证码正确与否
+    
+    var inputCode = document.getElementById("verifycode").value.toUpperCase();
+
+    if(inputCode.length <=0) {
+       alert("请输入验证码！");
+       return false;
+    }
+    else if(inputCode != code ){
+       alert("验证码输入错误！");
+       createCode();
+       return false;
+    }
+}
 $(function(){
  $("#mobilecode").click(function(){
     sendMessage();

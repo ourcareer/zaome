@@ -27,11 +27,11 @@ a{text-decoration:none}
 .i-close{background-position:-24px 0}
 .i-close-2{background-position:0 0}
 ul,li{list-style:none}
-html{background:#acbea8 url(img/1.jpg) no-repeat top center;
+html{background:#acbea8  no-repeat top center;
 	background-attachment:fixed
 }
 body{font-family:'Microsoft Yahei';padding:62px 0 240px}
-.wrapper{width:452px;margin:0 auto}
+.wrapper{width:452px;margin:auto}
 .wrapper:after{
 	display:block;
 	visibility:hidden;
@@ -45,56 +45,55 @@ body{font-family:'Microsoft Yahei';padding:62px 0 240px}
 	z-index:1;
 	overflow:hidden;
 	height:452px;
-	width: auto;
 	color:#fff;
 	background-color:#fff;
 }
 .zaome .i{vertical-align:-6px}
 .zaome.blank{color:#535353}
-.zaome .shut{line-height:0;position:absolute;z-index:0;top:20px;left:20px;}
-.zaome .details{line-height:0;position:absolute;z-index:0;top:20px;right:20px;}
 .zaome .bg{line-height:0;position:absolute;z-index:-1;top:0;left:0;width:100%;height:100%}
 .zaome .bg img{width:100%;height:100%}
 .zaome table{width:100%;height:100%;border-spacing:0;border-collapse:collapse;text-align:center;word-break:break-word;border:0}
-.zaome .content{font-size:26px;line-height:32px;overflow:hidden;width:12.8em;max-height:320px;margin:0 auto}
+.zaome .content{font-size:26px;line-height:32px;overflow:hidden;width:12.8em;max-height:320px;margin:auto}
 .zaome .bottom{position:absolute;bottom:10px;left:0;width:100%}
 .zaome .bottom .time{float:left;padding:0 10px;}
 .zaome .bottom .relates{float:right;padding:0 12px;text-align:right;white-space:nowrap;}
 .zaome .relates div{display:inline-block;padding-left:18px;}
 .comments{overflow:hidden;background-color:#fff}
 .comments ul{position:relative;top:-1px;padding:0 14px;}
-.comments li{position:relative;display:table;width:100%;border-bottom: 1px solid #e4e4e4;}
+.comments li{position:relative;display:table;width:100%;}
+.comments .li-border{border-bottom: 1px solid #e4e4e4;}
 .comments li .container{display:table-row}
 .comments li .portrait,.comments li .content{display:table-cell;vertical-align:top}
 .comments li .portrait{width:56px;padding:20px 15px 10px 0;}
 .comments .portrait .head{overflow:hidden;width:56px;height:56px;border-radius:32px}
 .comments .head img{width:100%;height:100%}
-.comments li .content{position:relative;padding:15px 0 8px;color:#787b7e;}
-.comments .comment-content{float:left;width: 85%;height:auto;color:;}
-.comments .comment-like{float:right;width:10%;}
+.comments li .content{position:relative;padding:15px 0 8px;}
+.comments .comment-content{float:left;width: 85%;height:auto;}
+.comments .comment-content p{color:#787b7e;}
+.comments .comment-like{float:right;width:10%;padding-top:15px;}
 .comments .comment-like img{width: 100%;height: 100%}
-.comments .comment-btm{float:left;width: 100%;height:auto;text-align:left;padding-top:8px;vertical-align: middle;}
+.comments .comment-btm{float:left;width: 100%;height:auto;text-align:left;padding-top:8px;vertical-align: middle;color:#afb3b6;}
 .comments .comment-btm .comment-time{padding-right:10px;}
 .comments .comment-btm img{width:20px;height: 20px;margin-bottom:-5px;}
 .comments .content p{font-size:18px;line-height:24px;text-align:justify;word-break:break-word}
 .comments .author .content p{color:#1abc9c}
-.comments .content div{font-size:14px;margin-top:3px;color:#afb3b6}
-.app-download{width: 100%;height: 82px;}
-.app-download a{display:block;height:100%;width:100%;}
-.app-download img{display:block;width: 100%;height: auto;}
+.comments .content div{font-size:14px;margin-top:3px;}
+.app-download{display:block;width:100%;height:82px;margin:40px 0;cursor:pointer;background:url(../Image/download_banner.png) no-repeat}
+.app-download a{display:block;height:100%}
+.app-download img{display:none}
 @media screen and (max-width:480px){
-html{background:url(img/1.png) repeat}
+html{background:url(../Image/1.png) repeat}
 body{padding-top:0;padding-bottom:50px;background:inherit}
 	.wrapper{width:100%}
 	.main{width:100%}
 	.zaome{height:320px}
-	.comments li .portrait{width:40px;padding:14px 6px 14px 0}
+	.comments li .portrait{width:40px;padding:22px 6px 14px 0}
 	.comments .portrait .head{overflow:hidden;width:36px;height:36px;border-radius:18px}
 	.comments li .content{padding:16px 0 6px}
 	.comments .content p{font-size:16px;line-height:20px}
 	.comments .content div{font-size:12px}
 	.app-download{position:fixed;bottom:0;left:0;width:100%;height:50px;margin:0;-webkit-transition:.1s all ease-in;text-align:center;background:rgba(56,58,70,.8)}
-	.app-download a{line-height:0;display:block;overflow:hidden;text-decoration:none}
+	.app-download a{line-height:0;display:block;overflow:hidden;height:32px;padding:9px 10px;text-decoration:none}
 	.app-download img{display:block;height:100%}
 	.app-download .text{float:left}
 	.app-download .app-logo{float:right}

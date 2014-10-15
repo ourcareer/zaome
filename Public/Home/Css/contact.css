@@ -1,0 +1,86 @@
+*{
+	margin:0;
+	padding: 0;
+}
+body{
+	font-size: 12px;
+	line-height: 1.7;
+	background: url(../Image/contact-bg.jpg) left top repeat;
+	background-size:100% 100%;
+	background-attachment: fixed;
+}
+li{
+	list-style: none;
+}
+.panel-heading{
+	font-family: "微软雅黑";
+	font-size: 18px;
+}
+.panel-body{
+	font-family: "宋体";
+	font-size: 14px;
+}
+.clear{
+	clear: both;
+}
+.left{
+	float: left;
+}
+.right{
+	float: right;
+}
+#content{
+	width:800px;
+	padding: 20px;
+	margin:0 auto;
+}
+#content .item{
+	padding: 20px;
+	margin-bottom: 20px;
+	height: auto;
+}
+#content .item h2{
+	font-size: 16px;
+	font-weight: bold;
+	color:#BE3985;
+	padding:10px 0;
+	border-bottom:2px solid #0088bb;
+	margin-bottom: 10px;
+}
+#content .item li{
+	display:inline;
+	width: 400px;
+}
+#menu{
+	position: fixed;
+	top: 100px;
+	left: 0;
+	margin-left: 200px;
+}
+#menu ul li a{
+	display: block;
+	margin:5px 0;
+	font-size: 14px;
+	font-weight: bold;
+	text-decoration: none;
+	color:#333;
+	width:100px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+}
+#menu ul li a:hover,
+#menu ul li a.current{
+	background: #0088bb;
+	color:#fff;
+}
+
+/*html6 hack*/
+* html, * html body{
+	background-image: url(about:blank);
+	background-attachment: fixed;
+}
+* html #menu{
+	position: absolute;
+	top:expression(((e=document.documentElement.scrollTop)?e:document.body.scrollTop)+100+"px");
+}
