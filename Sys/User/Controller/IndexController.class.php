@@ -372,5 +372,22 @@ class IndexController extends Controller {
         }
     }
 
+    /**
+     * 更新用户信息
+     */
+    public function userinfo(){
+        if (!$uid = is_login()) {
+            $rt['code'] = '-1';
+            $rt['msg'] = '请先登录！';
+            $this->ajaxReturn($rt); 
+        }
+        if (IS_POST) {
+        	$nikename = I('nikename');
+        	$school = I('school');
+        	$username = I('username');
+        	$avatar = I('')
+        }
+
+    }
 	
 }
