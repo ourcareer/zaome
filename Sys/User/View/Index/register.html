@@ -1,5 +1,8 @@
 <load href="__PUBLIC__/Home/Css/register.css" />
 <load href="__PUBLIC__/Home/Js/register.js" />
+<script type="text/javascript">
+
+</script>
   <div id="register-modal" class=" fade in col-ld-4" tabindex="-1" role="dialog" aria-labelledby="register-label" aria-hidden="false" style="display: block;">
   
   <div class="register-main center-block">
@@ -16,10 +19,10 @@
       </div>
       <div class="input-group input-group-lg control-group">
             <!-- <label class="control-label" for="inputPassword">验证码</label> -->
-            <input type="text" id="verifycode" name="verifycode" class="span3 form-control" placeholder="请输入验证码"  errormsg="请填写5位验证码" nullmsg="请填写验证码" datatype="*5-5">
+            <input type="text" id="verify" name="verify" class="span3 form-control" placeholder="请输入验证码"  errormsg="请填写5位验证码" nullmsg="请填写验证码" datatype="*5-5">
             <div class="control-group groupstyle">
-                <div class="controls verifyimg">
-                    <img class="verifyimg reloadverify" alt="点击切换" src="{:U('verify')}" style="cursor:pointer;">
+                <div class="controls">
+                    <img class="verifyimg reloadverify" alt="点击切换" src="{:U('User/Index/verify')}" style="cursor:pointer;">
                 </div>
                 <label class="control-label labelstyle"></label>
               <div class="controls Validform_checktip text-warning"></div>
