@@ -69,12 +69,14 @@ class IndexController extends Controller {
             if ($res<1) {
             	$this->error($this->showRegError($res));
             }
-            
+
             /* 验证码是否过期 */
-            $res = $Sms->expireSmscode($mobile, $smscode, 180000);
+            $res = $Sms->expireSmscode($mobile, $smscode, 1800);
             if ($res<1) {
             	$this->error($this->showRegError($res));
             }
+            // dump(I());
+            // exit();
             /* 注册开始 */
             $uid = $User->register($mobile);
 			if($uid > 0){ //注册成功
