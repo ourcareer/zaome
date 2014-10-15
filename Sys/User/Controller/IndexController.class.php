@@ -55,10 +55,10 @@ class IndexController extends Controller {
 			 * 测试的时候关闭
 			 */
 			
-			$verify = I('verify');
-			if(!check_verify($verify)){
-				$this->error('验证码输入错误！');
-			}
+			// $verify = I('verify');
+			// if(!check_verify($verify)){
+			// 	$this->error('验证码输入错误！');
+			// }
 			
 			/* 调用注册接口注册用户 */
             $User = new UserApi;
@@ -296,6 +296,18 @@ class IndexController extends Controller {
 				$rt['code'] = '20021115';
 			    $rt['msg'] = 'succeed';
 			    $rt['result']['token_access'] = session('user_auth_sign');
+			    $rt['result']['uid'] = $uid;
+
+			    $User = D('user');
+			    $map['uid'] = $uid;
+			    $userdata = $User->where($map)->find();
+			    $rt['result']['school'] = $userdata['school'];
+			    $rt['result']['nikename'] = $userdata['nikename'];
+			    $rt['result']['username'] = $userdata['username'];
+			    $avatarid = $userdata['avatar'];
+			    $Picture = D('picture');
+			    $avatarurl = $Picture->getFieldByid($avatarid,'url');
+			    $rt['result']['avatar'] = $avatarurl;
 			    // $rt['result']['token_access'] = session('user_auth_sign');
 				$this->ajaxReturn($rt);			    				
 			} else {
@@ -319,16 +331,16 @@ class IndexController extends Controller {
      * 上传图片
      * @author ancon <zhongyu@buaa.edu.cn>
      */
-    public function uploadFace(){
+    public function uploadAvatar(){
 
         //测试阶段,先注释.
-/*
+
         if (!$uid = is_login()) {
             $rt['code'] = '-1';
             $rt['msg'] = '请先登录！';
             $this->ajaxReturn($rt); 
         }
-*/
+
 
         $pictureconfig = C('PICTURE_UPLOAD');
         $Api = new \Think\Upload($pictureconfig);// 实例化上传类
@@ -341,22 +353,43 @@ class IndexController extends Controller {
             $info[0]['create_time'] = NOW_TIME;
             $info[0]['author'] = $uid;
             $info[0]['ip'] = get_client_ip();
+
             $Picture = D('picture');
             $data = $Picture->create($info[0]);
-            $Picture->add($data);
+            $pictureid = $Picture->add($data);
 
-            $User = D('user');
-            $userdata['avatar'] = $info[0][url];
-            $avatar = $User->create($userdata);
-            $User->save($avatar);
+            if ($pictureid) {
+	            $User = D('user');
+	            $userdata['avatar'] = $pictureid;
+	            $userdata['uid'] = $uid;
+	            $userdata = $User->create($userdata);
+	            $avatar = $User->save();
 
-            // return $info[0]['url'];
-            dump($pictureconfig);
-            dump($info);
-            exit();
-            $this->success('上传成功！');
+	            $rt['code'] = '200212116';
+	            $rt['msg'] = 'succeed';
+	            $this->ajaxReturn($rt);		            
+            }
         }
     }
 
+    /**
+     * 更新用户信息
+     */
+    public function userinfo(){
+        if (!$uid = is_login()) {
+            $rt['code'] = '-1';
+            $rt['msg'] = '请先登录！';
+            $this->ajaxReturn($rt); 
+        }
+        if (IS_POST) {
+        	$data['nikename'] = I('nikename');
+        	$data['school'] = I('school');
+        	$data['username'] = I('username');
+        	$data['uid'] = $uid;
+        	$User = D('user');
+        	$User->create();
+        }
+
+    }
 	
 }
