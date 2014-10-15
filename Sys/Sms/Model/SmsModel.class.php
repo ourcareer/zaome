@@ -74,13 +74,19 @@ class SmsModel extends Model{
 	 * @param string $smscode 短信验证码
 	 * @return boolean		true - 验证码有效, false - 验证码过期
 	 */
-	public function expireSmscode($mobile, $smscode, $expire = 1800){
-		// $sendtime = $this->where(array('mobile'=>$mobile))->limit(1)->order('sendtime desc')->field('sendtime')->find();
-		$sendtime = $this->getFieldByMobile($mobile,'sendtime');
+	public function expireSmscode($mobile, $smscode, $expire = '1800'){
+		$sendtime = $this->where(array('mobile'=>$mobile,'smscode'=>$smscode))->limit(1)->order('sendtime desc')->field('sendtime')->find();
+		// $sendtime = $this->getFieldByMobile($mobile,'sendtime');
+		$sendtime = $sendtime['sendtime'];
+		// dump($sendtime);
+		// dump($expire);
+		// dump(NOW_TIME);
+		// dump($sendtime+$expire);
+		// exit();
 		if($sendtime + $expire > NOW_TIME){
 			return true;
 		} else {
-			return $this->getError();
+			return '-30';
 		}
 	}
 
