@@ -55,10 +55,11 @@ class IndexController extends Controller {
 			 * 测试的时候关闭
 			 */
 			
-			// $verify = I('verify');
-			// if(!check_verify($verify)){
-			// 	$this->error('验证码输入错误！');
-			// }
+			$verify = I('verify');
+			dump($verify);
+			if(!check_verify($verify)){
+				$this->error('验证码输入错误！');
+			}
 			
 			/* 调用注册接口注册用户 */
             $User = new UserApi;
@@ -67,16 +68,14 @@ class IndexController extends Controller {
             /* 验证码是否正确 */
             $res = $Sms->checkSmscode($mobile, $smscode);
             if ($res<1) {
-            	$this->error($this->showRegError($res));
+            	$this->error('短信验证码不正确');
             }
-
+ 
             /* 验证码是否过期 */
             $res = $Sms->expireSmscode($mobile, $smscode, 1800);
             if ($res<1) {
-            	$this->error($this->showRegError($res));
+            	$this->error('短信验证码过期');
             }
-            // dump(I());
-            // exit();
             /* 注册开始 */
             $uid = $User->register($mobile);
 			if($uid > 0){ //注册成功

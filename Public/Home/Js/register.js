@@ -3,7 +3,7 @@ var count = 60; //间隔函数，1秒执行
 var curCount;//当前剩余秒数
 function sendMessage() {
     var codeurl = $('#getsmscode').val();
-    var codedata = "mobile=" + $("#mobile").val() + '&' + "verify=" + $('#verifycode').val();
+    // var codedata = "mobile=" + $("#mobile").val() + '&' + "verify=" + $('#verify').val();
             curCount = count;
             
             //设置button效果，开始计时
@@ -17,7 +17,7 @@ function sendMessage() {
                 data: codedata,
                 success: function(d){
                     if (d.code == '200191905'){
-                        alert("验证码发送成功");
+                        alert("验证码已成功发送，请耐心等待！");
                     }
                 }
             });
@@ -40,4 +40,16 @@ $(function(){
  $("#mobilecode").click(function(){
     sendMessage();
  })
+});
+
+$(function(){
+var verifyimg = $(".verifyimg").attr("src");
+    $(".reloadverify").click(function(){
+      // alert(verifyimg);
+        if( verifyimg.indexOf('?')>0){
+            $(".verifyimg").attr("src", verifyimg+'&random='+Math.random());
+        }else{
+            $(".verifyimg").attr("src", verifyimg.replace(/\?.*$/,'')+'?'+Math.random());
+        }
+    });
 });
