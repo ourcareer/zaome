@@ -3,7 +3,7 @@ var count = 60; //间隔函数，1秒执行
 var curCount;//当前剩余秒数
 function sendMessage() {
     var codeurl = $('#getsmscode').val();
-    // var codedata = "mobile=" + $("#mobile").val() + '&' + "verify=" + $('#verify').val();
+    var codedata = "mobile=" + $("#mobile").val() + '&' + "verify=" + $('#verify').val();
             curCount = count;
             
             //设置button效果，开始计时

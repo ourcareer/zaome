@@ -54,13 +54,12 @@ class IndexController extends Controller {
 			/**
 			 * 测试的时候关闭
 			 */
-			
+/*			
 			$verify = I('verify');
-			dump($verify);
 			if(!check_verify($verify)){
 				$this->error('验证码输入错误！');
 			}
-			
+*/			
 			/* 调用注册接口注册用户 */
             $User = new UserApi;
             /* 调用短信接口验证 */
