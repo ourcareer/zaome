@@ -1,0 +1,212 @@
+body,div,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,iframe,input,textarea,select,label,article,aside,footer,header,menu,nav,section,time,audio,video{margin:0;padding:0;}
+article,aside,footer,header,hgroup,nav,section,audio,canvas,video{display:block;}
+body{font-size:100%;font-family:Helvetica,STHeiti,Droid Sans Fallback;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0);}
+textarea{resize:none;}
+iframe,img{border:0;}
+ul,ol{list-style:none;}
+input,select,textarea{outline:0;-webkit-user-modify:read-write-plaintext-only;}
+input{-webkit-appearance:none;}
+a{text-decoration:none;}
+h1,h2,h3,h4{font-weight:normal;}
+body,html{width:100%;height:100%;position:relative;font-family:"微软雅黑";}
+
+.global{position:relative;height:100%;width:100%;-webkit-transform-style:preserve-3d;-webkit-backface-visibility:hidden;}
+.screen{-webkit-transform-style:preserve-3d;}
+.ease{-webkit-transition:all 1.0s ease-in-out;}
+.page{position:relative;overflow:hidden;}
+.page .inner{position:relative;width:100%;height:100%;}
+.swipe_tip{-webkit-animation:2s swipe_tip ease-in-out infinite;animation:2s swipe_tip ease-in-out infinite;}
+@-webkit-keyframes swipe_tip {
+    0% {
+        opacity: 1;
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+    }
+    50% {
+        opacity: 1;
+        -webkit-transform: translateY(-20px);
+        transform: translateY(-20px);
+    }
+}
+@keyframes swipe_tip {
+    0% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+        transform: translateY(0);
+    }
+    50% {
+        opacity: 1;
+        -webkit-transform: translateY(-20px);
+        -ms-transform: translateY(-20px);
+        transform: translateY(-20px);
+    }
+}
+.share_btn{position:absolute;left:50%;top:50%;width:100px;height:50px;margin:-25px 0 0 -50px;}
+.swipe_tip{position:absolute;left:50%;bottom:15px;width:32px;height:32px;margin-left:-16px;background:url(../Image/arr_down.png) no-repeat;background-size:32px 32px;z-index:5;}
+
+@media screen and (max-height:480px) {}
+.layer_bg{position:absolute;left:0;top:0;width:100%;height:100%;}
+
+/* body_1 */
+/*.body_1*/{overflow:hidden;-webkit-backface-visibility:hidden;}
+
+/*.body_1*/ .page_1{background-color:#580e8b;}
+/*.body_1*/ .page_1 .logo_1{padding:65% 0 5%;}
+/*.body_1*/ .page_1 .logo_1,
+/*.body_1*/ .page_1 .logo_2{text-align:center;}
+
+/*.body_1*/ .page .shape{position:absolute;width:100%;text-align:center;}
+/*.body_1*/ .page .shape_1{top:5%;}
+/*.body_1*/ .page .shape_2{top:35%;}
+/*.body_1*/ .page .shape_3{top:49%;}
+
+.body_1 .page_2{background-color:#fed900;}
+/*.body_1*/ 
+
+/*.body_1*/ .page_3{background-color:#580e8b;}
+/*.body_1*/ .page_3 .logo_1{padding:35% 0 15%;}
+/*.body_1*/ .page_3 .logo_1,
+/*.body_1*/ .page_3 .logo_2{text-align:center;}
+/*.body_1*/ .page_3 .btn{width:300px;height:120px;position:relative;padding-top:50px;text-align:center;margin:0 auto;}
+/*.body_1*/ .page_3 .btn a{float:left; position:relative;display: inline-block;padding-top:30px;}
+.page_3 .btn .qr_code{display:inline-block;float:right;}
+
+.page_4{background-color:#00b8e5;}
+.page_4 .btn{padding-top:80%;text-align:center;}
+.page_4 .btn a{margin:0 15px;}
+
+.dialogwrap{position:fixed;left:0;top:0;width:100%;height:100%;z-index:999;}
+.dialogwrap .dialogbg{position:absolute;left:0;top:0;width:100%;height:100%;background-color:#000;opacity:0.7;}
+.dialogwrap .dialogbox{position:absolute;left:50%;top:50%;width:250px;margin:-150px 0 0 -125px;background-color:#FFF;font-size:15px;}
+.dialogwrap .dialogbox .hd{height:42px;line-height:42px;background-color:#580e8b;text-align:center;color:#FFF;}
+.dialogwrap .dialogbox .bd{padding:20px 15px;line-height:28px;}
+.dialogwrap .dialogbox .ft{border-top:1px dotted #9b9b9b;padding:18px 0;text-align:center;}
+.dialogwrap .dialogbox .ft a{border-radius:5px;padding:8px 15px;background-color:#580e8b;color:#FFF;}
+
+/* animate */
+/*.body_1*/ .page_1 .layer_bg,
+/*.body_1*/ .page_2 .layer_bg,
+/*.body_1*/ .page_3 .layer_bg,
+/*.body_1*/ .page .current .btn,
+/*.body_1*/ .page .current .item,
+/*.body_1*/ .page .current .shape,
+/*.body_1*/ .page .current .shape_2 img,
+/*.body_1*/ .page .current .logo_1,
+/*.body_1*/ .page .current .logo_2{
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  -webkit-animation-delay: 0.5s;
+          animation-delay: 0.5s;
+}
+/*.body_1*/ .page .current .logo_1{
+  -webkit-animation-name: fadeInDown;
+          animation-name: fadeInDown;
+}
+/*.body_1*/ .page .current .logo_2{
+  -webkit-animation-name: fadeInUp;
+          animation-name: fadeInUp;
+}
+@-webkit-keyframes fadeInUp2 {
+	0% {
+	opacity:0.3;
+	-webkit-transform:translateY(20px);
+	transform:translateY(20px)
+}
+100% {
+	opacity:1;
+	-webkit-transform:translateY(0);
+	transform:translateY(0)
+}
+}@keyframes fadeInUp {
+	0% {
+	opacity:0.3;
+	-webkit-transform:translateY(20px);
+	-ms-transform:translateY(20px);
+	transform:translateY(20px)
+}
+100% {
+	opacity:1;
+	-webkit-transform:translateY(0);
+	-ms-transform:translateY(0);
+	transform:translateY(0)
+}
+}.fadeInUp2 {
+	-webkit-animation-name:fadeInUp;
+	animation-name:fadeInUp
+}
+
+.fadeInUp2 {
+  -webkit-animation-name: fadeInUp2;
+          animation-name: fadeInUp2;
+}
+/*.body_1*/ .page_1 .layer_bg,
+/*.body_1*/ .page_2 .layer_bg,
+/*.body_1*/ .page_3 .layer_bg{
+  -webkit-animation-name: fadeInUp2;
+          animation-name: fadeInUp2;
+  -webkit-animation-duration: 5s;
+          animation-duration: 5s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+/*.body_1*/ .page .current .shape_1{
+  -webkit-animation-name: fadeInUp;
+          animation-name: fadeInUp;
+  -webkit-animation-delay: 0.6s;
+          animation-delay: 0.6s;
+}
+
+/*.body_1*/ .page .current .shape_2{
+  -webkit-animation-name: fadeInLeftBig;
+          animation-name: fadeInLeftBig;
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+}
+
+/*.body_1*/ .page .current .shape_3{
+  -webkit-animation-name: fadeInRightBig;
+          animation-name: fadeInRightBig;
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+}
+
+/*.body_1*/ .page .current .shape_2 img{
+  -webkit-animation-name: tada;
+          animation-name: tada;
+  -webkit-animation-duration: 5s;
+          animation-duration: 5s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+/*.body_1*/ .page .current .item_1{
+  -webkit-animation-name: fadeInUpBig;
+          animation-name: fadeInUpBig;
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+}
+
+/*.body_1*/ .page .current .item_2{
+  -webkit-animation-name: fadeInUpBig;
+          animation-name: fadeInUpBig;
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s;
+}
+
+/*.body_1*/ .page .current .item_3{
+  -webkit-animation-name: fadeInUpBig;
+          animation-name: fadeInUpBig;
+  -webkit-animation-delay: 0.4s;
+          animation-delay: 0.4s;
+}
+
+/*.body_1*/ .page .current .btn{
+  -webkit-animation-name: fadeInUpBig;
+          animation-name: fadeInUpBig;
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s;
+}

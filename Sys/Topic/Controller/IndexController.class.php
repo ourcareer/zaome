@@ -18,6 +18,10 @@ class IndexController extends Controller {
         $this->display();
     }
 
+    public function main(){
+        $this->display();
+    }
+
     /**
      * 输出话题列表
      * @param int $page
