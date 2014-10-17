@@ -1,68 +1,26 @@
 body{
-	background-color: #D0D8E1;
+	background-color: #acbea8;
+	overflow: hidden;
+}
+.modal-header{
+	border:none;
 }
 .register-main{
-	position: relative;
-	width: 500px;
-	margin: 100px auto;
+	margin-top:60px;
 }
 .center-block{
 	text-align: center;
 	font-family: "微软雅黑";
 }
-.input-group-lg{
-	margin: 10px 0;
+.smsinput{
+	padding-top:20px;
 }
-.agreement{
-	margin-top: 10px;
-}
-.mobinput{
-	display: inline-block;
-	float: left;
-	width: 100px;
-}
-.mobilecode{
-	position: absolute;
-	display: inline-block;
-	float: left;
-	margin-left: 68px;
-}
-.verifyimg{
-	display: inline-block;
-	float: left;
-	position: relative;
-}
-.groupstyle{
-	display: inline-block;
-	float: left;
-}
-#verify{
-	display: inline-block;
-	float: left;
-	width: 	308px;
-}
-/*.labelstyle{
-	display: block;
-	height: 10px;
-	width: 100%;
-	border:1px solid green;
-	float: left;
-}*/
+.register-main h2 {text-align: center;color: #555A5E; font-family: "微软雅黑";}
+.register-main p {text-align: center;margin-top: 20px;}
+.input-captcha { padding: 0;}
+.modal-body .input-group {margin-bottom: 20px;}
+.input-captcha img {height:100%;width: 100%;margin-right: 100px;}
 .reloadverify{
-	width: 150px;
-	height: 46px;
-	position: relative;
-	float: right;
-	margin-left: 309px;
-	margin-top: -46px;
-	border:1px solid #ccc;
-	border-top-right-radius: 5px;
-	border-bottom-right-radius: 5px;	
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;	
 }
-/*.text-warning{
-	float: left;
-	display: block;
-	height:10px;
-	width: 100%;
-	border:1px solid red;
-}*/

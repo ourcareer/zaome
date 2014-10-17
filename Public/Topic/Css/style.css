@@ -48,28 +48,28 @@ body,html{width:100%;height:100%;position:relative;font-family:"微软雅黑";}
 @media screen and (max-height:480px) {}
 .layer_bg{position:absolute;left:0;top:0;width:100%;height:100%;}
 
-/* body_1 */
-/*.body_1*/{overflow:hidden;-webkit-backface-visibility:hidden;}
 
-/*.body_1*/ .page_1{background-color:#580e8b;}
-/*.body_1*/ .page_1 .logo_1{padding:65% 0 5%;}
-/*.body_1*/ .page_1 .logo_1,
-/*.body_1*/ .page_1 .logo_2{text-align:center;}
+body{overflow:hidden;-webkit-backface-visibility:hidden;}
 
-/*.body_1*/ .page .shape{position:absolute;width:100%;text-align:center;}
-/*.body_1*/ .page .shape_1{top:5%;}
-/*.body_1*/ .page .shape_2{top:35%;}
-/*.body_1*/ .page .shape_3{top:49%;}
+.page_1{background-color:#580e8b;}
+.page_1 .logo_1{padding:65% 0 5%;}
+.page_1 .logo_1,
+.page_1 .logo_2{text-align:center;}
+
+.page .shape{position:absolute;width:100%;text-align:center;}
+.page .shape_1{top:5%;}
+.page .shape_2{top:35%;}
+.page .shape_3{top:49%;}
 
 .body_1 .page_2{background-color:#fed900;}
-/*.body_1*/ 
 
-/*.body_1*/ .page_3{background-color:#580e8b;}
-/*.body_1*/ .page_3 .logo_1{padding:35% 0 15%;}
-/*.body_1*/ .page_3 .logo_1,
-/*.body_1*/ .page_3 .logo_2{text-align:center;}
-/*.body_1*/ .page_3 .btn{width:300px;height:120px;position:relative;padding-top:50px;text-align:center;margin:0 auto;}
-/*.body_1*/ .page_3 .btn a{float:left; position:relative;display: inline-block;padding-top:30px;}
+
+.page_3{background-color:#580e8b;}
+.page_3 .logo_1{padding:35% 0 15%;}
+.page_3 .logo_1,
+.page_3 .logo_2{text-align:center;}
+.page_3 .btn{width:300px;height:120px;position:relative;padding-top:50px;text-align:center;margin:0 auto;}
+.page_3 .btn a{float:left; position:relative;display: inline-block;padding-top:30px;}
 .page_3 .btn .qr_code{display:inline-block;float:right;}
 
 .page_4{background-color:#00b8e5;}
@@ -85,15 +85,15 @@ body,html{width:100%;height:100%;position:relative;font-family:"微软雅黑";}
 .dialogwrap .dialogbox .ft a{border-radius:5px;padding:8px 15px;background-color:#580e8b;color:#FFF;}
 
 /* animate */
-/*.body_1*/ .page_1 .layer_bg,
-/*.body_1*/ .page_2 .layer_bg,
-/*.body_1*/ .page_3 .layer_bg,
-/*.body_1*/ .page .current .btn,
-/*.body_1*/ .page .current .item,
-/*.body_1*/ .page .current .shape,
-/*.body_1*/ .page .current .shape_2 img,
-/*.body_1*/ .page .current .logo_1,
-/*.body_1*/ .page .current .logo_2{
+.page_1 .layer_bg,
+.page_2 .layer_bg,
+.page_3 .layer_bg,
+.page .current .btn,
+.page .current .item,
+.page .current .shape,
+.page .current .shape_2 img,
+.page .current .logo_1,
+.page .current .logo_2{
   -webkit-animation-duration: 1s;
           animation-duration: 1s;
   -webkit-animation-fill-mode: both;
@@ -101,11 +101,11 @@ body,html{width:100%;height:100%;position:relative;font-family:"微软雅黑";}
   -webkit-animation-delay: 0.5s;
           animation-delay: 0.5s;
 }
-/*.body_1*/ .page .current .logo_1{
+.page .current .logo_1{
   -webkit-animation-name: fadeInDown;
           animation-name: fadeInDown;
 }
-/*.body_1*/ .page .current .logo_2{
+.page .current .logo_2{
   -webkit-animation-name: fadeInUp;
           animation-name: fadeInUp;
 }
@@ -142,9 +142,9 @@ body,html{width:100%;height:100%;position:relative;font-family:"微软雅黑";}
   -webkit-animation-name: fadeInUp2;
           animation-name: fadeInUp2;
 }
-/*.body_1*/ .page_1 .layer_bg,
-/*.body_1*/ .page_2 .layer_bg,
-/*.body_1*/ .page_3 .layer_bg{
+.page_1 .layer_bg,
+.page_2 .layer_bg,
+.page_3 .layer_bg{
   -webkit-animation-name: fadeInUp2;
           animation-name: fadeInUp2;
   -webkit-animation-duration: 5s;
@@ -153,28 +153,28 @@ body,html{width:100%;height:100%;position:relative;font-family:"微软雅黑";}
           animation-iteration-count: infinite;
 }
 
-/*.body_1*/ .page .current .shape_1{
+.page .current .shape_1{
   -webkit-animation-name: fadeInUp;
           animation-name: fadeInUp;
   -webkit-animation-delay: 0.6s;
           animation-delay: 0.6s;
 }
 
-/*.body_1*/ .page .current .shape_2{
+.page .current .shape_2{
   -webkit-animation-name: fadeInLeftBig;
           animation-name: fadeInLeftBig;
   -webkit-animation-delay: 0s;
           animation-delay: 0s;
 }
 
-/*.body_1*/ .page .current .shape_3{
+.page .current .shape_3{
   -webkit-animation-name: fadeInRightBig;
           animation-name: fadeInRightBig;
   -webkit-animation-delay: 0s;
           animation-delay: 0s;
 }
 
-/*.body_1*/ .page .current .shape_2 img{
+.page .current .shape_2 img{
   -webkit-animation-name: tada;
           animation-name: tada;
   -webkit-animation-duration: 5s;
@@ -183,28 +183,28 @@ body,html{width:100%;height:100%;position:relative;font-family:"微软雅黑";}
           animation-iteration-count: infinite;
 }
 
-/*.body_1*/ .page .current .item_1{
+.page .current .item_1{
   -webkit-animation-name: fadeInUpBig;
           animation-name: fadeInUpBig;
   -webkit-animation-delay: 0s;
           animation-delay: 0s;
 }
 
-/*.body_1*/ .page .current .item_2{
+.page .current .item_2{
   -webkit-animation-name: fadeInUpBig;
           animation-name: fadeInUpBig;
   -webkit-animation-delay: 0.2s;
           animation-delay: 0.2s;
 }
 
-/*.body_1*/ .page .current .item_3{
+.page .current .item_3{
   -webkit-animation-name: fadeInUpBig;
           animation-name: fadeInUpBig;
   -webkit-animation-delay: 0.4s;
           animation-delay: 0.4s;
 }
 
-/*.body_1*/ .page .current .btn{
+.page .current .btn{
   -webkit-animation-name: fadeInUpBig;
           animation-name: fadeInUpBig;
   -webkit-animation-delay: 0.3s;

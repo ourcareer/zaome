@@ -1,50 +1,40 @@
 body{
-	background-color: #D0D8E1;
+	background-color: #acbea8;
+	overflow: hidden;
 }
-.logincon{
-	width: 500px;
-	margin: 108px auto;
+#login{
+	position: relative;
+	height: auto;
+	width: 100%;
+}
+.modal-content{
+	margin: 100px auto;
 }
 .modal-title{
 	text-align: center;
 	font-family: "微软雅黑";
 }
-.verifyimg{
-	display: inline-block;
-	float: left;
-	position: relative;
+.modal-title{
+	text-align: center;
 }
-.groupstyle{
-	display: inline-block;
-	float: left;
+.input-group {
+	margin-bottom: 10px;
 }
-#inputPassword{
-	display: inline-block;
-	float: left;
-	width: 	308px;
+.input-captcha {
+	padding: 0;
 }
-/*.labelstyle{
-	display: block;
-	height: 10px;
+.input-captcha img {
+	height:100%;
 	width: 100%;
-	border:1px solid green;
-	float: left;
-}*/
+	margin-right: 100px;
+}
+.error {
+ 	color: red;
+ }
+.error {
+	color: red;
+}
 .reloadverify{
-	width: 150px;
-	height: 46px;
-	position: relative;
-	float: right;
-	margin-left: 309px;
-	margin-top: -46px;
-	border:1px solid #ccc;
-	border-top-right-radius: 5px;
-	border-bottom-right-radius: 5px;	
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;	
 }
-/*.text-warning{
-	float: left;
-	display: block;
-	height:10px;
-	width: 100%;
-	border:1px solid red;
-}*/

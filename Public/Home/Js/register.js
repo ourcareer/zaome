@@ -77,7 +77,6 @@ $(function(){
 $(function(){
 var verifyimg = $(".verifyimg").attr("src");
     $(".reloadverify").click(function(){
-      // alert(verifyimg);
         if( verifyimg.indexOf('?')>0){
             $(".verifyimg").attr("src", verifyimg+'&random='+Math.random());
         }else{
@@ -85,3 +84,11 @@ var verifyimg = $(".verifyimg").attr("src");
         }
     });
 });
+
+$(function(){
+    var currentheight = $(document).height();
+    var afterheight = (currentheight - 82) + 'px';
+    var registerheight = $('#register-content');
+    registerheight.css('height',afterheight)
+
+})
