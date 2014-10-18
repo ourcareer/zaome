@@ -1,14 +1,33 @@
 body{
-	background-color: #acbea8;
+	width: 100%;
+    height: 100%;
+    position: relative;
+    background: url(../Image/background.png) left top no-repeat;
+    background-size:100% 100%;
+    text-align: center;
 	overflow: hidden;
 }
-#login{
+
+#mask{
+	height:100%;
+	width:100%;
+	position:absolute;
+	top:0;
+	left:0;
+	background:#000;
+	filter:alpha(opacity=55);
+    -moz-opacity:0.55;
+    -khtml-opacity: 0.55;
+    opacity: 0.55;
+	display:none;
+}
+
+.login{
 	position: relative;
-	height: auto;
-	width: 100%;
+	z-index: 1;
 }
 .modal-content{
-	margin: 100px auto;
+	margin: 150px auto 0;
 }
 .modal-title{
 	text-align: center;

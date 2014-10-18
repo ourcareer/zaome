@@ -1,22 +1,38 @@
 body{
-	background-color: #acbea8;
+	width: 100%;
+    height: 100%;
+    position: relative;
+    background: url(../Image/background.png) left top no-repeat;
+    background-size:100% 100%;
+    text-align: center;
+    z-index:-1;
 	overflow: hidden;
 }
 .modal-header{
 	border:none;
 }
 .register-main{
-	margin-top:60px;
+	margin-top:100px;
 }
 .center-block{
 	text-align: center;
 	font-family: "微软雅黑";
 }
+
+.modal-header .reg-close{
+	position: absolute;
+	top:101px;
+	right: 45px;
+	background: url(../Image/register-close.png) no-repeat;
+	width: 35px;
+	height: 35px;
+	border: none;
+}
 .smsinput{
 	padding-top:20px;
 }
-.register-main h2 {text-align: center;color: #555A5E; font-family: "微软雅黑";}
-.register-main p {text-align: center;margin-top: 20px;}
+.register-main h2 {font-size:30px;text-align: center;color: #fff; font-family: "微软雅黑";}
+.register-main p {text-align: center;margin-top: 20px;color: #fff;}
 .input-captcha { padding: 0;}
 .modal-body .input-group {margin-bottom: 20px;}
 .input-captcha img {height:100%;width: 100%;margin-right: 100px;}
