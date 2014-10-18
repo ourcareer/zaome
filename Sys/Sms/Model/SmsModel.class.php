@@ -106,7 +106,7 @@ class SmsModel extends Model{
 		}
 	}
 
-	public function sendSMS($mobile){
+	public function sendSMS($mobile,$use){
 		$tempId = C("TEMPLATEID")?C("TEMPLATEID"):1;
 		$LimitTime = C("LIMITTIME")?C("LIMITTIME"):5;
 		$smscode = $this->random();
@@ -119,6 +119,7 @@ class SmsModel extends Model{
 			$data=array(
 				'mobile'	=>	$mobile,
 				'smscode'	=>	$smscode,
+				'use'		=>	$use,
 				);
 
 			$data = $this->create($data);
