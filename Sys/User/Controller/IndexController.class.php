@@ -396,7 +396,9 @@ class IndexController extends Controller {
         }
         if (IS_POST) {
 
-        	if ($_FILES) {
+        	if ($_FILES["tmp_name"]) {
+        		// dump($_FILES);
+        		// exit();
         		$data['avatar'] = $this->uploadAvatar($uid);
         	}
         	$data['uid'] = $uid;
@@ -404,7 +406,8 @@ class IndexController extends Controller {
         	$data['school'] = I('school');
         	$data['username'] = I('username');
         	$data['gender'] = I('gender');
-        	dump($data);
+        	$data['email'] = I('email');
+        	// dump($data);
         	// exit();
         	$User = D('user');
         	$data = $User->create($data);
