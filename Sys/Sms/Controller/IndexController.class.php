@@ -22,7 +22,8 @@ class IndexController extends Controller {
 			$this->error('验证码输入错误！');
 		}
 */
-		$mobile = I('mobile');        
+		$mobile = I('mobile');
+        $use = I('use');        
     	$Sms = new SmsApi();
     	$res = $Sms->checkMobile($mobile);
     	if (!$res) {
@@ -68,7 +69,7 @@ class IndexController extends Controller {
     	// $smscode = random();
     	// echo($mobile).'<br/>';
     	// echo($smscode).'<br/>';
- 		$result = $Sms->sendSMS($mobile);
+ 		$result = $Sms->sendSMS($mobile,$use);
  		if ($result == '200191913') {
                 $rt['code'] = '200191905';
                 $rt['msg'] = '已经成功发送了！';

@@ -111,9 +111,9 @@ class UserApi extends Api{
      * @param $password 用户的密码
      * @return true 添加成功，false 添加失败
      */
-    public function addPassword($uid, $password){
-        if($this->model->addPassword($uid, $password)){
-            $return = $this->model->addPassword($uid, $password);
+    public function addPassword($uid, $password, $lost){
+        if($this->model->addPassword($uid, $password, $lost)){
+            $return = 1;
         }else{
             $return = $this->model->getError();
         }
