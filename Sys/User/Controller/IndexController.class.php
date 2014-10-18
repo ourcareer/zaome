@@ -38,7 +38,9 @@ class IndexController extends Controller {
 
 	/**
 	 * 注册页面
-	 * @author ancon
+	 * 用post的方式传输
+	 * 需要手机号和短信验证码
+	 * @author ancon<zhongfuzhong@gmail.com>
 	 */
 	public function register(){
 		/*
@@ -67,13 +69,18 @@ class IndexController extends Controller {
             /* 验证码是否正确 */
             $res = $Sms->checkSmscode($mobile, $smscode);
             if ($res<1) {
-            	$this->error('短信验证码不正确');
+				$rt['code'] = '-200211805';
+				$rt['msg'] = '短信验证码不正确！';
+				$this->ajaxReturn($rt);
             }
  
             /* 验证码是否过期 */
-            $res = $Sms->expireSmscode($mobile, $smscode, 1800);
+            $expire = C('EXPIRETIME');
+            $res = $Sms->expireSmscode($mobile, $smscode, $expire);
             if ($res<1) {
-            	$this->error('短信验证码过期');
+				$rt['code'] = '-200211805';
+				$rt['msg'] = '短信验证码过期！';
+				$this->ajaxReturn($rt);            	
             }
             /* 注册开始 */
             $uid = $User->register($mobile);
@@ -329,9 +336,10 @@ class IndexController extends Controller {
 
    /**
      * 上传图片
+     * @param $userinfo int 为用户id,如果存在,则return,如果不存在,则ajaxReturn;
      * @author ancon <zhongyu@buaa.edu.cn>
      */
-    public function uploadAvatar(){
+    public function uploadAvatar($userinfo = ''){
 
         //测试阶段,先注释.
 
@@ -341,39 +349,44 @@ class IndexController extends Controller {
             $this->ajaxReturn($rt); 
         }
 
+        if (IS_POST) {
+	        $pictureconfig = C('PICTURE_UPLOAD');
+	        $Api = new \Think\Upload($pictureconfig);// 实例化上传类
+	        // 上传文件 
+	        $info   =   $Api->upload();
+	        if(!$info) {// 上传错误提示错误信息
+	            $this->error($Api->getError());
+	        }else{// 上传成功
+	            $info[0]['url'] = $pictureconfig['rootPath'].$info[0]['savepath'].$info[0]['savename'];
+	            $info[0]['create_time'] = NOW_TIME;
+	            $info[0]['author'] = $uid;
+	            $info[0]['ip'] = get_client_ip();
 
-        $pictureconfig = C('PICTURE_UPLOAD');
-        $Api = new \Think\Upload($pictureconfig);// 实例化上传类
-        // 上传文件 
-        $info   =   $Api->upload();
-        if(!$info) {// 上传错误提示错误信息
-            $this->error($Api->getError());
-        }else{// 上传成功
-            $info[0]['url'] = $pictureconfig['rootPath'].$info[0]['savepath'].$info[0]['savename'];
-            $info[0]['create_time'] = NOW_TIME;
-            $info[0]['author'] = $uid;
-            $info[0]['ip'] = get_client_ip();
+	            $Picture = D('picture');
+	            $data = $Picture->create($info[0]);
+	            $pictureid = $Picture->add($data);
 
-            $Picture = D('picture');
-            $data = $Picture->create($info[0]);
-            $pictureid = $Picture->add($data);
-
-            if ($pictureid) {
-	            $User = D('user');
-	            $userdata['avatar'] = $pictureid;
-	            $userdata['uid'] = $uid;
-	            $userdata = $User->create($userdata);
-	            $avatar = $User->save();
-
-	            $rt['code'] = '200212116';
-	            $rt['msg'] = 'succeed';
-	            $this->ajaxReturn($rt);		            
-            }
+	            if ($pictureid) {
+		            $User = D('user');
+		            $userdata['avatar'] = $pictureid;
+		            $userdata['uid'] = $uid;
+		            $userdata = $User->create($userdata);
+		            $avatar = $User->save();
+		            if ($userinfo === $uid) {
+		            	return $pictureid;
+		            } else {
+		            	$rt['code'] = '200212116';
+			            $rt['msg'] = 'succeed';
+			            $this->ajaxReturn($rt);		            
+		            }
+	            }
+	        }
         }
     }
 
     /**
      * 更新用户信息
+     * POST 过来数据
      */
     public function userinfo(){
         if (!$uid = is_login()) {
@@ -382,14 +395,27 @@ class IndexController extends Controller {
             $this->ajaxReturn($rt); 
         }
         if (IS_POST) {
-        	$data['nikename'] = I('nikename');
+
+        	if ($_FILES) {
+        		$data['avatar'] = $this->uploadAvatar($uid);
+        	}
+        	$data['uid'] = $uid;
+        	$data['nickname'] = I('nickname');
         	$data['school'] = I('school');
         	$data['username'] = I('username');
-        	$data['uid'] = $uid;
+        	$data['gender'] = I('gender');
+        	dump($data);
+        	// exit();
         	$User = D('user');
-        	$User->create();
+        	$data = $User->create($data);
+        	if ($result = $User->save()) {
+        		$rt['code'] = '200212119';
+        		$rt['msg'] = 'succeed';
+        	} else {
+        		$rt['code'] = '-200212119';
+        		$rt['msg'] = '更新用户信息失败！';
+        	}        	
+        	$this->ajaxReturn($rt);
         }
-
-    }
-	
+    }	
 }

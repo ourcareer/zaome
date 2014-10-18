@@ -168,8 +168,9 @@ return array(
     
     /* 短信配置 */
     //TODO 配置好短信平台
-    'TEMPLATEID'           =>  '4736',
-    'TIME_LIMIT'            => '5',
+    'TEMPLATEID'           =>  '4736', //短信模板代号
+    'LIMITTIME'            => '5', //提示告诉几分钟输入
+    'EXPIRETIME'           =>   '300', //短信有效时间
 
 
     'accountSid'=> '8a48b551488d07a801489aab991e03b4',//主帐号,对应开官网发者主账号下的 ACCOUNT SID
