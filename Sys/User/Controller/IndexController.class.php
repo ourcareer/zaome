@@ -367,14 +367,14 @@ class IndexController extends Controller {
 	            $pictureid = $Picture->add($data);
 
 	            if ($pictureid) {
-		            $User = D('user');
-		            $userdata['avatar'] = $pictureid;
-		            $userdata['uid'] = $uid;
-		            $userdata = $User->create($userdata);
-		            $avatar = $User->save();
 		            if ($userinfo === $uid) {
 		            	return $pictureid;
 		            } else {
+			            $User = D('user');
+			            $userdata['avatar'] = $pictureid;
+			            $userdata['uid'] = $uid;
+			            $userdata = $User->create($userdata);
+			            $avatar = $User->save();
 		            	$rt['code'] = '200212116';
 			            $rt['msg'] = 'succeed';
 			            $this->ajaxReturn($rt);		            
@@ -396,17 +396,19 @@ class IndexController extends Controller {
         }
         if (IS_POST) {
 
-        	if ($_FILES["tmp_name"]) {
-        		// dump($_FILES);
-        		// exit();
-        		$data['avatar'] = $this->uploadAvatar($uid);
-        	}
         	$data['uid'] = $uid;
         	$data['nickname'] = I('nickname');
         	$data['school'] = I('school');
         	$data['username'] = I('username');
         	$data['gender'] = I('gender');
         	$data['email'] = I('email');
+        	if ($_FILES["avatar"]["name"][0] && $_FILES["avatar"]["tmp_name"][0]) {
+        		// dump($_FILES["avatar"]["name"][0]);
+        		// dump($_FILES["avatar"]["tmp_name"][0]);
+        		// dump($_FILES);
+        		// exit();
+        		$data['avatar'] = $this->uploadAvatar($uid);
+        	}
         	// dump($data);
         	// exit();
         	$User = D('user');
@@ -417,7 +419,8 @@ class IndexController extends Controller {
         	} else {
         		$rt['code'] = '-200212119';
         		$rt['msg'] = '更新用户信息失败！';
-        	}        	
+        	}
+        	dump($result);        	
         	$this->ajaxReturn($rt);
         }
     }	
