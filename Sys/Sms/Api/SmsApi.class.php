@@ -21,6 +21,10 @@ class SmsApi extends Api{
         return $this->model->expireSmscode($mobile, $smscode,$expire);
     }
  
+     public function checkTimes($mobile, $limittime){
+        return $this->model->checkTimes($mobile, $limittime);
+    }
+ 
     /**
      * 检测手机
      * @param  string  $mobile  手机
