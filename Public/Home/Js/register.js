@@ -1,3 +1,14 @@
+$(function(){
+var verifyimg = $(".verifyimg").attr("src");
+    $(".reloadverify").click(function(){
+        if( verifyimg.indexOf('?')>0){
+            $(".verifyimg").attr("src", verifyimg+'&random='+Math.random());
+        }else{
+            $(".verifyimg").attr("src", verifyimg.replace(/\?.*$/,'')+'?'+Math.random());
+        }
+    });
+});
+
 var InterValObj; //timer变量，控制时间
 var count = 90; //间隔函数，1秒执行
 var curCount;//当前剩余秒数
@@ -35,60 +46,64 @@ function SetRemainTime() {
                 $('#mobilecode').val("" + curCount + "秒后再次获取");
             }
         }
-// var code ; //在全局定义验证码
-// function createCode(){ 
-//     code = "";
-//     var codeLength = 5;//验证码的长度
-//     var checkCode = document.getElementById("checkCode");
-//     checkCode.value = "";
-
-//     var selectChar = new Array(0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','J','K','L','M','N','P','Q','R','S','T','U','V','W','X','Y','Z');
-
-//     for(var i=0;i<codeLength;i++) {
-//        var charIndex = Math.floor(Math.random()*34);
-//        code +=selectChar[charIndex];
-//     }
-//     if(code.length != codeLength){
-//        createCode();
-//     }
-//     checkCode.value = code;
-// }
-
-// function validate () {//验证验证码正确与否
-    
-//     var inputCode = document.getElementById("verifycode").value.toUpperCase();
-
-//     if(inputCode.length <=0) {
-//        alert("请输入验证码！");
-//        return false;
-//     }
-//     else if(inputCode != code ){
-//        alert("验证码输入错误！");
-//        createCode();
-//        return false;
-//     }
-// }
 $(function(){
  $("#mobilecode").click(function(){
     sendMessage();
  })
 });
-
-$(function(){
-var verifyimg = $(".verifyimg").attr("src");
-    $(".reloadverify").click(function(){
-        if( verifyimg.indexOf('?')>0){
-            $(".verifyimg").attr("src", verifyimg+'&random='+Math.random());
-        }else{
-            $(".verifyimg").attr("src", verifyimg.replace(/\?.*$/,'')+'?'+Math.random());
-        }
-    });
-});
-
 $(function(){
     var currentheight = $(document).height();
     var afterheight = (currentheight - 82) + 'px';
     var registerheight = $('#register-content');
     registerheight.css('height',afterheight)
-
 })
+function checkSubmitMobil() {
+    var mobileerror = $('#mobile-error');
+    var mobileaddon = $('.mobileaddon');
+    var glyphicon = $('#glyphicon');
+    var mobile = $("#mobile").val();
+    // alert(mobile).length();
+    if (mobile == "") { 
+        mobileaddon.removeClass('success');
+        mobileaddon.addClass('error');
+        glyphicon.removeClass('has-success');
+        glyphicon.addClass('has-error');
+        mobileerror.text('手机号码不能为空！')
+        mobileerror.css('display', 'block');
+        mobileerror.focus(); 
+        return false;
+        
+    }
+    else if (!mobile.match(/^(((13[0-9]{1})|159|153)+\d{8})$/)) { 
+        mobileaddon.removeClass('success');
+        mobileaddon.addClass('error');
+        glyphicon.removeClass('has-success');
+        glyphicon.addClass('has-error');
+        mobileerror.css('display', 'none');
+        mobileerror.text('手机号码格式不正确!')
+        mobileerror.css('display', 'block');
+        $("#mobile").focus(); 
+        return false;
+    }
+    // else if($("#mobile").val().length() > 0 && $("#mobile").val().length() < 11){
+    //     mobileaddon.removeClass('success');
+    //     mobileaddon.addClass('error');
+    //     glyphicon.removeClass('has-success');
+    //     glyphicon.addClass('has-error');
+    //     mobileerror.css('display', 'none');
+    //     mobileerror.text('手机号码长度不正确，请重新输入！')
+    //     mobileerror.css('display', 'block');
+    //     $("#mobile").focus(); 
+    //     return false;
+    // }
+    else{
+        mobileerror.css('display', 'none');
+        glyphicon.removeClass('glyphicon-earphone');
+        glyphicon.addClass('glyphicon-ok');
+        glyphicon.removeClass('has-error');
+        glyphicon.addClass('has-success');
+        mobileaddon.removeClass('error');
+        mobileaddon.addClass('success');
+        return true;
+    }
+}

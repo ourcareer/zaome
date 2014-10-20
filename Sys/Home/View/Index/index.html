@@ -7,9 +7,10 @@
   <load href="__PUBLIC__/Home/Css/index6.css" />
   <load href="__PUBLIC__/Home/Css/register.css" />
   <load href="__PUBLIC__/Home/Css/login.css" />
-  <load href="__PUBLIC__/Home/Js/register.js" />
+  
   <load href="__PUBLIC__/Home/Js/login.js" />
   <load href="__PUBLIC__/Home/Js/index.js" />
+  <load href="__PUBLIC__/Home/Js/register.js" />
   <!-- 登陆部分开始 -->
   <div id="mask"></div>
   <div class="login" style="display: none;">
@@ -75,9 +76,9 @@
           <form id="regForm" method="post" action="{:U('user/index/register')}"> 
             <div class="modal-body center-block" id="register">
               <div class="input-group input-group-lg">
-                <input type="text" class="form-control" placeholder="手机号码" id="mobile">
-                <!-- <span class="tips" id="id-reg-username-error" style="left: -218px; top: 9px;">用户名长度在5-20个字符之间</span> -->
-                <span class="input-group-addon"><span class="glyphicon glyphicon-earphone"></span></span>
+                <input type="text" class="form-control" placeholder="手机号码" id="mobile" onblur="checkSubmitMobil();">
+               <span class="tips" id="mobile-error"></span>
+                <span class="input-group-addon mobileaddon"><span id="glyphicon" class="glyphicon glyphicon-earphone"></span></span>
                 </div>
               <div class="input-group input-group-lg">
                 <input type="text" id="verify" name="verify" maxlength="4" class="form-control" placeholder="请输入验证码"  errormsg="请填写4位验证码" nullmsg="请填写验证码" datatype="*5-5">
