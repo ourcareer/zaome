@@ -8,18 +8,6 @@ body{
     z-index:-1;
 	overflow: hidden;
 }
-.error{
-	background-color: #F2DEDE; 
-}
-.success{
-	background-color: #DFF0D8;
-}
-.has-error{
-	color: #a94442;
-}
-.has-success{
-	color: #3c763d;
-}
 .modal-header{
 	border:none;
 }
@@ -41,7 +29,7 @@ body{
 	border: none;
 }
 .smsinput{
-	padding-top:20px;
+	padding-top:35px;
 }
 .register-main h2 {font-size:30px;text-align: center;color: #fff; font-family: "微软雅黑";}
 .register-main p {text-align: center;margin-top: 20px;color: #fff;}

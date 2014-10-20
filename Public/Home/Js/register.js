@@ -58,52 +58,34 @@ $(function(){
     registerheight.css('height',afterheight)
 })
 function checkSubmitMobil() {
+    var regmobile = $('#reg-mobile');
     var mobileerror = $('#mobile-error');
     var mobileaddon = $('.mobileaddon');
     var glyphicon = $('#glyphicon');
     var mobile = $("#mobile").val();
-    // alert(mobile).length();
-    if (mobile == "") { 
-        mobileaddon.removeClass('success');
-        mobileaddon.addClass('error');
-        glyphicon.removeClass('has-success');
-        glyphicon.addClass('has-error');
+    if (mobile == "") {
+        regmobile.removeClass('has-success');
+        regmobile.addClass('has-error');
         mobileerror.text('手机号码不能为空！')
         mobileerror.css('display', 'block');
         mobileerror.focus(); 
         return false;
-        
     }
-    else if (!mobile.match(/^(((13[0-9]{1})|159|153)+\d{8})$/)) { 
-        mobileaddon.removeClass('success');
-        mobileaddon.addClass('error');
-        glyphicon.removeClass('has-success');
-        glyphicon.addClass('has-error');
+    if (!(mobile.match(/^13\d{9}$/) || mobile.match(/^15[0-35-9]\d{8}$/) || mobile.match(/^18\d{9}$/))){ 
+        regmobile.removeClass('has-success');
+        regmobile.addClass('has-error');
         mobileerror.css('display', 'none');
         mobileerror.text('手机号码格式不正确!')
         mobileerror.css('display', 'block');
         $("#mobile").focus(); 
         return false;
     }
-    // else if($("#mobile").val().length() > 0 && $("#mobile").val().length() < 11){
-    //     mobileaddon.removeClass('success');
-    //     mobileaddon.addClass('error');
-    //     glyphicon.removeClass('has-success');
-    //     glyphicon.addClass('has-error');
-    //     mobileerror.css('display', 'none');
-    //     mobileerror.text('手机号码长度不正确，请重新输入！')
-    //     mobileerror.css('display', 'block');
-    //     $("#mobile").focus(); 
-    //     return false;
-    // }
     else{
         mobileerror.css('display', 'none');
         glyphicon.removeClass('glyphicon-earphone');
         glyphicon.addClass('glyphicon-ok');
-        glyphicon.removeClass('has-error');
-        glyphicon.addClass('has-success');
-        mobileaddon.removeClass('error');
-        mobileaddon.addClass('success');
+        regmobile.removeClass('has-error');
+        regmobile.addClass('has-success');
         return true;
     }
 }
