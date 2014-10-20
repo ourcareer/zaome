@@ -1,15 +1,26 @@
-// 需要使用这个函数之后弹出框才能出现
-$(document).ready(function (){
-	$("#option1").click(function(){
-		$(".arrow")[0].style.left="134px";
-	});
-	$("#option2").click(function(){
-		$(".arrow")[0].style.left="213px";
-	});
-	$("#option3").click(function(){
-		$(".arrow")[0].style.left="290px";
-	});
-	$("#option4").click(function(){
-		$(".arrow")[0].style.left="368px";
-	});
+$(function(){
+	var main = $('#main-con');
+    var login = $('.login');
+    var register = $('.register');
+    var mask = $('#mask');
+ $(".loginbtn").click(function(){
+    main.css('display', 'none');
+    mask.css('display','block');
+    login.css('display','block');
+ })
+ $("#login-close").click(function(){
+    login.css('display', 'none');
+    mask.css('display','none');
+    main.css('display','block');
+ })
+ $(".regbtn").click(function(){
+    main.css('display', 'none');
+    mask.css('display','block');
+    register.css('display','block');
+ })
+ $(".reg-close").click(function(){
+    register.css('display', 'none');
+    mask.css('display','none');
+    main.css('display','block');
+ })
 });
