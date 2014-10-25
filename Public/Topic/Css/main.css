@@ -64,13 +64,13 @@ body{overflow:hidden;-webkit-backface-visibility:hidden;}
 .body_1 .page_2{background-color:#fed900;}
 
 
-.page_3{background-color:#580e8b;}
-.page_3 .logo_1{padding:35% 0 15%;}
-.page_3 .logo_1,
-.page_3 .logo_2{text-align:center;}
-.page_3 .btn{width:300px;height:120px;position:relative;padding-top:50px;text-align:center;margin:0 auto;}
-.page_3 .btn a{float:left; position:relative;display: inline-block;padding-top:20px;}
-.page_3 .btn .qr_code{display:inline-block;float:right;}
+.page_5{background-color:#580e8b;}
+.page_5 .logo_1{padding:35% 0 15%;}
+.page_5 .logo_1,
+.page_5 .logo_2{text-align:center;}
+.page_5 .btn{width:300px;height:120px;position:relative;padding-top:50px;text-align:center;margin:0 auto;}
+.page_5 .btn a{float:left; position:relative;display: inline-block;padding-top:20px;}
+.page_5 .btn .qr_code{display:inline-block;float:right;}
 
 .page_4{background-color:#00b8e5;}
 .page_4 .btn{padding-top:80%;text-align:center;}
@@ -87,7 +87,7 @@ body{overflow:hidden;-webkit-backface-visibility:hidden;}
 /* animate */
 /*.page_1 .layer_bg,
 .page_2 .layer_bg,
-.page_3 .layer_bg,*/
+.page_5 .layer_bg,*/
 .page .current .btn,
 .page .current .item,
 .page .current .shape,
@@ -144,7 +144,7 @@ body{overflow:hidden;-webkit-backface-visibility:hidden;}
 }
 /*.page_1 .layer_bg,
 .page_2 .layer_bg,
-.page_3 .layer_bg*/{
+.page_5 .layer_bg*/{
   -webkit-animation-name: fadeInUp2;
           animation-name: fadeInUp2;
   -webkit-animation-duration: 5s;
