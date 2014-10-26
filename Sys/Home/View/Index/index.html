@@ -1,4 +1,3 @@
-  
   <load href="__PUBLIC__/Home/Css/index1.css" />
   <load href="__PUBLIC__/Home/Css/index2.css" />
   <load href="__PUBLIC__/Home/Css/index3.css" />
@@ -111,6 +110,7 @@
   </div>
 </div><!-- 注册部分结束 -->
   <!-- 首页内容开始 -->
+  <!-- 导航条部分开始 -->
   <div id="main-con" style="display: block;">
   <header class="navbar navbar-inverse navbar-static-top zaome-nav" role="banner">
 	<div class="container">
@@ -121,23 +121,26 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
+      <a href="./" class="navbar-brand" style="margin-left: 50px;"><img src="__PUBLIC__/Home/Image/logo_head.png" alt="logo"></a>
 		</div>
 		<nav class="navbar-collapse collapse navbar-right nav-index-zaome">
-			<ul class="nav navbar-nav" style="position:relative;margin:4px 0;">
-				<li>
-					<button type="button" class="btn btn-default loginbtn">
-						<a href="#">登录</a>
-					</button>
-				</li>
-        		<li>
-        			<button type="button" class="btn btn-primary regbtn">
-	    				<a href="#">注册</a>
-	    			</button>
-	    		</li>
-			</ul>
+      <ul class="nav navbar-nav navbar-header">
+        <li><a href="./" class="">首页</a></li>
+        <li><a href="{:U('home/index/team')}" class="">团队介绍</a></li>
+        <li><a href="{:U('home/index/contact')}" target="_blank">联系我们</a></li>
+      </ul>
+      <ul class="nav navbar-nav nav-right" style="position:relative;">
+          <li><button type="button" class="btn btn-default loginbtn">
+            <a href="#">登录</a>
+          </button></li>
+          <li><button type="button" class="btn btn-primary regbtn">
+              <a href="#">注册</a>
+            </button></li>
+      </ul>
 		</nav>
 	</div>
 </header>
+<!-- 导航条部分结束 -->
     <div class="zmcon" >
 		<div class="container-fluid">
 		    <div class="row-fluid">
