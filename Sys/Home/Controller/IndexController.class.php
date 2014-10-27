@@ -36,4 +36,11 @@ class IndexController extends HomeController {
     public function contact(){
         $this->display();
     }
+
+    /**
+     * 团队介绍
+     */
+    public function team(){
+        $this->display();
+    }
 }
