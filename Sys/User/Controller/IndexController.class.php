@@ -427,6 +427,11 @@ class IndexController extends Controller {
         }
     }
 
+
+    /**
+     * 找回密码
+     * 输入手机号,短信验证码,两次密码
+     */
 	public function lostpassword(){
 
 		if(IS_POST){
@@ -480,6 +485,31 @@ class IndexController extends Controller {
                 // $this->error($this->showRegError($res));
             }
         }
+	}
+
+
+	public function getschool($school='') {
+        if ($uid = is_login()) {
+            $rt['code'] = '-1';
+            $rt['msg'] = '请先登录！';
+            $this->ajaxReturn($rt); 
+        } else {
+			$school = I('school');
+			// dump($school);
+			// $where['id'] = array('gt',1);
+			// $where['_string'] = ' (name like %.$school.%)  OR ( id eq 1) ';
+			$map['school'] = array('like', '%'.$school.'%');
+			$schoollist = M('school')->limit(10)->where($map)->order('hot desc,id asc')->field('school,id')->select();
+			$rt['code'] = 200210705;
+			$rt['msg'] = 'succeed';
+			$rt['result'] = $schoollist;
+			$this->ajaxReturn($rt);
+			// dump($Schoollist);
+			// exit();
+			// $Model = new Model();
+			// $Model->query("select * from zaome_school where status=1");
+        }
+
 	}
 
 }
