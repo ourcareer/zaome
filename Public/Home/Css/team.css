@@ -1,0 +1,144 @@
+body,
+.container-fluid{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  body{
+    background-color: #E7E7E9;
+  }
+  .clear{
+    clear: both;
+  }
+  #background{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index:-1;
+  }
+  .col-xs-8,
+  .col-sm-8,
+  .col-md-8,
+  .col-lg-8
+  {
+    text-align: center;
+  }
+  .zmcon{
+  width: 100%;
+  height: auto;
+  position: relative;
+  background: url(../Image/background.png) left top no-repeat;
+  background-size:100% 100%;
+  text-align: center;
+  z-index:-1;
+  }
+  /*导航条部分开始*/
+  .zaome-nav {
+    height: 50px;
+    font-size: 15px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    /*background: url(../Image/zaome_top_bg.png) repeat-x;*/
+    filter:alpha(opacity=85);
+    -moz-opacity:0.85;
+    -khtml-opacity: 0.85;
+    opacity: 0.85;
+  }
+  .navbar-inverse{
+   border: none;
+  }
+  .navbar-brand{
+    margin-left: 50px;
+    padding: 0;
+    height: 50px;
+    line-height: 50px;
+  }
+  .navbar-brand img{
+    height: 46px;
+    width: auto;
+    padding:2px 0;  
+  }
+  .nav-index-zaome .navbar-header li{
+    height: 50px;
+    line-height: 50px;
+    margin:0 40px;
+  }
+  .nav-index-zaome .navbar-header{
+    margin-right: 120px;
+  }
+  .nav-index-zaome .navbar-header li a{
+    color: #fff;
+    display: inline-block;
+    height: 100%;
+    padding: 13px 30px;
+    font-size: 18px;
+    font-family: "微软雅黑";
+  }
+  .nav-index-zaome .navbar-header li a:hover{
+    background: #0033CC;
+  }
+  .nav-index-zaome .nav-right li{
+    margin:11px 3px 0 3px;
+  }
+  .loginbtn,
+  .regbtn{
+    position: relative;
+    padding-top: 3px;
+    width: 70px;
+    height: 28px;
+  }
+  .loginbtn a{
+    color: #000;
+  }
+  .regbtn a{
+    color: #fff;
+  }
+  .loginbtn a,
+  .regbtn a{
+    font-size: 15px;
+    font-family: "微软雅黑";
+  }
+  .loginbtn a:hover,
+  .regbtn a:hover{
+    text-decoration: none;
+  }
+  /*导航条部分结束*/
+  /*团队介绍部分开始*/
+  .row-fluid .team-img{
+    height: 94%;
+    width: 94%;
+    margin:3% 3% 2%;
+  }
+  .team-con{
+    padding:1% 3% 3%;
+    border-bottom: 1px solid #ccc;
+
+  }
+  .hr{
+    display: inline-block;
+    width: 94%;
+    margin: 0 3%;
+  }
+  .team-con .team-header{
+    margin-top: 0px;
+    height: 35px;
+    border-bottom: 1px solid #ccc;
+    overflow: hidden;
+  }
+  .team-con .team-header .team-section{
+    float: left;
+    height: 35px;
+    color: #FF6629;
+    margin: 0 10px 0 0;
+    border-bottom: 4px solid #FF9900;
+  }
+  .team-con h3{
+    display: block;
+    font-family: "微软雅黑";
+  }
+  .team-con p{
+    text-align: left;
+  }
+  /*团队介绍部分结束*/
