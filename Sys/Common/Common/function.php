@@ -5,20 +5,6 @@
  * 主要定义系统公共函数库
  */
 
-/**
- * 检测用户是否登录
- * @return integer 0-未登录，大于0-当前登录用户ID
- * @author 麦当苗儿 <zuojiazi@vip.qq.com>
- */
-function is_login_default(){
-    $user = session('user_auth');
-    if (empty($user)) {
-        return 0;
-    } else {
-        return session('user_auth_sign') == data_auth_sign($user) ? $user['uid'] : 0;
-    }
-}
-
 
 /**
  * 检测用户是否登录
@@ -70,6 +56,23 @@ function is_administrator($uid = null){
     $uid = is_null($uid) ? is_login() : $uid;
     return $uid && (intval($uid) === C('USER_ADMINISTRATOR'));
 }
+
+
+
+
+/**
+ * 获取用户头像
+ * TODO分大中小头像
+ * TODO加入文件缓存,数据库缓存等
+ */
+function get_avatar($id){
+    $avatarid = M('user')->getFieldByUid($id,'avatar');
+    $avatar = M('picture')->getFieldById($avatarid,'url');
+    return $avatar;
+
+}
+
+
 
 /**
  * 字符串转换为数组，主要用于把分隔符调整到第二个参数

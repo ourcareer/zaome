@@ -26,20 +26,41 @@ class IndexController extends Controller {
      * 输出话题列表
      * @param int $page
      */
-    public function ls($page='1',$uid=''){
-        $Topic = D('topic');
-
+    public function ls_bak($page='1',$uid=''){
+        $Model = D('topic');
         $page = I('page');
         $author = I('uid');
 
+        $table = array(
+            'zaome_topic'   =>  'topic',
+            'zaome_user'    =>  'user',
+            'zaome_picture' =>  'picture',
+            );
+        $field = array(
+            'topic.author'    =>  'uid',
+            'topic.id'        =>  'tid',
+            'topic.content',
+            'topic.repeat'    =>  'repeatcount',
+            'topic.like'      =>  'likecount',
+            'topic.bg'        =>  'background',
+            'user.nickname'   =>  'nickname',
+            'picture.url'     =>  'avatar',
+            );
+        $map = array(
+            'topic.pass'      =>  1,
+            'topic.delete'    =>  0,
+            'topic.report'    => array('lt',50),
+            );
+        $order = 'topic.time desc,topic.id desc';
+        $where = array(
+            // 'user.uid'        => 'topic.author',
+            // 'picture.id'      => 'user.avatar',
+            );
+
+
         // $map['pass'] = 1;
         // $map['delete'] = 0;
-        // $map['report'] < 500;
-        $map = array(
-            'pass'      =>  1,
-            'delete'    =>  0,
-            'report'    =>  0,         
-            );
+        // $map['report'] = array('lt',500);
 
 
         // 200是OK,20是模块,1219是方法
@@ -51,14 +72,89 @@ class IndexController extends Controller {
         /* 首先检查这个用户是否被关闭 */
         if ($author) {
             $map['author'] = $author;
-            $data['result'] = $Topic->order('time desc')->page($page,15)->where($map)->select();
+            $data['result'] = $Model->table($table)->order($order)
+            ->page($page,15)->where($map)->select();
+            $this->done($data);
         }
-
-    	$data['result'] = $Topic->order('time desc')->page($page,15)->where($map)->select();
+    	$data['result'] = $Model->table($table)
+        ->field($field)
+        ->order($order)->where($map)->where('user.uid=topic.author')->page($page,15)->select();
         $this->done($data);
 
     }
 
+    public function ls($page='1',$uid=''){
+        $Topic = D('topic');
+
+        $page = I('page');
+        $author = I('uid');
+
+        $data['code'] = 200201219;
+        $data['msg'] = 'succeed';
+
+        $field = array(
+            'id'        =>  'tid',
+            'content',
+            'repeat'    =>  'repeatcount',
+            'like'      =>  'likecount',
+            'bg'        =>  'background',
+            'author'    =>  'uid',
+            );
+
+        $map = array(
+            'pass'      =>  1,
+            'delete'    =>  0,
+            'report'    => array('lt',50),
+            );
+
+        $order = 'time desc,id desc';
+
+        if ($author) {
+            $map['author'] = $author;
+        }
+
+        $data['result'] = $Topic
+        ->field($field)
+        ->where($map)
+        ->page($page,15)
+        ->order($order)
+        ->select();
+
+        foreach ($data['result'] as $key => $value) {
+            $data['result'][$key]['avatar'] = get_avatar($value['uid']);
+
+            $Repeat = D('repeat');
+            $map['totid'] = array('in',$value['tid']);
+            $refield = array(
+                'id'        =>  'avatar',
+                'content'   =>  'repeatcontent',
+                'uid',
+                );
+            $order = '`like` desc, `repeat` desc, `time` desc';
+
+            $data['result'][$key]['repeat'] = $Repeat
+            ->field($refield)
+            ->where($map)
+            ->order($order)
+            ->limit(10)
+            ->select();
+            foreach ($data['result'][$key]['repeat'] as $keyre => $valuere) {
+                $data['result'][$key]['repeat'][$keyre]['avatar'] = get_avatar($valuere['uid']);
+            }
+        }
+
+         // dump($data['result']);
+        // dump($uids);
+        // dump($tids);
+        // dump($usermap);
+        // dump($datauser);
+        // dump($datapic);
+        // dump($data);
+        dump($data);
+        exit();
+        $this->done($data);
+
+    }
     public function add(){
         if ( !is_login() ) {
             $rt['code'] = '-1';
