@@ -93,12 +93,13 @@ class IndexController extends Controller {
         $data['msg'] = 'succeed';
 
         $field = array(
+            'author'    =>  'uid',
+            'share'     =>  'nickname',
             'id'        =>  'tid',
             'content',
             'repeat'    =>  'repeatcount',
             'like'      =>  'likecount',
             'bg'        =>  'background',
-            'author'    =>  'uid',
             );
 
         $map = array(
@@ -122,6 +123,7 @@ class IndexController extends Controller {
 
         foreach ($data['result'] as $key => $value) {
             $data['result'][$key]['avatar'] = get_avatar($value['uid']);
+            $data['result'][$key]['nickname'] = get_nickname($value['uid']);
 
             $Repeat = D('repeat');
             $map['totid'] = array('in',$value['tid']);
@@ -150,8 +152,8 @@ class IndexController extends Controller {
         // dump($datauser);
         // dump($datapic);
         // dump($data);
-        dump($data);
-        exit();
+        // dump($data);
+        // exit();
         $this->done($data);
 
     }
@@ -192,6 +194,17 @@ class IndexController extends Controller {
 
     }
 
+    public function repeat($totid,$rid){
+        if ( !is_login() ) {
+            $rt['code'] = '-1';
+            $rt['msg'] = '请先登录！';
+            $this->ajaxReturn($rt);         
+        }
+        if(IS_POST){
+            $content = I('content');
+            $picture = I();
+        }        
+    }
 
     public function done($data='',$rt=''){
        
