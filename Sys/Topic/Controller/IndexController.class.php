@@ -26,62 +26,62 @@ class IndexController extends Controller {
      * 输出话题列表
      * @param int $page
      */
-    public function ls_bak($page='1',$uid=''){
-        $Model = D('topic');
-        $page = I('page');
-        $author = I('uid');
+    // public function ls_bak($page='1',$uid=''){
+    //     $Model = D('topic');
+    //     $page = I('page');
+    //     $author = I('uid');
 
-        $table = array(
-            'zaome_topic'   =>  'topic',
-            'zaome_user'    =>  'user',
-            'zaome_picture' =>  'picture',
-            );
-        $field = array(
-            'topic.author'    =>  'uid',
-            'topic.id'        =>  'tid',
-            'topic.content',
-            'topic.repeat'    =>  'repeatcount',
-            'topic.like'      =>  'likecount',
-            'topic.bg'        =>  'background',
-            'user.nickname'   =>  'nickname',
-            'picture.url'     =>  'avatar',
-            );
-        $map = array(
-            'topic.pass'      =>  1,
-            'topic.delete'    =>  0,
-            'topic.report'    => array('lt',50),
-            );
-        $order = 'topic.time desc,topic.id desc';
-        $where = array(
-            // 'user.uid'        => 'topic.author',
-            // 'picture.id'      => 'user.avatar',
-            );
-
-
-        // $map['pass'] = 1;
-        // $map['delete'] = 0;
-        // $map['report'] = array('lt',500);
+    //     $table = array(
+    //         'zaome_topic'   =>  'topic',
+    //         'zaome_user'    =>  'user',
+    //         'zaome_picture' =>  'picture',
+    //         );
+    //     $field = array(
+    //         'topic.author'    =>  'uid',
+    //         'topic.id'        =>  'tid',
+    //         'topic.content',
+    //         'topic.reply'    =>  'replycount',
+    //         'topic.like'      =>  'likecount',
+    //         'topic.bg'        =>  'background',
+    //         'user.nickname'   =>  'nickname',
+    //         'picture.url'     =>  'avatar',
+    //         );
+    //     $map = array(
+    //         'topic.pass'      =>  1,
+    //         'topic.delete'    =>  0,
+    //         'topic.report'    => array('lt',50),
+    //         );
+    //     $order = 'topic.time desc,topic.id desc';
+    //     $where = array(
+    //         // 'user.uid'        => 'topic.author',
+    //         // 'picture.id'      => 'user.avatar',
+    //         );
 
 
-        // 200是OK,20是模块,1219是方法
-        $data['code'] = 200201219;
-        $data['msg'] = 'succeed';
+    //     // $map['pass'] = 1;
+    //     // $map['delete'] = 0;
+    //     // $map['report'] = array('lt',500);
+
+
+    //     // 200是OK,20是模块,1219是方法
+    //     $data['code'] = 200201219;
+    //     $data['msg'] = 'succeed';
      
 
-        // TODO
-        /* 首先检查这个用户是否被关闭 */
-        if ($author) {
-            $map['author'] = $author;
-            $data['result'] = $Model->table($table)->order($order)
-            ->page($page,15)->where($map)->select();
-            $this->done($data);
-        }
-    	$data['result'] = $Model->table($table)
-        ->field($field)
-        ->order($order)->where($map)->where('user.uid=topic.author')->page($page,15)->select();
-        $this->done($data);
+    //     // TODO
+    //     /* 首先检查这个用户是否被关闭 */
+    //     if ($author) {
+    //         $map['author'] = $author;
+    //         $data['result'] = $Model->table($table)->order($order)
+    //         ->page($page,15)->where($map)->select();
+    //         $this->done($data);
+    //     }
+    // 	$data['result'] = $Model->table($table)
+    //     ->field($field)
+    //     ->order($order)->where($map)->where('user.uid=topic.author')->page($page,15)->select();
+    //     $this->done($data);
 
-    }
+    // }
 
     public function ls($page='1',$uid=''){
         $Topic = D('topic');
@@ -97,7 +97,7 @@ class IndexController extends Controller {
             'share'     =>  'nickname',
             'id'        =>  'tid',
             'content',
-            'repeat'    =>  'repeatcount',
+            'reply'    =>  'replycount',
             'like'      =>  'likecount',
             'bg'        =>  'background',
             );
@@ -125,23 +125,23 @@ class IndexController extends Controller {
             $data['result'][$key]['avatar'] = get_avatar($value['uid']);
             $data['result'][$key]['nickname'] = get_nickname($value['uid']);
 
-            $Repeat = D('repeat');
+            $Repeat = D('reply');
             $map['totid'] = array('in',$value['tid']);
             $refield = array(
                 'id'        =>  'avatar',
-                'content'   =>  'repeatcontent',
+                'content'   =>  'replycontent',
                 'uid',
                 );
-            $order = '`like` desc, `repeat` desc, `time` desc';
+            $order = '`like` desc, `reply` desc, `time` desc';
 
-            $data['result'][$key]['repeat'] = $Repeat
+            $data['result'][$key]['reply'] = $Repeat
             ->field($refield)
             ->where($map)
             ->order($order)
             ->limit(10)
             ->select();
-            foreach ($data['result'][$key]['repeat'] as $keyre => $valuere) {
-                $data['result'][$key]['repeat'][$keyre]['avatar'] = get_avatar($valuere['uid']);
+            foreach ($data['result'][$key]['reply'] as $keyre => $valuere) {
+                $data['result'][$key]['reply'][$keyre]['avatar'] = get_avatar($valuere['uid']);
             }
         }
 
@@ -157,7 +157,7 @@ class IndexController extends Controller {
         $this->done($data);
 
     }
-    public function add(){
+    public function add($totid,$rid){
         if ( !is_login() ) {
             $rt['code'] = '-1';
             $rt['msg'] = '请先登录！';
@@ -165,8 +165,11 @@ class IndexController extends Controller {
         }
 
         if (IS_POST) {
-            $Topic = D('topic');
+            // $Topic = D('topic');
             // $author = I('author');
+            $rt['code'] = '200200104';
+            $rt['msg'] = 'succeed';
+
             $author = is_login();
             
             $content = I('content');
@@ -180,8 +183,20 @@ class IndexController extends Controller {
             $data['ip'] = $ip;
             $data['bg'] = $bg;
 
-            $rt['code'] = '200200104';
-            $rt['msg'] = 'succeed';
+            if ($totid && is_numeric($totid)) {
+                $data['totid'] = $totid;
+                if ($rid && is_numeric($rid)) {
+                    $data['rid'] = $rid;
+                }
+                $Reply = D('reply');
+                $data = $Reply->create($data);
+                $rt['result'] = $Reply->add();
+                // TODO加入通知中心
+                if ($rt['result']) {
+                }
+                $this->ajaxReturn($rt);
+            }    
+
             $this->done($data,$rt);            
         }
     }
@@ -194,7 +209,7 @@ class IndexController extends Controller {
 
     }
 
-    public function repeat($totid,$rid){
+    public function reply($totid,$rid){
         if ( !is_login() ) {
             $rt['code'] = '-1';
             $rt['msg'] = '请先登录！';
