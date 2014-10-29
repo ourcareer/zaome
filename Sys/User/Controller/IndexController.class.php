@@ -3,6 +3,7 @@
 /**
  * Copyright (c) zaome Inc
  * Author ancon <zhongfuzhong@gmail.com>
+ * Modify 2014-10-18 14:34:47
  */
 
 namespace User\Controller;
@@ -15,9 +16,10 @@ use Sms\Api\SmsApi;
  * 2,登录;
  * 3,登出;
  * 4,修改密码;
- * 5,验证码; TODO!
+ * 5,验证码; 
  * 6,用户锁定.
- * 7，上传头像.TODO!
+ * 7，上传头像.
+ * 8，更新用户信息.
  */
 class IndexController extends Controller {
 
@@ -38,7 +40,9 @@ class IndexController extends Controller {
 
 	/**
 	 * 注册页面
-	 * @author ancon
+	 * 用post的方式传输
+	 * 需要手机号和短信验证码
+	 * @author ancon<zhongfuzhong@gmail.com>
 	 */
 	public function register(){
 		/*
@@ -67,13 +71,18 @@ class IndexController extends Controller {
             /* 验证码是否正确 */
             $res = $Sms->checkSmscode($mobile, $smscode);
             if ($res<1) {
-            	$this->error('短信验证码不正确');
+				$rt['code'] = '-200211805';
+				$rt['msg'] = '短信验证码不正确！';
+				$this->ajaxReturn($rt);
             }
  
             /* 验证码是否过期 */
-            $res = $Sms->expireSmscode($mobile, $smscode, 1800);
+            $expire = C('EXPIRETIME');
+            $res = $Sms->expireSmscode($mobile, $smscode, $expire);
             if ($res<1) {
-            	$this->error('短信验证码过期');
+				$rt['code'] = '-200211805';
+				$rt['msg'] = '短信验证码过期！';
+				$this->ajaxReturn($rt);            	
             }
             /* 注册开始 */
             $uid = $User->register($mobile);
@@ -302,7 +311,7 @@ class IndexController extends Controller {
 			    $map['uid'] = $uid;
 			    $userdata = $User->where($map)->find();
 			    $rt['result']['school'] = $userdata['school'];
-			    $rt['result']['nikename'] = $userdata['nikename'];
+			    $rt['result']['nickname'] = $userdata['nickname'];
 			    $rt['result']['username'] = $userdata['username'];
 			    $avatarid = $userdata['avatar'];
 			    $Picture = D('picture');
@@ -329,9 +338,10 @@ class IndexController extends Controller {
 
    /**
      * 上传图片
+     * @param $userinfo int 为用户id,如果存在,则return,如果不存在,则ajaxReturn;
      * @author ancon <zhongyu@buaa.edu.cn>
      */
-    public function uploadAvatar(){
+    public function uploadAvatar($userinfo = ''){
 
         //测试阶段,先注释.
 
@@ -341,39 +351,44 @@ class IndexController extends Controller {
             $this->ajaxReturn($rt); 
         }
 
+        if (IS_POST) {
+	        $pictureconfig = C('PICTURE_UPLOAD');
+	        $Api = new \Think\Upload($pictureconfig);// 实例化上传类
+	        // 上传文件 
+	        $info   =   $Api->upload();
+	        if(!$info) {// 上传错误提示错误信息
+	            $this->error($Api->getError());
+	        }else{// 上传成功
+	            $info[0]['url'] = $pictureconfig['rootPath'].$info[0]['savepath'].$info[0]['savename'];
+	            $info[0]['create_time'] = NOW_TIME;
+	            $info[0]['author'] = $uid;
+	            $info[0]['ip'] = get_client_ip();
 
-        $pictureconfig = C('PICTURE_UPLOAD');
-        $Api = new \Think\Upload($pictureconfig);// 实例化上传类
-        // 上传文件 
-        $info   =   $Api->upload();
-        if(!$info) {// 上传错误提示错误信息
-            $this->error($Api->getError());
-        }else{// 上传成功
-            $info[0]['url'] = $pictureconfig['rootPath'].$info[0]['savepath'].$info[0]['savename'];
-            $info[0]['create_time'] = NOW_TIME;
-            $info[0]['author'] = $uid;
-            $info[0]['ip'] = get_client_ip();
+	            $Picture = D('picture');
+	            $data = $Picture->create($info[0]);
+	            $pictureid = $Picture->add($data);
 
-            $Picture = D('picture');
-            $data = $Picture->create($info[0]);
-            $pictureid = $Picture->add($data);
-
-            if ($pictureid) {
-	            $User = D('user');
-	            $userdata['avatar'] = $pictureid;
-	            $userdata['uid'] = $uid;
-	            $userdata = $User->create($userdata);
-	            $avatar = $User->save();
-
-	            $rt['code'] = '200212116';
-	            $rt['msg'] = 'succeed';
-	            $this->ajaxReturn($rt);		            
-            }
+	            if ($pictureid) {
+		            if ($userinfo === $uid) {
+		            	return $pictureid;
+		            } else {
+			            $User = D('user');
+			            $userdata['avatar'] = $pictureid;
+			            $userdata['uid'] = $uid;
+			            $userdata = $User->create($userdata);
+			            $avatar = $User->save();
+		            	$rt['code'] = '200212116';
+			            $rt['msg'] = 'succeed';
+			            $this->ajaxReturn($rt);		            
+		            }
+	            }
+	        }
         }
     }
 
     /**
      * 更新用户信息
+     * POST 过来数据
      */
     public function userinfo(){
         if (!$uid = is_login()) {
@@ -382,14 +397,119 @@ class IndexController extends Controller {
             $this->ajaxReturn($rt); 
         }
         if (IS_POST) {
-        	$data['nikename'] = I('nikename');
+
+        	$data['uid'] = $uid;
+        	$data['nickname'] = I('nickname');
         	$data['school'] = I('school');
         	$data['username'] = I('username');
-        	$data['uid'] = $uid;
+        	$data['gender'] = I('gender');
+        	$data['email'] = I('email');
+        	if ($_FILES["avatar"]["name"][0] && $_FILES["avatar"]["tmp_name"][0]) {
+        		// dump($_FILES["avatar"]["name"][0]);
+        		// dump($_FILES["avatar"]["tmp_name"][0]);
+        		// dump($_FILES);
+        		// exit();
+        		$data['avatar'] = $this->uploadAvatar($uid);
+        	}
+        	// dump($data);
+        	// exit();
         	$User = D('user');
-        	$User->create();
+        	$data = $User->create($data);
+        	if ($result = $User->save()) {
+        		$rt['code'] = '200212119';
+        		$rt['msg'] = 'succeed';
+        	} else {
+        		$rt['code'] = '-200212119';
+        		$rt['msg'] = '更新用户信息失败！';
+        	}
+        	dump($result);        	
+        	$this->ajaxReturn($rt);
+        }
+    }
+
+
+    /**
+     * 找回密码
+     * 输入手机号,短信验证码,两次密码
+     */
+	public function lostpassword(){
+
+		if(IS_POST){
+			$mobile = I('mobile');
+			$smscode = I('smscode');
+			$password = I('post.password');
+			$repassword = I('post.repassword');
+			if ($password !== $repassword) {
+				$rt['code'] = '-200211215';
+				$rt['msg'] = '您输入的两次密码不一致';
+				$this->ajaxReturn($rt);
+				// $this->error('您输入的两次密码不一致');
+			}
+
+            /* 调用短信接口验证 */
+            $Sms = new SmsApi;
+            /* 验证码是否正确 */
+            $res = $Sms->checkSmscode($mobile, $smscode);
+            if ($res<1) {
+				$rt['code'] = '-200211215';
+				$rt['msg'] = '短信验证码不正确！';
+				$this->ajaxReturn($rt);
+            }
+ 
+            /* 验证码是否过期 */
+            $expire = C('EXPIRETIME');
+            $res = $Sms->expireSmscode($mobile, $smscode, $expire);
+            if ($res<1) {
+				$rt['code'] = '-200211215';
+				$rt['msg'] = '短信验证码过期！';
+				$this->ajaxReturn($rt);            	
+            }
+
+
+			/* 调用用户模块接口 */
+            $User = new UserApi;
+            $uid = M('User')->getFieldByMobile($mobile,'uid');
+            $lost = 1;
+            $res = $User->addPassword($uid, $password, $lost);
+
+            if($res>0){
+            	$rt['code'] = '200211215';
+            	$rt['msg'] = 'succeed';
+            	$rt['result']['token_access'] = session('user_auth_sign');
+            	$this->ajaxReturn($rt);
+                // $this->success('添加密码成功！',U('index'));
+            }else{
+            	$rt['code'] = '-200211215';
+            	$rt['msg'] = $this->showRegError($res);
+            	$this->ajaxReturn($rt);
+                // $this->error($this->showRegError($res));
+            }
+        }
+	}
+
+
+	public function getschool($school='') {
+        if ($uid = is_login()) {
+            $rt['code'] = '-1';
+            $rt['msg'] = '请先登录！';
+            $this->ajaxReturn($rt); 
+        } else {
+			$school = I('school');
+			// dump($school);
+			// $where['id'] = array('gt',1);
+			// $where['_string'] = ' (name like %.$school.%)  OR ( id eq 1) ';
+			$map['school'] = array('like', '%'.$school.'%');
+			$schoollist = M('school')->limit(10)->where($map)->order('hot desc,id asc')->field('school,id')->select();
+			$rt['code'] = 200210705;
+			$rt['msg'] = 'succeed';
+			$rt['result'] = $schoollist;
+			$this->ajaxReturn($rt);
+			// dump($Schoollist);
+			// exit();
+			// $Model = new Model();
+			// $Model->query("select * from zaome_school where status=1");
         }
 
-    }
-	
+	}
+
 }

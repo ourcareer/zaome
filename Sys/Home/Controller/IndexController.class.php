@@ -29,4 +29,18 @@ class IndexController extends HomeController {
 
     	$this->display();
     }
+
+    /**
+     * 联系我们
+     */
+    public function contact(){
+        $this->display();
+    }
+
+    /**
+     * 团队介绍
+     */
+    public function team(){
+        $this->display();
+    }
 }

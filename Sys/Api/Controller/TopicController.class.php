@@ -43,9 +43,9 @@ class TopicController extends RestController {
     	$Api->ls($page,$uid);
     }
 
-    public function add(){
+    public function add($totid = '',$rid = ''){
     	$Api = A('Topic/Index');
-    	$Api->add();
+    	$Api->add($totid,$rid);
     }
 
 

@@ -250,15 +250,19 @@ class UserModel extends Model{
 	 * @param string $password 新的密码
 	 * @return true - 成功  false - 失败
 	 */
-	public function addPassword($uid, $password){
+	public function addPassword($uid, $password, $lost){
 		if(empty($uid) || empty($password)){
 			$this->error = '参数错误！';
 			return false;
 		}
 
-		$oldpassword = $this->getFieldByUid($uid, 'password');
-		if($oldpassword) {
-			return -14;
+		// dump($lost);
+		// exit();
+		if (!$lost) {
+			$oldpassword = $this->getFieldByUid($uid, 'password');
+			if($oldpassword) {
+				return -14;
+			}
 		}
 
 		//更新用户信息
@@ -269,6 +273,8 @@ class UserModel extends Model{
 				$this->logout();
 				$this->login($uid, $password, $type = 4);
 			}
+			// dump($return);
+			// exit();
 			return  $return;
 		}
 		return false;

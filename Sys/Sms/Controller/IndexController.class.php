@@ -23,6 +23,7 @@ class IndexController extends Controller {
 		}
 */
 		$mobile = I('mobile');
+        $use = I('use');        
     	$Sms = new SmsApi();
     	$res = $Sms->checkMobile($mobile);
     	if (!$res) {
@@ -31,12 +32,44 @@ class IndexController extends Controller {
             $this->ajaxReturn($rt);
     		// $this->error('手机号错误！');
     	}
+        $times['limittime_90'] = $Sms->checkTimes($mobile,90);
+        if ($times['limittime_90'] >= 1) {
+            $rt['code'] = '-200191905';
+            $rt['msg'] = '90秒之内只能发送一条，请耐心等待！';
+            $this->ajaxReturn($rt);
+        }
+        $times['limittime_300'] = $Sms->checkTimes($mobile,300);
+        if ($times['limittime_300'] >= 2) {
+            $rt['code'] = '-200191905';
+            $rt['msg'] = '5分钟之内只能发送2条！';
+            $this->ajaxReturn($rt);
+        }
+        $times['limittime_900'] = $Sms->checkTimes($mobile,900);
+        if ($times['limittime_900'] >= 3) {
+            $rt['code'] = '-200191905';
+            $rt['msg'] = '15分钟之内只能发送3条！';
+            $this->ajaxReturn($rt);
+        }
+        $times['limitime_86400'] = $Sms->checkTimes($mobile,86400);
+        if ($times['limitime_86400'] >= 5) {
+            $rt['code'] = '-200191905';
+            $rt['msg'] = '一天只能只能发送5条！';
+            $this->ajaxReturn($rt);
+        }
+        $times['limittime_2592000'] = $Sms->checkTimes($mobile,2592000);
+        if ($times['limittime_2592000'] >= 10) {
+            $rt['code'] = '-200191905';
+            $rt['msg'] = '你的手机号发送过多，已经被禁止！';
+            $this->ajaxReturn($rt);
+        }
+        // dump($times);
+        // exit();
     	// dump(I());
     	// exit();
     	// $smscode = random();
     	// echo($mobile).'<br/>';
     	// echo($smscode).'<br/>';
- 		$result = $Sms->sendSMS($mobile);
+ 		$result = $Sms->sendSMS($mobile,$use);
  		if ($result == '200191913') {
                 $rt['code'] = '200191905';
                 $rt['msg'] = '已经成功发送了！';

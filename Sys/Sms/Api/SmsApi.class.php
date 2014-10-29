@@ -21,6 +21,10 @@ class SmsApi extends Api{
         return $this->model->expireSmscode($mobile, $smscode,$expire);
     }
  
+     public function checkTimes($mobile, $limittime){
+        return $this->model->checkTimes($mobile, $limittime);
+    }
+ 
     /**
      * 检测手机
      * @param  string  $mobile  手机
@@ -35,8 +39,8 @@ class SmsApi extends Api{
      * @param string $mobile    手机
      * @return integer          错误代码
      */
-    public function sendSMS($mobile){
-        $return = $this->model->sendSMS($mobile);
+    public function sendSMS($mobile,$use){
+        $return = $this->model->sendSMS($mobile,$use);
         // dump($return);
         // exit();
         return $return;

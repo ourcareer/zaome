@@ -1,0 +1,171 @@
+body,
+.container-fluid
+{
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+body
+{
+    background-color: #e7e7e9;
+}
+.clear
+{
+    clear: both;
+}
+#background
+{
+    position: absolute;
+    z-index: -1;
+
+    width: 100%;
+    height: 100%;
+}
+.col-xs-8,
+.col-sm-8,
+.col-md-8,
+.col-lg-8
+{
+    text-align: center;
+}
+.zmcon
+{
+    position: relative;
+    z-index: -1;
+
+    width: 100%;
+    height: auto;
+
+    text-align: center;
+
+    background: url(../Image/background.png) left top no-repeat;
+    background-size: 100% 100%;
+}
+/*导航条部分开始*/
+.zaome-nav {
+    height: 55px;
+    width: 100%;
+    font-size: 15px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 20;
+    filter:alpha(opacity=90);
+    -moz-opacity: 0.90;
+    -khtml-opacity: 0.90;
+    opacity: 0.90;
+  }
+  .navbar-inverse{
+   border: none;
+  }
+  .navbar-header #navbar-brand{
+    margin-left: 50px;
+    padding: 0;
+    height: 55px;
+    line-height: 55px;
+  }
+  .navbar-brand img{
+    height: 46px;
+    width: auto;
+    padding:2px 0;  
+  }
+  .nav-index-zaome .navbar-header li{
+    height: 55px;
+    line-height: 55px;
+    margin:0 40px;
+  }
+  .nav-index-zaome .navbar-header{
+    margin-right: 120px;
+  }
+  .nav-index-zaome .navbar-header li a{
+    color: #fff;
+    display: inline-block;
+    height: 100%;
+    padding: 16px 30px;
+    font-size: 18px;
+    font-family: "微软雅黑";
+  }
+  .nav-index-zaome .navbar-header li a:hover{
+    background: #0033CC;
+  }
+  .nav-index-zaome .nav-right li{
+    margin:13px 3px 0 3px;
+  }
+  .loginbtn,
+  .regbtn{
+    position: relative;
+    padding-top: 3px;
+    width: 70px;
+    height: 28px;
+  }
+  .loginbtn a{
+    color: #000;
+  }
+  .regbtn a{
+    color: #fff;
+  }
+  .loginbtn a,
+  .regbtn a{
+    font-size: 15px;
+    font-family: "微软雅黑";
+  }
+  .loginbtn a:hover,
+  .regbtn a:hover{
+    text-decoration: none;
+  }
+/*导航条部分结束*/
+/*联系我们部分开始*/
+.row-fluid .contact-img
+{
+    width: 94%;
+    height: 94%;
+    margin: 3% 3% 2%;
+}
+.contact-con
+{
+    padding: 3%;
+    /*border-bottom: 1px solid #ccc;*/
+}
+.hr
+{
+    display: inline-block;
+
+    width: 94%;
+    margin: 0 3%;
+}
+.contact-con p
+{
+    font-family: '微软雅黑';
+    font-size: 14px;
+
+    display: block;
+
+    text-align: left;
+}
+.contact-con .contact-header
+{
+    overflow: hidden;
+
+    height: 35px;
+    margin-top: 0;
+
+    border-bottom: 1px solid #ccc;
+}
+.contact-con .contact-header .contact-section
+{
+    float: left;
+
+    height: 35px;
+    margin: 0 10px 0 0;
+
+    color: #ff6629;
+    border-bottom: 4px solid #f90;
+}
+.contact-con h3
+{
+    font-family: '微软雅黑';
+
+    display: block;
+}
+
+/*联系我们部分结束*/

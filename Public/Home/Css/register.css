@@ -1,68 +1,56 @@
 body{
-	background-color: #D0D8E1;
+	width: 100%;
+    height: 100%;
+    position: relative;
+    background: url(../Image/background.png) left top no-repeat;
+    background-size:100% 100%;
+    text-align: center;
+    z-index:-1;
+	overflow: hidden;
+}
+.modal-header{
+	border:none;
 }
 .register-main{
-	position: relative;
-	width: 500px;
-	margin: 100px auto;
+	margin-top:100px;
 }
 .center-block{
 	text-align: center;
 	font-family: "微软雅黑";
 }
-.input-group-lg{
-	margin: 10px 0;
-}
-.agreement{
-	margin-top: 10px;
-}
-.mobinput{
-	display: inline-block;
-	float: left;
-	width: 100px;
-}
-.mobilecode{
+
+.modal-header .reg-close{
 	position: absolute;
-	display: inline-block;
-	float: left;
-	margin-left: 68px;
+	top:101px;
+	right: 45px;
+	background: url(../Image/register-close.png) no-repeat;
+	width: 35px;
+	height: 35px;
+	border: none;
 }
-.verifyimg{
-	display: inline-block;
-	float: left;
-	position: relative;
+.smsinput{
+	padding-top:35px;
 }
-.groupstyle{
-	display: inline-block;
-	float: left;
-}
-#verify{
-	display: inline-block;
-	float: left;
-	width: 	308px;
-}
-/*.labelstyle{
-	display: block;
-	height: 10px;
-	width: 100%;
-	border:1px solid green;
-	float: left;
-}*/
+.register-main h2 {font-size:30px;text-align: center;color: #fff; font-family: "微软雅黑";}
+.register-main p {text-align: center;margin-top: 20px;color: #fff;}
+.input-captcha { padding: 0;}
+.modal-body .input-group {margin-bottom: 35px;}
+.input-captcha img {height:100%;width: 100%;margin-right: 100px;}
 .reloadverify{
-	width: 150px;
-	height: 46px;
-	position: relative;
-	float: right;
-	margin-left: 309px;
-	margin-top: -46px;
-	border:1px solid #ccc;
-	border-top-right-radius: 5px;
-	border-bottom-right-radius: 5px;	
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;	
 }
-/*.text-warning{
-	float: left;
-	display: block;
-	height:10px;
+#mobile-error{
+	position: absolute;
+	left: 0px;
+	top: 50px;
+	display:none;
 	width: 100%;
-	border:1px solid red;
-}*/
+	height: 28px;
+	font-size:14px;
+	line-height: 28px;
+	font-weight: 20px;
+	color: #fff;
+	background-color: #FF0000;
+	border-radius: 6px;
+}

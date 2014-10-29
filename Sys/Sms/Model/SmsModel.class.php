@@ -68,6 +68,22 @@ class SmsModel extends Model{
 			return $this->getError();
 		}
 	}
+
+	public function checkTimes($mobile, $limittime) {
+		// 90秒
+		// 5分钟
+		// 15分钟
+		// 1天
+		$time = NOW_TIME - $limittime;
+		$map['mobile'] = $mobile;
+		$map['sendtime'] = array('gt', $time);
+		$times = $this->where($map)->count();
+		// dump($mobile);
+		// dump($times);
+		// exit();
+		return $times;
+	}
+
 	/**
 	 * 检查短信验证码有效期默认是半个小时
 	 * @param string $mobile 手机号
@@ -90,8 +106,9 @@ class SmsModel extends Model{
 		}
 	}
 
-	public function sendSMS($mobile){
+	public function sendSMS($mobile,$use){
 		$tempId = C("TEMPLATEID")?C("TEMPLATEID"):1;
+		$LimitTime = C("LIMITTIME")?C("LIMITTIME"):5;
 		$smscode = $this->random();
 
 		$res = $this->sendTemplateSMS($mobile,array($smscode,'5'),$tempId);
@@ -102,6 +119,7 @@ class SmsModel extends Model{
 			$data=array(
 				'mobile'	=>	$mobile,
 				'smscode'	=>	$smscode,
+				'use'		=>	$use,
 				);
 
 			$data = $this->create($data);
