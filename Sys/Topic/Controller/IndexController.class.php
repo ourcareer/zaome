@@ -174,14 +174,14 @@ class IndexController extends Controller {
             $rt['code'] = '200200104';
             $rt['msg'] = 'succeed';
 
-            $author = is_login();
+            $uid = is_login();
             
             $content = I('content');
             $time = NOW_TIME;
             $ip = get_client_ip(1);
             $bg = I('bg');
             
-            $data['author'] = $author;
+            $data['uid'] = $uid;
             $data['content'] = $content;
             $data['time'] = $time;
             $data['ip'] = $ip;
