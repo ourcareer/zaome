@@ -34,26 +34,26 @@ body,
   }
   /*导航条部分开始*/
   .zaome-nav {
-    height: 50px;
+    height: 55px;
+    width: 100%;
     font-size: 15px;
     position: absolute;
     left: 0;
-    right: 0;
+    top: 0;
     z-index: 20;
-    /*background: url(../Image/zaome_top_bg.png) repeat-x;*/
-    filter:alpha(opacity=85);
-    -moz-opacity:0.85;
-    -khtml-opacity: 0.85;
-    opacity: 0.85;
+    filter:alpha(opacity=90);
+    -moz-opacity: 0.90;
+    -khtml-opacity: 0.90;
+    opacity: 0.90;
   }
   .navbar-inverse{
    border: none;
   }
-  .navbar-brand{
+  .navbar-header #navbar-brand{
     margin-left: 50px;
     padding: 0;
-    height: 50px;
-    line-height: 50px;
+    height: 55px;
+    line-height: 55px;
   }
   .navbar-brand img{
     height: 46px;
@@ -61,8 +61,8 @@ body,
     padding:2px 0;  
   }
   .nav-index-zaome .navbar-header li{
-    height: 50px;
-    line-height: 50px;
+    height: 55px;
+    line-height: 55px;
     margin:0 40px;
   }
   .nav-index-zaome .navbar-header{
@@ -72,7 +72,7 @@ body,
     color: #fff;
     display: inline-block;
     height: 100%;
-    padding: 13px 30px;
+    padding: 16px 30px;
     font-size: 18px;
     font-family: "微软雅黑";
   }
@@ -80,7 +80,7 @@ body,
     background: #0033CC;
   }
   .nav-index-zaome .nav-right li{
-    margin:11px 3px 0 3px;
+    margin:13px 3px 0 3px;
   }
   .loginbtn,
   .regbtn{
