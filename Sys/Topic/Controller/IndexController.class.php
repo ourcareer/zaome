@@ -83,17 +83,17 @@ class IndexController extends Controller {
 
     // }
 
-    public function ls($page='1',$uid=''){
+    public function ls($page,$uid){
         $Topic = D('topic');
 
-        $page = I('page');
-        $author = I('uid');
+        $page = intval($page);
+        $uid = intval($uid);
 
         $data['code'] = 200201219;
         $data['msg'] = 'succeed';
 
         $field = array(
-            'author'    =>  'uid',
+            'uid',
             'share'     =>  'nickname',
             'id'        =>  'tid',
             'content',
@@ -110,9 +110,11 @@ class IndexController extends Controller {
 
         $order = 'time desc,id desc';
 
-        if ($author) {
-            $map['author'] = $author;
+        if ($uid) {
+            $map['uid'] = $uid;
         }
+        // dump($map);
+        // exit();
 
         $data['result'] = $Topic
         ->field($field)
@@ -120,6 +122,8 @@ class IndexController extends Controller {
         ->page($page,15)
         ->order($order)
         ->select();
+        // dump($data);
+        // exit();
 
         foreach ($data['result'] as $key => $value) {
             $data['result'][$key]['avatar'] = get_avatar($value['uid']);
