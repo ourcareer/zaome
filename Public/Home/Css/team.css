@@ -33,7 +33,20 @@ body,
   z-index:-1;
   }
   /*导航条部分开始*/
-  .zaome-nav {
+  /*.zaome-nav{
+    height: 55px;
+    width: 100%;
+    font-size: 15px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 20;
+    filter:alpha(opacity=90);
+    -moz-opacity: 0.90;
+    -khtml-opacity: 0.90;
+    opacity: 0.90;
+  }*/
+  /*.zaome-nav {
     height: 55px;
     width: 100%;
     font-size: 15px;
@@ -103,7 +116,7 @@ body,
   .loginbtn a:hover,
   .regbtn a:hover{
     text-decoration: none;
-  }
+  }*/
   /*导航条部分结束*/
   /*团队介绍部分开始*/
   .row-fluid .team-img{
