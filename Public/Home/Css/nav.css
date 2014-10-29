@@ -1,4 +1,4 @@
-.zaome-nav{
+.zaome-nav {
     height: 55px;
     width: 100%;
     font-size: 15px;
@@ -6,6 +6,7 @@
     left: 0;
     top: 0;
     z-index: 20;
+    background: url(../Image/zaome_top_bg.png) repeat-x;
     filter:alpha(opacity=90);
     -moz-opacity: 0.90;
     -khtml-opacity: 0.90;

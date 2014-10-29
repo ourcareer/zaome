@@ -4,9 +4,6 @@ body,
     padding: 0;
     overflow: hidden;
   }
-  body{
-    background-color: #E7E7E9;
-  }
   .clear{
     clear: both;
   }
@@ -32,92 +29,6 @@ body,
   text-align: center;
   z-index:-1;
   }
-  /*导航条部分开始*/
-  /*.zaome-nav{
-    height: 55px;
-    width: 100%;
-    font-size: 15px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 20;
-    filter:alpha(opacity=90);
-    -moz-opacity: 0.90;
-    -khtml-opacity: 0.90;
-    opacity: 0.90;
-  }*/
-  /*.zaome-nav {
-    height: 55px;
-    width: 100%;
-    font-size: 15px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 20;
-    filter:alpha(opacity=90);
-    -moz-opacity: 0.90;
-    -khtml-opacity: 0.90;
-    opacity: 0.90;
-  }
-  .navbar-inverse{
-   border: none;
-  }
-  .navbar-header #navbar-brand{
-    margin-left: 50px;
-    padding: 0;
-    height: 55px;
-    line-height: 55px;
-  }
-  .navbar-brand img{
-    height: 46px;
-    width: auto;
-    padding:2px 0;  
-  }
-  .nav-index-zaome .navbar-header li{
-    height: 55px;
-    line-height: 55px;
-    margin:0 40px;
-  }
-  .nav-index-zaome .navbar-header{
-    margin-right: 120px;
-  }
-  .nav-index-zaome .navbar-header li a{
-    color: #fff;
-    display: inline-block;
-    height: 100%;
-    padding: 16px 30px;
-    font-size: 18px;
-    font-family: "微软雅黑";
-  }
-  .nav-index-zaome .navbar-header li a:hover{
-    background: #0033CC;
-  }
-  .nav-index-zaome .nav-right li{
-    margin:13px 3px 0 3px;
-  }
-  .loginbtn,
-  .regbtn{
-    position: relative;
-    padding-top: 3px;
-    width: 70px;
-    height: 28px;
-  }
-  .loginbtn a{
-    color: #000;
-  }
-  .regbtn a{
-    color: #fff;
-  }
-  .loginbtn a,
-  .regbtn a{
-    font-size: 15px;
-    font-family: "微软雅黑";
-  }
-  .loginbtn a:hover,
-  .regbtn a:hover{
-    text-decoration: none;
-  }*/
-  /*导航条部分结束*/
   /*团队介绍部分开始*/
   .row-fluid .team-img{
     height: 94%;
