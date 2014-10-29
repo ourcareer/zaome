@@ -311,7 +311,7 @@ class IndexController extends Controller {
 			    $map['uid'] = $uid;
 			    $userdata = $User->where($map)->find();
 			    $rt['result']['school'] = $userdata['school'];
-			    $rt['result']['nikename'] = $userdata['nikename'];
+			    $rt['result']['nickname'] = $userdata['nickname'];
 			    $rt['result']['username'] = $userdata['username'];
 			    $avatarid = $userdata['avatar'];
 			    $Picture = D('picture');
