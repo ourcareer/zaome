@@ -18,7 +18,7 @@ $(document).ready(function(){
     function move(){ 
         $(".box").animate({"margin-top":Top},Time);//animate方法，只能对数值型的值进行渐变 
             Top+=-426;//运行一次增加一个图片的高度 
-            if(Top==-1704)//判断当总高度大于你DIV或者图片总高度 
+            if(Top == -1704)//判断当总高度大于你DIV或者图片总高度 
             { 
                 Top=0;//把距离设置回0 
                 Time=200;//加快移动速度
@@ -29,4 +29,9 @@ $(document).ready(function(){
             }
     }
     setInterval(move,1000);//1秒执行一次move()
-}) 
+})
+/*$(function(){
+    $('.right-top').click(function(){
+        window.open('http://www.baidu.com');
+    })
+})*/
