@@ -258,7 +258,7 @@ table.hovertable td {
     <td width="15%">
       获取大学   
     </td>
-    <td colspan="12">
+    <td colspan="2">
       <form method="post" action="http://localhost/zaome/api/school" >
         <p>http://localhost/zaome/api/school</p>
         大学名字：<input name="school" value='航空' />
@@ -280,7 +280,7 @@ table.hovertable td {
         <p>http://localhost/zaome/api/reply</p>
         内容:<textarea name="content">这是103回复的内容,还是不错吧</textarea>
         <br />
-        totid:<input name="totid" value=103 />
+        tid:<input name="tid" value=103 />
         <br />
         id:<input name="id" />
         <br />
@@ -301,9 +301,11 @@ table.hovertable td {
     <td colspan="2">
       <form method="post" enctype="multipart/form-data" action="http://localhost/zaome/api/like" >
         <p>http://localhost/zaome/api/like</p>
-        totid:<input name="totid" value=103></textarea>
+        tid:<input name="tid" value=103></textarea>
         <br />
-        回复id:<input name="id" value=59 />
+        回复id:<input name="rid" value=59 />
+        <br />
+        取消赞:<input name="cancel" value=-1 />
         <br />
         先登录获取token_acess：<input name="token_access" value="" /> 
         <br />        
@@ -320,9 +322,9 @@ table.hovertable td {
     <td colspan="2">
       <form method="post" enctype="multipart/form-data" action="http://localhost/zaome/api/detail" >
         <p>http://localhost/zaome/api/detail</p>
-        totid:<input name="tid" value=103></textarea>
+        tid:<input name="tid" value=103></textarea>
         <br />
-        回复id:<input name="id" value=59 />
+        回复id:<input name="rid" value=59 />
         <br />
         先登录获取token_acess：<input name="token_access" value="" /> 
         <br />        
