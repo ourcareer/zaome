@@ -161,7 +161,13 @@ class IndexController extends Controller {
         $this->done($data);
 
     }
-    public function add($totid,$rid){
+
+   /**
+    * 添加话题或者回复
+    * @param $totid int 话题的id, topic id.
+    * @param $rid int 回复的id,  reply id.    
+    */    
+    public function add($totid = '',$rid = ''){
         if ( !is_login() ) {
             $rt['code'] = '-1';
             $rt['msg'] = '请先登录！';
@@ -213,15 +219,94 @@ class IndexController extends Controller {
 
     }
 
-    public function reply($totid,$rid){
+    public function detail($tid = '' ,$id = ''){
         if ( !is_login() ) {
             $rt['code'] = '-1';
             $rt['msg'] = '请先登录！';
             $this->ajaxReturn($rt);         
         }
         if(IS_POST){
-            $content = I('content');
-            $picture = I();
+            $tid = intval($tid);
+            $id = intval($id);
+            $rt['code'] = '200201209';
+            $rt['msg'] = 'succeed';
+            $Topic = D('topic');
+            $Reply = D('reply');
+
+            if (!$tid) {
+                $rt['code'] = '-200201209';
+                $rt['msg'] = '问题不存在！';
+                $this->ajaxReturn($rt);
+            }
+            $field = array(
+                'uid',
+                'ip'        =>  'avatar',
+                'content',
+                'prise' =>  'likecount',
+                'reply'    => 'replycount',
+                'time',
+                'bg'    =>  'background',
+                );
+            if ($id) {
+                $rmap = array(
+                    'totid'        =>  $tid,
+                    'id'        =>  $id,
+                    );
+                $rt['result'] = $Reply->field($field)->where($rmap)->find();
+                if ($rt['result']) {
+                    $this->ajaxReturn($rt);            
+                }
+            }
+
+            $tmap = array(
+                'id'        =>  $tid,
+                );
+            $rt['result'] = $Topic->field($field)->where($tmap)->find();
+
+            $trmap = array(
+                'totid'        =>  $tid,
+                );
+            $rt['result']['reply'] = $Reply->field($field)->where($trmap)->limit(15)->select();
+            if ($rt['result']) {
+                $this->ajaxReturn($rt);            
+            }
+        }        
+    }
+
+    public function like($tid = '' ,$id = ''){
+        if ( !is_login() ) {
+            $rt['code'] = '-1';
+            $rt['msg'] = '请先登录！';
+            $this->ajaxReturn($rt);         
+        }
+        if(IS_POST){
+            $tid = intval($tid);
+            $id = intval($id);
+            if (!$tid) {
+                $rt['code'] = '-200201209';
+                $rt['msg'] = '问题不存在！';
+                $this->ajaxReturn($rt);
+            }
+
+            if ($id) {
+                $Reply = D('reply');
+                $rmap = array(
+                    'totid'        =>  $tid,
+                    'id'        =>  $id,
+                    );
+                $result = $Reply->where($rmap)->setInc('prise');
+            }
+
+            $Topic = D('topic');
+            $tmap = array(
+                'id'        =>  $tid,
+                );
+            $result = $Topic->where($tmap)->setInc('prise');
+            if ($result) {
+                $rt['code'] = '200201209';
+                $rt['msg'] = 'succeed';
+            }
+            $this->ajaxReturn($rt);
         }        
     }
 
