@@ -169,14 +169,14 @@ body{overflow:hidden;-webkit-backface-visibility:hidden;}
           animation-delay: 0s;
 }
 
-.page .current .shape_2 img{
+/*.page .current .shape_2 img{
   -webkit-animation-name: tada;
           animation-name: tada;
   -webkit-animation-duration: 5s;
           animation-duration: 5s;
   -webkit-animation-iteration-count: infinite;
           animation-iteration-count: infinite;
-}
+}*/
 
 .page .current .item_1{
   -webkit-animation-name: fadeInUpBig;
