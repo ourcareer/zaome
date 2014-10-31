@@ -98,7 +98,7 @@ class IndexController extends Controller {
             'id'        =>  'tid',
             'content',
             'reply'    =>  'replycount',
-            'like'      =>  'likecount',
+            'prise'      =>  'likecount',
             'bg'        =>  'background',
             );
 
@@ -136,7 +136,7 @@ class IndexController extends Controller {
                 'content'   =>  'replycontent',
                 'uid',
                 );
-            $order = '`like` desc, `reply` desc, `time` desc';
+            $order = '`prise` desc, `reply` desc, `time` desc';
 
             $data['result'][$key]['reply'] = $Repeat
             ->field($refield)
@@ -167,7 +167,7 @@ class IndexController extends Controller {
     * @param $totid int 话题的id, topic id.
     * @param $rid int 回复的id,  reply id.    
     */    
-    public function add($totid = '',$rid = ''){
+    public function add($tid = '',$rid = ''){
         if ( !is_login() ) {
             $rt['code'] = '-1';
             $rt['msg'] = '请先登录！';
@@ -193,8 +193,8 @@ class IndexController extends Controller {
             $data['ip'] = $ip;
             $data['bg'] = $bg;
 
-            if ($totid && is_numeric($totid)) {
-                $data['totid'] = $totid;
+            if ($tid && is_numeric($tid)) {
+                $data['totid'] = $tid;
                 if ($rid && is_numeric($rid)) {
                     $data['rid'] = $rid;
                 }
@@ -220,68 +220,68 @@ class IndexController extends Controller {
     }
 
     public function detail($tid = '' ,$id = ''){
-        if ( !is_login() ) {
-            $rt['code'] = '-1';
-            $rt['msg'] = '请先登录！';
-            $this->ajaxReturn($rt);         
+        // if(IS_POST){
+        $tid = intval($tid);
+        $id = intval($id);
+        $rt['code'] = '200201209';
+        $rt['msg'] = 'succeed';
+        $Topic = D('topic');
+        $Reply = D('reply');
+
+        if (!$tid) {
+            $rt['code'] = '-200201209';
+            $rt['msg'] = '问题不存在！';
+            $this->ajaxReturn($rt);
         }
-        if(IS_POST){
-            $tid = intval($tid);
-            $id = intval($id);
-            $rt['code'] = '200201209';
-            $rt['msg'] = 'succeed';
-            $Topic = D('topic');
-            $Reply = D('reply');
-
-            if (!$tid) {
-                $rt['code'] = '-200201209';
-                $rt['msg'] = '问题不存在！';
-                $this->ajaxReturn($rt);
-            }
-            $field = array(
-                'uid',
-                'ip'        =>  'avatar',
-                'content',
-                'prise' =>  'likecount',
-                'reply'    => 'replycount',
-                'time',
-                'bg'    =>  'background',
-                );
-            if ($id) {
-                $rmap = array(
-                    'totid'        =>  $tid,
-                    'id'        =>  $id,
-                    );
-                $rt['result'] = $Reply->field($field)->where($rmap)->find();
-                if ($rt['result']) {
-                    $this->ajaxReturn($rt);            
-                }
-            }
-
-            $tmap = array(
-                'id'        =>  $tid,
-                );
-            $rt['result'] = $Topic->field($field)->where($tmap)->find();
-
-            $trmap = array(
+        $field = array(
+            'uid',
+            'ip'        =>  'avatar',
+            'content',
+            'prise' =>  'likecount',
+            'reply'    => 'replycount',
+            'time',
+            'bg'    =>  'background',
+            );
+        if ($id) {
+            $rmap = array(
                 'totid'        =>  $tid,
+                'id'        =>  $id,
                 );
-            $rt['result']['reply'] = $Reply->field($field)->where($trmap)->limit(15)->select();
+            $rt['result'] = $Reply->field($field)->where($rmap)->find();
             if ($rt['result']) {
                 $this->ajaxReturn($rt);            
             }
-        }        
+        }
+
+        $tmap = array(
+            'id'        =>  $tid,
+            );
+        $rt['result'] = $Topic->field($field)->where($tmap)->find();
+
+        $trmap = array(
+            'totid'        =>  $tid,
+            );
+        $field['content']   =   'replycontent';
+        $field['id']        =   'id';
+        $order = '`best` desc,`prise` desc, `time` desc';
+        $rt['result']['reply'] = $Reply->field($field)->where($trmap)->order($order)->limit(15)->select();
+        if ($rt['result']) {
+            $this->ajaxReturn($rt);            
+        }
     }
 
-    public function like($tid = '' ,$id = ''){
+    public function like($tid = '', $id = '', $cancel = ''){
         if ( !is_login() ) {
             $rt['code'] = '-1';
             $rt['msg'] = '请先登录！';
             $this->ajaxReturn($rt);         
         }
         if(IS_POST){
+            $rt['code'] = '200201209';
+            $rt['msg'] = 'succeed';
             $tid = intval($tid);
             $id = intval($id);
+            $cancel = intval($cancel);
             if (!$tid) {
                 $rt['code'] = '-200201209';
                 $rt['msg'] = '问题不存在！';
@@ -294,18 +294,30 @@ class IndexController extends Controller {
                     'totid'        =>  $tid,
                     'id'        =>  $id,
                     );
-                $result = $Reply->where($rmap)->setInc('prise');
+                if ($cancel === -1) {
+                    $result = $Reply->where($rmap)->setDec('prise');
+                } else {
+                    $result = $Reply->where($rmap)->setInc('prise');
+                    $result = -$result;
+                }
             }
 
             $Topic = D('topic');
             $tmap = array(
                 'id'        =>  $tid,
                 );
-            $result = $Topic->where($tmap)->setInc('prise');
-            if ($result) {
-                $rt['code'] = '200201209';
-                $rt['msg'] = 'succeed';
+            if ($cancel === -1) {
+                $result = $Topic->where($tmap)->setDec('prise');
+                $result = -$result;
+            } else {
+                $result = $Topic->where($tmap)->setInc('prise');
             }
+            if ($result) {
+                $rt['result'] = $result;
+                $this->ajaxReturn($rt);
+            }
+            $rt['code'] = '-200201209';
+            $rt['msg'] = 'fail';
             $this->ajaxReturn($rt);
         }        
     }
