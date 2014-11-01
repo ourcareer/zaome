@@ -14,7 +14,7 @@ body,html{width:100%;height:100%;position:relative;font-family:"微软雅黑";}
 .screen{-webkit-transform-style:preserve-3d;}
 .ease{-webkit-transition:all 1.0s ease-in-out;}
 .page{position:relative;overflow:hidden;}
-.page .inner{position:relative;width:100%;height:100%;}
+.page .inner{position:relative;width:100%;}
 .swipe_tip{-webkit-animation:2s swipe_tip ease-in-out infinite;animation:2s swipe_tip ease-in-out infinite;}
 @-webkit-keyframes swipe_tip {
     0% {
@@ -51,14 +51,15 @@ body,html{width:100%;height:100%;position:relative;font-family:"微软雅黑";}
 
 body{overflow:hidden;-webkit-backface-visibility:hidden;}
 
-.page_1 .logo_1{padding:18% 0 0;text-align: center;}
+.page_1 .logo_1{padding:15% 0 10%;text-align: center;}
 .page_1 .logo_1,
-.page_1 .logo_2{text-align:center;}
+.page_1 .logo_2{text-align:center;padding-top: 20%;}
+.guide_1{display: inline-block;width: 100%;}
 
-.page .shape{position:absolute;width:100%;text-align:center;}
-.page .shape_1{top:10%;}
-.page .shape_2{top:5%;}
-/*.page .shape_3{top:3%;}*/
+.page .shape{position:absolute;width:100%;height: 100%;text-align:center;}
+.page .shape_1 img{padding-top:10%;}
+.page .shape_2 img{padding-top:8%;}
+.page .shape_3 img{padding-top:8%;}
 
 
 .page_5 .logo_1{padding:20% 0 20%;}
@@ -155,12 +156,12 @@ body{overflow:hidden;-webkit-backface-visibility:hidden;}
           animation-delay: 0.6s;
 }
 
-/*.page .current .shape_2{
+.page .current .shape_2{
   -webkit-animation-name: fadeInLeftBig;
           animation-name: fadeInLeftBig;
   -webkit-animation-delay: 0s;
           animation-delay: 0s;
-}*/
+}
 
 .page .current .shape_3{
   -webkit-animation-name: fadeInRightBig;

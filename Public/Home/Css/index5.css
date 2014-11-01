@@ -41,12 +41,12 @@
   .navbar-header #navbar-brand{
     margin-left: 50px;
     padding: 0;
-    height: 55px;
-    line-height: 55px;
+    height: 60px;
+    line-height: 60px;
   }
   .nav-index-zaome .navbar-header li{
-    height: 55px;
-    line-height: 55px;
+    height: 60px;
+    line-height: 60px;
     margin:0 40px;
   }
   .nav-index-zaome .navbar-header{
@@ -84,6 +84,9 @@
   position: relative;
   width: 100%;
   height: 100%;
+  z-index: 100;
+  overflow: hidden;
+  background: url(../Image/word.png) 20% 60% no-repeat;
   /*border:1px solid green;*/
 }
  .word{
@@ -100,36 +103,38 @@
   display: block;
   text-align: center;
   position: relative;
-  margin-left: -15%;
+  margin-left: -25%;
   width: 300px;
   height: 650px;
   z-index: 100;
   overflow: hidden;
-  background: url(../Image/phone.png) 0 105% no-repeat;
+  background: url(../Image/phone.png) 0 168% no-repeat;
 }
-.guide{
-  display: block;
-  position: relative;
-  height: 426px;
+.box{
+  top:224.5px;
+  left:18px;
   width: 249px;
+  height: 426px;
+  position: absolute;
+  z-index: 600;
   overflow: hidden;
-  margin-left: 6%;
-  margin-top: 55.8%;
+  /*border:3px solid yellow;*/
 }
-.guide img{
-  height: 100%;
-  width: 100%;
+ul,
+li{
+  margin: 0;
+  padding: 0;
 }
-.guide_0,
-.guide_1,
-.guide_2,
-.guide_3{
+.box ul{list-style:none;width:2999px;}
+.box li{float:left;}
+.box img{
   height: 426px;
   width: 249px;
 }
+
   /*中间的图像结束*/
   /*右边的图像开始*/
-  .ri-top{
+  /*.ri-top{
   display: block;
   text-align: center;
   position: relative;
@@ -137,7 +142,7 @@
   margin-left: -10%;
   width: 100%;
   height: 24%;
-  /*border:1px solid yellow;*/
+  border:1px solid yellow;
 }
 .ri-mid{
   display: block;
@@ -146,7 +151,10 @@
   margin-left: -10%;
   width: 100%;
   height: 24%;
-  /*border:1px solid yellow;*/
+  z-index: 100;
+  overflow: hidden;
+  background: url(../Image/content.png) 20% 60% no-repeat;
+  border:1px solid yellow;
 }
 .ri-btm{
   display: block;
@@ -155,7 +163,7 @@
   margin-left: -10%;
   width: 100%;
   height: 24%;
-  /*border:1px solid yellow;*/
+  border:1px solid yellow;
 }
 .logo{
   display: inline-block;
@@ -164,6 +172,9 @@
   left:16%;
   width: 30%;
   height: auto;
+  overflow: hidden;
+  z-index:200;
+  background: url(../Image/logo.png) 0 0 no-repeat;
 }
 .logo_word{
   display: inline-block;
@@ -180,7 +191,6 @@
   left:2%;
   width: 96%;
   height: auto;
-  
 }
 .downbtn{
   display:inline-block;
@@ -208,6 +218,53 @@
   height: auto;
   top:15%;
   right:3%;
+}*/
+
+.ri_top{
+  display: block;
+  position: absolute;
+  width: 100%;
+  top: 33%;
+  left: -20%;
+  background: url(../Image/logo_word.png) 70% 50% no-repeat;
+  /*border: 1px solid red;*/
+}
+.ri_top .logo{
+  float: left;
+  margin-left: 21%;
+}
+.ri_mid{
+  display: block;
+  position: absolute;
+  top: 54%;
+  left: -20%;
+  width: 100%;
+  height: auto;
+  /*background: url(../Image/content.png) 0% 0% no-repeat;*/
+  /*border: 1px solid red;*/
+}
+.ri_btm{
+  display: block;
+  position: absolute;
+  top: 75%;
+  left: -20%;
+  width: 100%;
+  height: auto;
+  /*border: 1px solid red;*/
+}
+.ri_btm a{
+  position: absolute;
+  left: 4%;
+  top: 27%;
+  display: inline-block;
+  width: 235px;
+  height: 55px;
+  /*border:1px solid red;*/
+  background: url(../Image/button.png) left top no-repeat;
+}
+.ri_btm .qr_ode{
+  float: right;
+  margin-right:3%;
 }
   /*右边的图像结束*/
 }

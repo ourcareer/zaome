@@ -1,5 +1,5 @@
 .zaome-nav {
-    height: 55px;
+    height: 60px;
     width: 100%;
     font-size: 15px;
     position: absolute;
@@ -18,17 +18,17 @@
   .navbar-header #navbar-brand{
     margin-left: 50px;
     padding: 0;
-    height: 55px;
-    line-height: 55px;
+    height: 60px;
+    line-height: 60px;
   }
   .navbar-brand img{
     height: 46px;
     width: auto;
-    padding:2px 0;  
+    padding:3px 0;  
   }
   .nav-index-zaome .navbar-header li{
-    height: 55px;
-    line-height: 55px;
+    height: 60px;
+    line-height: 60px;
     margin:0 40px;
   }
   .nav-index-zaome .navbar-header{
@@ -38,15 +38,15 @@
     color: #fff;
     display: inline-block;
     height: 100%;
-    padding: 16px 30px;
+    padding: 18px 30px;
     font-size: 18px;
     font-family: "微软雅黑";
   }
   .nav-index-zaome .navbar-header li a:hover{
-    background: #0033CC;
+    background: rgb(255,73,70);
   }
   .nav-index-zaome .nav-right li{
-    margin:13px 3px 0 3px;
+    margin:16px 3px 0 3px;
   }
   .loginbtn,
   .regbtn{
@@ -54,6 +54,11 @@
     padding-top: 3px;
     width: 70px;
     height: 28px;
+    border:none;
+  }
+  .loginbtn:hover,
+  .regbtn:hover{
+    background-color: rgb(255,73,70);
   }
   .loginbtn a{
     color: #000;
@@ -69,4 +74,5 @@
   .loginbtn a:hover,
   .regbtn a:hover{
     text-decoration: none;
+    color: #fff;
   }
