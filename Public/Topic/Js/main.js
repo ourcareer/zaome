@@ -25,48 +25,29 @@
 
 })*/
 $(function(){
-	var pageheight = $('.page');
+	var page = $('.page');
 	var page2height = $('.page2');
 	var page3height = $('.page3');
 	var page4height = $('.page4');
-	// alert(bgheight);
 	var layer_bg = $('.layer_bg');
-	var windowheight =$(window).height();
-	alert(windowheight);
+	var pageheight = page.height();
+	alert(pageheight);
+	// var windowheight =$(window).height();
+	// alert(windowheight);
 	layer_bg_height = layer_bg.height();
 	alert(layer_bg_height);
-	var margintop = windowheight - layer_bg_height;
+	var margintop = pageheight - layer_bg_height;
 	alert(margintop);
-	
 	if (margintop > 0){
-		pageheight.height(layer_bg_height);
+		pageheight -= margintop;
+		alert(pageheight);
+		// pageheight.height(layer_bg_height);
 		layer_bg.css('top', -margintop);
+		page.css('top', -margintop);
 	}else{
-		pageheight.height(windowheight);
+		// pageheight += margintop;
+		alert(pageheight);
+		// pageheight.height(windowheight);
 		layer_bg.css('top', margintop);
 	}
-	// alert(parseInt(h))
-	// alert(margintop);
-	// alert(layer_bg_height);
-	// page1height.css('height', layer_bg_height);
-	// page1height.css('margin-top', -margintop);
-	// page1height.css('margin-bottom', -margintop);
-	// // page2height.css('height', layer_bg_height);
-	// page2height.css('margin-top', 0);
-	// page3height.css('height', layer_bg_height);
-	// page3height.css('top', -margintop);
-	// page4height.css('height', layer_bg_height);
-	// page4height.css('top', -margintop);
-	// alert(bgheight);
-	// var layer_bg = $('.layer_bg');
-	// var windowheight =$(window);
-	// alert(windowheight);
-	// layer_bg_height = layer_bg.height();
-	// alert(layer_bg_height);
-	// page2height.css('padding-top', margintop);
-	// page2height.css('height', layer_bg_height);
-	// page3height.css('padding-top', margintop);
-	// page3height.css('height', layer_bg_height);
-	// page4height.css('padding-top', margintop);
-	// page4height.css('height', layer_bg_height);
 })
