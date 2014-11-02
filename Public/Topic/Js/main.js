@@ -35,10 +35,13 @@ $(function(){
 	alert(windowheight);
 	layer_bg_height = layer_bg.height();
 	alert(layer_bg_height);
+
 	var margintop = windowheight - layer_bg_height;
 	alert(margintop);
 	$(document.body).height(layer_bg_height);
+	if (margintop > 0){
 	layer_bg.css('top', -margintop);
+	}
 	// alert(parseInt(h))
 	// alert(margintop);
 	// alert(layer_bg_height);
