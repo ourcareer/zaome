@@ -13,8 +13,8 @@ body,html{width:100%;height:100%;position:relative;font-family:"微软雅黑";}
 .global{position:relative;height:100%;width:100%;-webkit-transform-style:preserve-3d;-webkit-backface-visibility:hidden;}
 .screen{-webkit-transform-style:preserve-3d;}
 .ease{-webkit-transition:all 1.0s ease-in-out;}
-.page{position:relative;overflow:hidden;width: 100%;height: auto;/*border:1px solid green;*/}
-/*.bg{position: relative;width: 100%;height: auto;border: 1px solid red;}*/
+.page{position:relative;overflow:hidden;width: 100%;height: 100%;/*border:1px solid green;*/}
+.bg{position: relative;width: 100%;height: auto;/*border: 1px solid red;*/}
 .page .inner{position:relative;width:100%;}
 .swipe_tip{-webkit-animation:2s swipe_tip ease-in-out infinite;animation:2s swipe_tip ease-in-out infinite;}
 @-webkit-keyframes swipe_tip {
@@ -47,7 +47,7 @@ body,html{width:100%;height:100%;position:relative;font-family:"微软雅黑";}
 .swipe_tip{position:absolute;left:50%;bottom:15px;width:32px;height:32px;margin-left:-16px;background:url(../Image/arr_down.png) no-repeat;background-size:32px 32px;z-index:5;}
 
 @media screen and (max-height:480px) {}
-.layer_bg{position:absolute;left: 0;top: 0;width: 100%;/*height: 100%;overflow: hidden;*/}
+.layer_bg{position:relative;margin: 0 auto;width: 100%;overflow: hidden;height: auto;}
 
 
 body{overflow:hidden;-webkit-backface-visibility:hidden;}
