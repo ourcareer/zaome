@@ -31,12 +31,12 @@ $(function(){
 	var page4height = $('.page4');
 	// alert(bgheight);
 	var layer_bg = $('.layer_bg');
-	var windowheight =$(window);
-	// alert(windowheight);
+	var windowheight =$(document.body).height();
+	alert(windowheight);
 	layer_bg_height = layer_bg.height();
 	alert(layer_bg_height);
 	var margintop = windowheight - layer_bg_height;
-	$(window).height(615);
+	$(document.body).height(layer_bg_height);
 	// alert(parseInt(h))
 	// alert(margintop);
 	// alert(layer_bg_height);
