@@ -1,4 +1,4 @@
-$(function(){
+/*$(function(){
 	var q10 = 950/1230;
 	var q11 = 474/720;
 	var q20 = 1065/1230;
@@ -23,4 +23,17 @@ $(function(){
     guide_3.css('height',guide_3_height);
     guide_3.css('width',guide_3_width);
 
+})*/
+$(function(){
+	var bgheight = $('.page');
+	// alert(bgheight);
+	var layer_bg = $('.layer_bg');
+	// var windowheight =$(window).height();
+	// alert(windowheight);
+	layer_bg_height = layer_bg.height();
+	// alert(layer_bg_height);
+	bgheight.css('height', layer_bg_height);
+	// pageheight = windowheight - (windowheight - layer_bg_height);
+	// alert(bgheight);
+	// alert(pageheight);
 })
