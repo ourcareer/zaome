@@ -25,7 +25,7 @@
 
 })*/
 $(function(){
-	var page1height = $('.page');
+	var pageheight = $('.page');
 	var page2height = $('.page2');
 	var page3height = $('.page3');
 	var page4height = $('.page4');
@@ -39,10 +39,10 @@ $(function(){
 	alert(margintop);
 	
 	if (margintop > 0){
-		$(window).height(layer_bg_height);
+		pageheight.height(layer_bg_height);
 		layer_bg.css('top', -margintop);
 	}else{
-		$(window).height(windowheight);
+		pageheight.height(windowheight);
 		layer_bg.css('top', margintop);
 	}
 	// alert(parseInt(h))
