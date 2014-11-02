@@ -10,6 +10,4 @@ class LikeController extends Controller {
     	$Api->like($tid,$rid,$cancel);
     }
 
-
-
 }
