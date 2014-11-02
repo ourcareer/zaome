@@ -31,7 +31,7 @@ $(function(){
 	var page4height = $('.page4');
 	// alert(bgheight);
 	var layer_bg = $('.layer_bg');
-	var windowheight =$(document.body).height();
+	var windowheight =$(window).height();
 	alert(windowheight);
 	layer_bg_height = layer_bg.height();
 	alert(layer_bg_height);
@@ -40,7 +40,7 @@ $(function(){
 	alert(margintop);
 	
 	if (margintop > 0){
-		$(document.body).height(layer_bg_height);
+		$(window).height(layer_bg_height);
 		layer_bg.css('top', -margintop);
 	}
 	// alert(parseInt(h))
