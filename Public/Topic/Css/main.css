@@ -14,10 +14,8 @@ body,html{width:100%;height:100%;position:relative;font-family:"微软雅黑";}
 .screen{-webkit-transform-style:preserve-3d;}
 .ease{-webkit-transition:all 1.0s ease-in-out;}
 .page{position:relative;overflow:hidden;width: 100%;height: 100%;}
-.page5{position:relative;overflow:hidden;width: 100%;height: 100%;}
 .bg{position: relative;width: 100%;height: auto;}
 .page .inner{position:relative;width:100%;}
-.page5 .inner{position:relative;width:100%;}
 .swipe_tip{-webkit-animation:2s swipe_tip ease-in-out infinite;animation:2s swipe_tip ease-in-out infinite;}
 @-webkit-keyframes swipe_tip {
     0% {
