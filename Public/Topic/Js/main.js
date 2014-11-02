@@ -31,7 +31,7 @@ $(function(){
 	var page4height = $('.page4');
 	var layer_bg = $('.layer_bg');
 	var pageheight = page.height();
-	alert(pageheight);
+	// alert(pageheight);
 	// var windowheight =$(window).height();
 	// alert(windowheight);
 	layer_bg_height = layer_bg.height();
