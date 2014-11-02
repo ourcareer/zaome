@@ -35,18 +35,18 @@ $(function(){
 	// var windowheight =$(window).height();
 	// alert(windowheight);
 	layer_bg_height = layer_bg.height();
-	alert(layer_bg_height);
+	// alert(layer_bg_height);
 	var margintop = pageheight - layer_bg_height;
-	alert(margintop);
+	// alert(margintop);
 	if (margintop > 0){
 		pageheight -= margintop;
-		alert(pageheight);
+		// alert(pageheight);
 		// pageheight.height(layer_bg_height);
 		layer_bg.css('top', -margintop);
 		page.css('top', -margintop);
 	}else{
 		// pageheight += margintop;
-		alert(pageheight);
+		// alert(pageheight);
 		// pageheight.height(windowheight);
 		layer_bg.css('top', margintop);
 	}
