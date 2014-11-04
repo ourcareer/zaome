@@ -2,16 +2,11 @@ body,
 .container-fluid{
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    background: url(../Image/background.png) left top no-repeat;
+    background-size:100% 100%;
   }
   .clear{
     clear: both;
-  }
-  #background{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index:-1;
   }
   .col-xs-8,
   .col-sm-8,
@@ -19,15 +14,6 @@ body,
   .col-lg-8
   {
     text-align: center;
-  }
-  .zmcon{
-  width: 100%;
-  height: auto;
-  position: relative;
-  background: url(../Image/background.png) left top no-repeat;
-  background-size:100% 100%;
-  text-align: center;
-  z-index:-1;
   }
   /*团队介绍部分开始*/
   .row-fluid .team-img{

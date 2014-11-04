@@ -65,7 +65,8 @@ body{overflow:hidden;-webkit-backface-visibility:hidden;}
 .page_5 .inner .logo_1{padding:20% 0 20%;}
 .page_5 .inner .logo_1,
 .page_5 .inner .logo_2{text-align:center;}
-.page_5 .btn{width:300px;height:120px;position:relative;padding-top: 20%;text-align:center;margin: 0 auto;}
+.page_5 .btn{width:300px;height:120px;position:relative;padding-top: 20%;text-align:center;margin: 0 auto 8 files changed, 17 insertions(+), 19 deletions(-)
+[];}
 .page_5 .btn a{float:left; position:relative;display: inline-block;padding-top:20px;}
 .page_5 .btn .qr_code{display:inline-block;float:right;}
 
