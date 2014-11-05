@@ -25,15 +25,26 @@
 
 })*/
 $(function(){
-	var bgheight = $('.page');
-	// alert(bgheight);
+	var page = $('.page');
 	var layer_bg = $('.layer_bg');
+	var pageheight = page.height();
+	// alert(pageheight);
 	// var windowheight =$(window).height();
 	// alert(windowheight);
 	layer_bg_height = layer_bg.height();
 	// alert(layer_bg_height);
-	bgheight.css('height', layer_bg_height);
-	// pageheight = windowheight - (windowheight - layer_bg_height);
-	// alert(bgheight);
-	// alert(pageheight);
+	var margintop = pageheight - layer_bg_height;
+	// alert(margintop);
+	if (margintop > 0){
+		pageheight -= margintop;
+		// alert(pageheight);
+		// pageheight.height(layer_bg_height);
+		layer_bg.css('top', -margintop);
+		// page.css('top', -margintop);
+	}else{
+		// pageheight += margintop;
+		// alert(pageheight);
+		// pageheight.height(windowheight);
+		layer_bg.css('top', margintop);
+	}
 })

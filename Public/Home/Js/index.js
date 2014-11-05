@@ -1,7 +1,7 @@
 function AutoScroll(){
     var _scroll = $(".box>ul");
     //ul往左边移动249px
-    _scroll.animate({marginLeft:"-249px"},1000,function(){
+    _scroll.animate({marginLeft:"-210px"},1000,function(){
         //把第一个li丢最后面去
         _scroll.css({marginLeft:0}).find("li:first").appendTo(_scroll);
     });
