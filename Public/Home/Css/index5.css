@@ -265,13 +265,13 @@ li{
 }
 .ri_btm a{
   position: absolute;
-  left: 37%;
+  left: 35%;
   top: 27%;
   display: inline-block;
   width: 160px;
   height: 39px;
   /*border:1px solid red;*/
-  background: url(../Image/button.png) left top no-repeat;
+  background: url(../Image/download.png) left top no-repeat;
 }
 .ri_btm .qr_ode{
   float: right;

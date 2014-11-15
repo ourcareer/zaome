@@ -6,23 +6,23 @@
 	position: relative;
 	text-align: center;
 	background-color: #ffffff;
-	padding:15px 0;
+	/*padding:60px 0 0;*/
 	font-family: "微软雅黑";
 }
 #footer .footertop{
 	width: 100%;
-	padding-top: 35px;
+	padding-top: 90px;
 	font-weight: bold;
 }
 .footertop span{
 	display: inline-block;
 	position: absolute;
 	top: 5px;
-	left: 548px;
+	left: 540px;
 	background: url(../Image/qr_code.png) left top no-repeat;
-	background-size: 75% 75%;
-	width: 95px;
-	height: 95px;
+	background-size: 100% 100%;
+	width: 90px;
+	height: 90px;
 	/*z-index: 9999;*/
 }
 #footer i{
