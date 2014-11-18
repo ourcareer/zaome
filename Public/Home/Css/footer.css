@@ -1,21 +1,33 @@
 /*页面底部开始*/
 #footer{
 	width: 100%;
-	margin: 0 auto -20px;
+	height: auto;
+	margin: 0 auto;
 	position: relative;
 	text-align: center;
 	background-color: #ffffff;
-	padding:10px 0;
+	/*padding:60px 0 0;*/
 	font-family: "微软雅黑";
 }
 #footer .footertop{
 	width: 100%;
-	margin-top: 10px;
+	padding-top: 90px;
 	font-weight: bold;
+}
+.footertop span{
+	display: inline-block;
+	position: absolute;
+	top: 5px;
+	left: 540px;
+	background: url(../Image/qr_code.png) left top no-repeat;
+	background-size: 100% 100%;
+	width: 90px;
+	height: 90px;
+	/*z-index: 9999;*/
 }
 #footer i{
 	font-style:normal;
-	margin:0 10px;
+	margin:0 15px;
 }
 #footer a{
 	color:#383838;

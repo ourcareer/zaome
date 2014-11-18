@@ -1,58 +1,20 @@
-$(function(){
-	var main = $('#main-con');
-    var login = $('.login');
-    var register = $('.register');
-    var mask = $('#mask');
- $(".loginbtn").click(function(){
-    main.css('display', 'none');
-    mask.css('display','block');
-    login.css('display','block');
- })
- $("#login-close").click(function(){
-    login.css('display', 'none');
-    mask.css('display','none');
-    main.css('display','block');
- })
- $(".regbtn").click(function(){
-    main.css('display', 'none');
-    mask.css('display','block');
-    register.css('display','block');
- })
- $(".reg-close").click(function(){
-    register.css('display', 'none');
-    mask.css('display','none');
-    main.css('display','block');
- })
-});
-/*$(document).ready(function(){ 
-    var Top=-426;//定义一个向上移动的距离，这个数值和你图片或DIV的高度相等 
-    var Time=500;//定义一个速度 
-    function move(){ 
-        $(".box").animate({"margin-top":Top},Time);//animate方法，只能对数值型的值进行渐变 
-        Top+=-426;//运行一次增加一个图片的高度 
-        if(Top==-1704)//判断是不是最后一个向上移动的图片 
-        { 
-            clearInterval(up);//停止动画 
-        }
-    } 
-        var up = setInterval(move,3000);//3秒执行一次move() 
-})
-*/
-$(document).ready(function(){ 
-    var Top=-426;//定义一个向上移动的距离，这个数值和你图片或DIV的高度相等 
-    var Time=5000;//定义一个速度 
-    function move(){ 
-        $(".box").animate({"margin-top":Top},Time);//animate方法，只能对数值型的值进行渐变 
-            Top+=-426;//运行一次增加一个图片的高度 
-            if(Top==-1704)//判断当总高度大于你DIV或者图片总高度 
-            { 
-                Top=0;//把距离设置回0 
-                Time=200;//加快移动速度
-            } 
-            else 
-            { 
-                Time=5000;//否则减慢速度 
-            }
-    }
-    setInterval(move,1000);//1秒执行一次move()
-}) 
+function AutoScroll(){
+    var _scroll = $(".box>ul");
+    //ul往左边移动249px
+    _scroll.animate({marginLeft:"-210px"},1000,function(){
+        //把第一个li丢最后面去
+        _scroll.css({marginLeft:0}).find("li:first").appendTo(_scroll);
+    });
+}
+setInterval("AutoScroll()",3000);
+// $(function(){
+//     //两秒后调用
+//     var _scrolling=setInterval("AutoScroll()",2000);
+//     $(".box>ul").hover(function(){
+//         //鼠标移动DIV上停止
+//         clearInterval(_scrolling);
+//     },function(){
+//         //离开继续调用
+//         _scrolling=setInterval("AutoScroll()",2000);
+//     });
+// });

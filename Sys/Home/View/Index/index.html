@@ -4,181 +4,53 @@
   <load href="__PUBLIC__/Home/Css/index4.css" />
   <load href="__PUBLIC__/Home/Css/index5.css" />
   <load href="__PUBLIC__/Home/Css/index6.css" />
-  <load href="__PUBLIC__/Home/Css/register.css" />
-  <load href="__PUBLIC__/Home/Css/login.css" />
-  <load href="__PUBLIC__/Home/Js/register.js" />
-  <load href="__PUBLIC__/Home/Js/login.js" />
   <load href="__PUBLIC__/Home/Js/index.js" />
-  <!-- 登陆部分开始 -->
-  <div id="mask"></div>
-  <div class="login" style="display: none;">
-  <div class="container-fluid">
-    <div class="row-fluid">
-      <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3" >
-        <div class="modal-content">
-          <form name="loginForm" id="id_login_form" method="post">
-            <div class="modal-header">
-               <button type="button" class="close" id="login-close" data-dismiss="modal" aria-hidden="true">×</button>
-               <h4 class="modal-title" id="login-label">登录</h4>
-            </div>
-            <div class="modal-body">
-              <div class="input-group input-group-lg">
-                <input id="login-username" type="text" name="username" class="form-control" placeholder="手机号" data-name="userName">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-earphone"></span></span>         
-              </div>
-              <p class="error" id="login-username-error"></p> 
-              <div class="input-group input-group-lg">
-                <input id="login-password" type="password" name="password" class="form-control" placeholder="登录密码" data-name="password">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-              </div>
-              <p class="error" id="login-password-error"></p>
-
-              <div class="input-group input-group-lg control-group">
-                <input type="text" id="inputPassword" maxlength="4" class="form-control" placeholder="请输入验证码"  errormsg="请填写4位验证码" nullmsg="请填写验证码" datatype="*5-5" name="verify">
-                <a class="input-group-addon input-captcha" href="#" id="ref-img" style="padding: 0;">
-                <img class="verifyimg reloadverify" alt="点击切换" src="{:U('User/Index/verify')}">
-                </a>
-                <!-- <div class="control-group groupstyle">
-                  <div class="controls">
-                    <img class="verifyimg reloadverify" alt="点击切换" src="{:U('User/Index/verify')}" style="cursor:pointer;">
-                  </div>
-                  <label class="control-label labelstyle"></label>
-                  <div class="controls Validform_checktip text-warning"></div>
-                </div> -->
-              </div>
-              <p class="error" id="login-captcha-error"></p>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" name="remember" checked="checked" id="id-remember">下次自动登录
-                </label>
-                <a href="javascript:void(0)" class="pull-right" id="forget-password">忘记了密码？</a>
-              </div>
-              <button type="submit" id="login-button" data-loading-text="正在登录..." class="btn btn-primary btn-lg btn-block">登录</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div><!-- 登陆部分结束 -->
-<!-- 注册部分开始 -->
-<div class="register" style="display: none;">
-<div class="container-fluid">
-    <div class="row-fluid">
-      <div id="register-content" class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3" >
-        <div class="register-main center-block" style="padding: 0;">
-          <div class="modal-header center-block" style="padding: 0;">
-          	<button type="button" class="reg-close" id="reg-close" data-dismiss="modal" aria-hidden="true"></button>
-            <h2>注册</h2>
-          </div>
-          <form id="regForm" method="post" action="{:U('user/index/register')}"> 
-            <div class="modal-body center-block" id="register">
-              <div class="input-group input-group-lg" id="reg-mobile">
-                <input type="text" class="form-control" placeholder="手机号码" id="mobile" onblur="checkSubmitMobil();">
-               <span class="tips" id="mobile-error"></span>
-                <span class="input-group-addon mobileaddon"><span id="glyphicon" class="glyphicon glyphicon-earphone"></span></span>
-                </div>
-              <div class="input-group input-group-lg">
-                <input type="text" id="verify" name="verify" maxlength="4" class="form-control" placeholder="请输入验证码"  errormsg="请填写4位验证码" nullmsg="请填写验证码" datatype="*5-5">
-                <a class="input-group-addon input-captcha" href="javascript:void(0)" id="reg_ref_img" style="padding: 0;"><img class="verifyimg reloadverify" alt="点击切换" src="#" ></a>
-              </div> 
-              <!-- <div class="input-group input-group-lg control-group">
-                    <label class="control-label" for="inputPassword">验证码</label>
-                    <input type="text" id="verify" name="verify" class="span3 form-control" placeholder="请输入验证码"  errormsg="请填写5位验证码" nullmsg="请填写验证码" datatype="*5-5">
-                    <div class="control-group groupstyle">
-                        <div class="controls">
-                            <img class="verifyimg reloadverify" alt="点击切换" src="{:U('User/Index/verify')}" style="cursor:pointer;">
-                        </div>
-                        <label class="control-label labelstyle"></label>
-                      <div class="controls Validform_checktip text-warning"></div>
-                    </div>
-                </div> -->
-
-              <input type="hidden" id="getsmscode" value="{:U('sms/index/sendsmscode')}" />
-              <input id="mobilecode" class="btn btn-primary btn-lg btn-block" type="button" value="免费获取短信验证码" />
-              <div class="input-group input-group-lg smsinput">
-                <input type="password" class="form-control" placeholder="短信验证码" id="smcode" name="password">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-comment"></span></span>
-              </div>
-              <button type="submit" class="btn btn-primary btn-lg btn-block" id="registeragree">我同意，现在注册</button>
-              <p class="agreement">注册需同意<a href="#" target="_blank">造么协议</a></p>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div><!-- 注册部分结束 -->
   <!-- 首页内容开始 -->
-  <!-- 导航条部分开始 -->
-  <div id="main-con" style="display: block;">
-  <header class="navbar navbar-static-top zaome-nav" role="banner">
-	<div class="container">
-		<div class="navbar-header">
-			<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-      <a href="./" class="navbar-brand" id="navbar-brand"><img src="__PUBLIC__/Home/Image/logo_head.png" alt="logo"></a>
-		</div>
-		<nav class="navbar-collapse collapse navbar-right nav-index-zaome">
-      <ul class="nav navbar-nav navbar-header">
-        <li><a href="./" class="">首页</a></li>
-        <li><a href="{:U('home/index/team')}" class="">团队介绍</a></li>
-        <li><a href="{:U('home/index/contact')}">联系我们</a></li>
-      </ul>
-      <ul class="nav navbar-nav nav-right" style="position:relative;">
-          <li><button type="button" class="btn btn-default loginbtn">
-            <a href="#">登录</a>
-          </button></li>
-          <li><button type="button" class="btn btn-primary regbtn">
-              <a href="#">注册</a>
-            </button></li>
-      </ul>
-		</nav>
-	</div>
-</header>
-
-<!-- 导航条部分结束 -->
-    <div class="zmcon" >
-		<div class="container-fluid">
-		    <div class="row-fluid">
-			    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 lf">
-				    <div class="lt-img">
-					    <img class="word" src="__PUBLIC__/Home/Image/word.png" alt="word">
-					</div>
-			    </div>
-				<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 md ">
-					<div class="md-img clear">
-						<!-- <img class="phone" src="__PUBLIC__/Home/Image/phone.png" alt="phone" /> -->
-            <div class="guide">
+  <div class="zmcon" >
+  <!-- <div class="mask"></div> -->
+  	<div class="container-fluid">
+  	    <div class="row-fluid">
+  		    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 lf">
+  			    <div class="lt-img">
+  				    <!-- <img class="word" src="__PUBLIC__/Home/Image/word.png" alt="word"> -->
+  				</div>
+  		    </div>
+  			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 md ">
+  				<div class="md-img">
               <div class="box">
-                <div class="guide_0"><img src="__PUBLIC__/Home/Image/guide_0.png" alt="guide_0"></div>
-                <div class="guide_1"><img src="__PUBLIC__/Home/Image/guide_1.png" alt="guide_1"></div>
-                <div class="guide_2"><img src="__PUBLIC__/Home/Image/guide_2.png" alt="guide_2"></div>
-                <div class="guide_3"><img src="__PUBLIC__/Home/Image/guide_3.png" alt="guide_3"></div>
-              </div>
+                <ul>
+                  <li><img src="__PUBLIC__/Home/Image/guide_0.png" alt="guide_0"></li>
+                  <li><img src="__PUBLIC__/Home/Image/guide_1.png" alt="guide_1"></li>
+                  <li><img src="__PUBLIC__/Home/Image/guide_2.png" alt="guide_2"></li>
+                  <li><img src="__PUBLIC__/Home/Image/guide_3.png" alt="guide_3"></li>
+                </ul>
             </div>
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 ri">
-					<div class="ri-top">
-						<img class="logo" src="__PUBLIC__/Home/Image/logo.png" alt="logo" />
-						<img class="logo_word" src="__PUBLIC__/Home/Image/logo_word.png" alt="logo_word">
-					</div>
-					<div class="ri-mid">
-						<img class="content" src="__PUBLIC__/Home/Image/content.png" alt="content">
-					</div>
-					<div class="ri-btm">
-						<a type="button" class="btn btn-default downbtn">
-							<img class="download" src="__PUBLIC__/Home/Image/download.png" alt="download">
-						</a>
-						<img class="qr_ode" src="__PUBLIC__/Home/Image/qr_code.png" alt="qr_ode" />
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div><!-- 首页内容结束 -->
+  				</div>
+  			</div>
+  			<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 ri">
+        <div class="ri_top"><img class="logo" src="__PUBLIC__/Home/Image/logo.png" alt="logo" /></div>
+        <div class="ri_mid"><img class="content" src="__PUBLIC__/Home/Image/content.png" alt="content"></div>
+        <div class="ri_btm">
+          <a href="javascript:void(0);"></a>
+        </div>
+  				<!-- <div class="ri-top">
+                      <div class="logo"></div>
+            <img class="logo" src="__PUBLIC__/Home/Image/logo.png" alt="logo" />
+            <img class="logo_word" src="__PUBLIC__/Home/Image/logo_word.png" alt="logo_word">
+          </div>
+          <div class="ri-mid">
+            <img class="content" src="__PUBLIC__/Home/Image/content.png" alt="content">
+          </div>
+          <div class="ri-btm">
+            <a href="#" type="button" class="btn btn-default downbtn" id="downbtn">
+              <img class="download" src="__PUBLIC__/Home/Image/download.png" alt="download">
+            </a>
+            <img class="qr_ode" src="__PUBLIC__/Home/Image/qr_code.png" alt="qr_ode" />
+          </div> -->
+  			</div>
+
+  		</div>
+  	</div>
+  </div>
+
+  <!-- 首页内容结束 -->
