@@ -192,6 +192,7 @@ class IndexController extends Controller {
             $data['time'] = $time;
             $data['ip'] = $ip;
             $data['bg'] = $bg;
+            $data['systembg'] = $systembg;
 
             if ($tid && is_numeric($tid)) {
                 $data['totid'] = $tid;
@@ -270,6 +271,10 @@ class IndexController extends Controller {
         }
     }
 
+    /**
+     * 点赞功能
+     * @param 
+     */
     public function like($tid = '', $id = '', $cancel = ''){
         if ( !is_login() ) {
             $rt['code'] = '-1';

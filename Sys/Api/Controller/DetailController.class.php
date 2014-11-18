@@ -10,6 +10,4 @@ class DetailController extends Controller {
     	$Api->detail($tid,$rid);
     }
 
-
-
 }

@@ -165,7 +165,7 @@ class IndexController extends Controller {
             	$rt['code'] = '200210104';
             	$rt['msg'] = 'succeed';
             	$rt['result']['token_access'] = session('user_auth_sign');
-            	$ajaxReturn($rt);
+            	$this->ajaxReturn($rt);
                 // $this->success('添加密码成功！',U('index'));
             }else{
             	$rt['code'] = '-200210104';
