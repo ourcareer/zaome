@@ -27,7 +27,11 @@ class HomeController extends Controller {
         $config = api('Config/lists');
         // 添加配置
         C($config);
-        // dump(C());
+        
+        if (is_mobile()) {
+            $this->redirect('Mobile/Index/index');
+        }
+
     }
 
 }

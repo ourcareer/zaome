@@ -18,6 +18,7 @@ define('APP_PATH','./Sys/');
 // define('BIND_MODULE', 'Bug');
 // define('BIND_MODULE', 'Sms');
 // define('BIND_MODULE', 'Api');
+// define('BIND_MODULE', 'Mobile');
 
 // 定义runtime的路径
 define('RUNTIME_PATH','./Data/Runtime/');
