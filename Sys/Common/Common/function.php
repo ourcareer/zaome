@@ -5,12 +5,6 @@
  * 主要定义系统公共函数库
  */
 
-
-
-if(is_mobile()){
-    define('DEFAULT_MODULE','Mobile');
-}
-
 /**
  * 判断是否为手机
  */

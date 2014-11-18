@@ -12,7 +12,7 @@ use Think\Controller;
  * 首页控制器
  */
 class IndexController extends HomeController {
-    // function _in
+    
     /**
      * 系统首页
      * 应该有统计功能,统计访客信息或者会员信息
